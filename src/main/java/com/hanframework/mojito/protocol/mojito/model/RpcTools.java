@@ -9,6 +9,7 @@ import com.hanframework.mojito.serialization.SerializeEnum;
  */
 public class RpcTools {
 
+
     public static RpcProtocolHeader fetchRpcProtocolHeader(RpcRequest rpcRequest) {
         return rpcRequest;
     }

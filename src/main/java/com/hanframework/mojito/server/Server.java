@@ -18,6 +18,12 @@ public interface Server extends ProtocolRegister {
     void start(int port);
 
     /**
+     * 非阻塞启动
+     * @param port
+     */
+    void startAsync(int port);
+
+    /**
      * 关闭服务
      */
     void close();

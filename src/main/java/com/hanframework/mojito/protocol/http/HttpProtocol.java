@@ -1,6 +1,6 @@
 package com.hanframework.mojito.protocol.http;
 
-import com.hanframework.mojito.client.handler.ClientHandler;
+import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
 import com.hanframework.mojito.protocol.ChannelDecoder;
 import com.hanframework.mojito.protocol.ChannelEncoder;
@@ -54,7 +54,7 @@ public class HttpProtocol implements Protocol {
     }
 
     @Override
-    public ClientHandler getClientHandler() {
+    public ClientPromiseHandler getClientPromiseHandler() {
         return null;
     }
 }

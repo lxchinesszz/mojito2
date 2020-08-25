@@ -1,6 +1,7 @@
 package com.hanframework.mojito.protocol.echo;
 
-import com.hanframework.mojito.client.handler.ClientHandler;
+import com.hanframework.mojito.channel.EnhanceChannel;
+import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
@@ -10,7 +11,6 @@ import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
-import com.hanframework.mojito.signature.service.SignatureManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -63,7 +63,7 @@ public class EchoProtocol implements Protocol {
         return new ServerHandler<ByteBuf, ByteBuf>() {
 
             @Override
-            public ByteBuf handler(ByteBuf rpcRequest) throws RemotingException {
+            public ByteBuf handler(EnhanceChannel channel,ByteBuf rpcRequest) throws RemotingException {
                 System.out.println("执行一段逻辑处理");
                 return rpcRequest;
             }
@@ -71,16 +71,17 @@ public class EchoProtocol implements Protocol {
     }
 
     @Override
-    public ClientHandler getClientHandler() {
-        return new ClientHandler() {
-            @Override
-            public void received(Object rpcResponse) {
+    public ClientPromiseHandler getClientPromiseHandler() {
+        return new ClientPromiseHandler() {
 
+            @Override
+            public MojitoFuture async(EnhanceChannel enhanceChannel, Object rpcRequest) {
+                return null;
             }
 
             @Override
-            public MojitoFuture async(Object rpcRequest) {
-                return null;
+            public void received(Object rpcResponse) {
+
             }
         };
     }

@@ -1,5 +1,6 @@
 package com.hanframework.mojito.server.handler;
 
+import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.protocol.mojito.model.RpcTools;
@@ -14,12 +15,9 @@ import java.util.Objects;
 public class DefaultServerHandler extends AbstractServerHandler<RpcRequest, RpcResponse> {
 
 
-    public RpcResponse doHandler(RpcRequest rpcRequest) throws Exception {
-//        if (Objects.isNull(null)) {
+    @Override
+    public RpcResponse doHandler(EnhanceChannel channel,RpcRequest rpcRequest) throws Exception {
         return RpcTools.buildNotFoundService(rpcRequest);
-//        }
-//        Object result = signatureHodler.invoker(rpcRequest.getArgs());
-//        return RpcTools.buildRpcResponse(rpcRequest, result);
     }
 
 }

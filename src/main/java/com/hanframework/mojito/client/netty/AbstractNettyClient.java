@@ -14,6 +14,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.ConnectException;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author liuxin
  * 2020-08-01 17:17
  */
+@Slf4j
 public abstract class AbstractNettyClient<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements Client<T, R> {
 
 
@@ -118,11 +120,17 @@ public abstract class AbstractNettyClient<T extends RpcProtocolHeader, R extends
         return this.enhanceChannel;
     }
 
+    private void checked() throws ConnectException {
+        if (enhanceChannel == null || !enhanceChannel.isConnected()) {
+            throw new ConnectException("未连接请先检查连接");
+        }
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public MojitoFuture<R> sendAsync(T message) throws Exception {
-        enhanceChannel.send(message);
-        return protocol.getClientHandler().async(message);
+        checked();
+        return protocol.getClientPromiseHandler().async(enhanceChannel, message);
     }
 
 

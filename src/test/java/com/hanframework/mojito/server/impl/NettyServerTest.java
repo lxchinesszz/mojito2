@@ -1,10 +1,11 @@
 package com.hanframework.mojito.server.impl;
 
 import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.client.handler.ClientHandler;
-import com.hanframework.mojito.client.handler.DefaultAsyncClientHandler;
+import com.hanframework.mojito.client.handler.ClientPromiseHandler;
+import com.hanframework.mojito.client.handler.DefaultAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.netty.DefaultNettyClient;
 import com.hanframework.mojito.future.MojitoFuture;
+import com.hanframework.mojito.future.listener.MojitoListener;
 import com.hanframework.mojito.protocol.*;
 import com.hanframework.mojito.protocol.echo.EchoProtocol;
 import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
@@ -41,10 +42,10 @@ public class NettyServerTest {
             }
 
             @Override
-            public ClientHandler<RpcRequest, RpcResponse> doClientHandler() {
+            public ClientPromiseHandler<RpcRequest, RpcResponse> doClientHandler() {
                 //2. 自定义客户端处理逻辑
                 //   继承AbstractAsyncClientHandler,声明泛型即可
-                return new DefaultAsyncClientHandler();
+                return new DefaultAsyncClientPromiseHandler();
             }
 
             @Override
@@ -85,7 +86,7 @@ public class NettyServerTest {
             }
 
             @Override
-            public ClientHandler<CustomerRpcInfo, CustomerRpcInfo> doClientHandler() {
+            public ClientPromiseHandler<CustomerRpcInfo, CustomerRpcInfo> doClientHandler() {
                 return null;
             }
         };
@@ -101,8 +102,19 @@ public class NettyServerTest {
         client.connect("127.0.0.1", 8888);
         client.sendAsync(new RpcRequest());
         MojitoFuture<RpcResponse> future = client.sendAsync(new RpcRequest());
-        RpcResponse response = future.get();
-        System.out.println(response);
+//        RpcResponse response = future.get();
+//        System.out.println("RpcResponse:" + response);
+        future.addListener(new MojitoListener<RpcResponse>() {
+            @Override
+            public void onSuccess(RpcResponse result) throws Exception {
+                System.out.println("收到返回值:" + result);
+            }
+
+            @Override
+            public void onThrowable(Throwable throwable) throws Exception {
+                System.out.println("onThrowable:" + throwable);
+            }
+        });
     }
 
 
@@ -135,6 +147,6 @@ public class NettyServerTest {
         //1. 将要提供对外服务类,生成签名信息,并交给server处理
         //2. 服务支持的协议信息
         server.registerProtocol(new EchoProtocol());
-        server.start(8887);
+        server.start(8881);
     }
 }

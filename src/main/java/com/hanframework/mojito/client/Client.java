@@ -4,6 +4,8 @@ import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 
+import java.net.ConnectException;
+
 /**
  * 客户端接口
  * 1. 连接远程服务

@@ -1,6 +1,6 @@
 package com.hanframework.mojito.protocol;
 
-import com.hanframework.mojito.client.handler.ClientHandler;
+import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
  * @author liuxin
  * 2020-07-25 21:39
  */
-public interface Protocol<R,V> {
+public interface Protocol<R, V> {
 
     /**
      * 协议名称
@@ -51,6 +51,7 @@ public interface Protocol<R,V> {
 
     /**
      * 服务处理器，负责将请求信息转换成响应信息
+     * 注意: 非线程安全类
      *
      * @return ServerHandler
      */
@@ -58,9 +59,10 @@ public interface Protocol<R,V> {
 
     /**
      * 客户端处理器
+     * 注意: 非线程安全类
      *
-     * @return ClientHandler
+     * @return ClientPromiseHandler
      */
-    ClientHandler<R, V> getClientHandler();
+    ClientPromiseHandler<R, V> getClientPromiseHandler();
 
 }

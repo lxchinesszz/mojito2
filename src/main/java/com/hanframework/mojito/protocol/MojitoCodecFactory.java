@@ -1,8 +1,8 @@
 package com.hanframework.mojito.protocol;
 
 import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.client.handler.ClientHandler;
-import com.hanframework.mojito.client.handler.DefaultAsyncClientHandler;
+import com.hanframework.mojito.client.handler.ClientPromiseHandler;
+import com.hanframework.mojito.client.handler.DefaultAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.netty.DefaultNettyClient;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
@@ -24,8 +24,8 @@ public class MojitoCodecFactory extends AbstractCodecFactory<RpcRequest, RpcResp
     }
 
     @Override
-    public ClientHandler<RpcRequest, RpcResponse> doClientHandler() {
-        return new DefaultAsyncClientHandler();
+    public ClientPromiseHandler<RpcRequest, RpcResponse> doClientHandler() {
+        return new DefaultAsyncClientPromiseHandler();
     }
 
     @Override

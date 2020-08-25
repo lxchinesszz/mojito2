@@ -2,17 +2,12 @@ package com.hanframework.mojito.handler;
 
 import com.hanframework.kit.date.DatePatternEnum;
 import com.hanframework.mojito.channel.EnhanceChannel;
-import com.hanframework.mojito.client.handler.ClientHandler;
 import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
-import com.hanframework.mojito.server.handler.ServerHandler;
-import io.netty.buffer.ByteBuf;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -105,13 +100,25 @@ public class MojitoCoreHandler implements MojitoChannelHandler {
             if (isServer) {
                 runnable = () -> {
                     System.out.println("ServerHandler处理" + toAddressString(channel.getRemoteAddress()) + "发送来的一条数据:" + message);
-                    Object response = protocol.getServerHandler().handler(message);
-                    channel.send(response);
+                    try {
+                        Object response = protocol.getServerHandler().handler(channel, message);
+                        channel.send(response);
+                    } catch (Throwable throwable) {
+                        System.err.println("Server1312321312");
+                        channel.exceptionCaught(new RemotingException(throwable));
+                        channel.disconnected();
+                    }
                 };
             } else {
                 runnable = () -> {
                     System.out.println("ClientHandler处理" + toAddressString(channel.getRemoteAddress()) + "发送来的一条数据:" + message);
-                    protocol.getClientHandler().received((RpcProtocolHeader) message);
+                    try {
+                        protocol.getClientPromiseHandler().received((RpcProtocolHeader) message);
+                    } catch (Throwable throwable) {
+                        System.err.println("Client1312321312");
+                        channel.exceptionCaught(new RemotingException(throwable));
+                        channel.disconnected();
+                    }
                 };
             }
             if (executor != null) {
@@ -121,6 +128,7 @@ public class MojitoCoreHandler implements MojitoChannelHandler {
             }
         } catch (Throwable throwable) {
             channel.exceptionCaught(new RemotingException(throwable));
+            channel.disconnected();
         }
     }
 

@@ -51,7 +51,7 @@ public class NettyServer extends AbstractServer {
         this.protocol = protocol;
     }
 
-    public void doOpen(int port) {
+    public void doOpen(int port, boolean async) {
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         bossGroup = new NioEventLoopGroup(1, new NamedThreadFactory("mojito-boss", true));
         workerGroup = new NioEventLoopGroup(DEFAULT_IO_THREADS, new NamedThreadFactory("mojito-work", true));
@@ -65,25 +65,28 @@ public class NettyServer extends AbstractServer {
                 .childHandler(new MojitoChannelInitializer(protocol));
         try {
             ChannelFuture sync = serverBootstrap.bind(port).sync();
-            sync.addListener(new ChannelFutureListener() {
-                @Override
-                public void operationComplete(ChannelFuture channelFuture) throws Exception {
-                    if (channelFuture.isSuccess()) {
-                        new UnixColor().red(" ___      ___     ______      ___  __  ___________  ______    \n" +
-                                "|\"  \\    /\"  |   /    \" \\    |\"  ||\" \\(\"     _   \")/    \" \\   \n" +
-                                " \\   \\  //   |  // ____  \\   ||  |||  |)__/  \\\\__/// ____  \\  \n" +
-                                " /\\\\  \\/.    | /  /    ) :)  |:  ||:  |   \\\\_ /  /  /    ) :) \n" +
-                                "|: \\.        |(: (____/ //___|  / |.  |   |.  | (: (____/ //  \n" +
-                                "|.  \\    /:  | \\        //  :|_/ )/\\  |\\  \\:  |  \\        /   \n" +
-                                "|___|\\__/|___|  \\\"_____/(_______/(__\\_|_)  \\__|   \\\"_____/   ");
-                        log.info(Banner.print("请给我的爱人来一杯Mojito", Ansi.Color.RED));
-                        log.info("启动成功,端口号:" + port);
-                    }
+            sync.addListener((ChannelFutureListener) channelFuture -> {
+                if (channelFuture.isSuccess()) {
+                    new UnixColor().red(" ___      ___     ______      ___  __  ___________  ______    \n" +
+                            "|\"  \\    /\"  |   /    \" \\    |\"  ||\" \\(\"     _   \")/    \" \\   \n" +
+                            " \\   \\  //   |  // ____  \\   ||  |||  |)__/  \\\\__/// ____  \\  \n" +
+                            " /\\\\  \\/.    | /  /    ) :)  |:  ||:  |   \\\\_ /  /  /    ) :) \n" +
+                            "|: \\.        |(: (____/ //___|  / |.  |   |.  | (: (____/ //  \n" +
+                            "|.  \\    /:  | \\        //  :|_/ )/\\  |\\  \\:  |  \\        /   \n" +
+                            "|___|\\__/|___|  \\\"_____/(_______/(__\\_|_)  \\__|   \\\"_____/   ");
+                    log.info(Banner.print("请给我的爱人来一杯Mojito", Ansi.Color.RED));
+                    log.info("启动成功,端口号:" + port);
                 }
             });
             channel = sync.channel();
-            channel.closeFuture().sync();
-        } catch (InterruptedException e) {
+            //如果不是异步就阻塞
+            if (!async) {
+                channel.closeFuture().sync();
+                log.info("阻塞服务启动成功");
+            } else {
+                log.info("异步服务启动成功");
+            }
+        } catch (Exception e) {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }

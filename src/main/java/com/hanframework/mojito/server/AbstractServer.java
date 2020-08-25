@@ -27,16 +27,30 @@ public abstract class AbstractServer implements Server {
     private AtomicBoolean running = new AtomicBoolean(false);
 
     public void start(int port) {
+        start0(port, false);
+    }
+
+    @Override
+    public void startAsync(int port) {
+        start0(port, true);
+    }
+
+    private void start0(int port, boolean async) {
         checked();
         if (isRunning()) {
             throw new RuntimeException("当前已经运行状态,不允许重复运行");
         }
         ThreadHookTools.addHook(new Thread(this::close));
-        doOpen(port);
+        doOpen(port, async);
     }
 
 
-    protected abstract void doOpen(int port);
+    @Override
+    public Protocol getProtocol() {
+        return null;
+    }
+
+    protected abstract void doOpen(int port, boolean async);
 
 
     protected abstract void doClose();

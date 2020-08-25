@@ -43,17 +43,5 @@ public class MojitoFuture<T> {
         listeners.add(listener);
     }
 
-    public void notifySuccess() {
-        for (MojitoListener listener : listeners) {
-            listener.success(value);
-        }
-    }
-
-    public void notifyFail(Throwable throwable) {
-        for (MojitoListener listener : listeners) {
-            listener.fail(throwable);
-        }
-    }
-
 
 }

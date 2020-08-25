@@ -17,9 +17,23 @@ import java.util.Map;
 public enum ProtocolEnum {
 
     /**
-     * 循环协议
+     * ECHO协议
      */
     ECHO(1, null),
+
+    /**
+     * 注册协议
+     */
+    MQ_REG(3, null),
+
+    /**
+     * 注册协议-发消息
+     */
+    MQ_SEND(4, null),
+
+    /**
+     * mojito协议
+     */
     MOJITO(2, MojitoProtocol.class);
 
     private byte type;
