@@ -6,7 +6,6 @@ import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
-import java.net.ConnectException;
 
 /**
  * @author liuxin
@@ -42,9 +41,19 @@ public interface CodecFactory<T extends RpcProtocolHeader, R extends RpcProtocol
      */
     Client<T, R> getClient(String remoteHost, int remotePort) throws Exception;
 
-
+    /**
+     * 设置服务端的处理器
+     * 目的将请求信息通过处理,生成返回值
+     *
+     * @param serverHandler 服务端处理器
+     */
     void setServerHandler(ServerHandler<T, R> serverHandler);
 
+    /**
+     * 设置客户端通知处理器
+     *
+     * @param clientPromiseHandler
+     */
     void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler);
 
 }

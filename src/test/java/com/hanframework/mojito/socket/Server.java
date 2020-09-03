@@ -292,16 +292,16 @@ public class Server {
                         try {
                             call.conn.channel.register(writeSelector, SelectionKey.OP_WRITE, call);
                         } catch (ClosedChannelException e) {
-                            //the client went away
+                            //the clientChannelHandler went away
                             if (LOG.isTraceEnabled())
-                                LOG.trace("the client went away", e);
+                                LOG.trace("the clientChannelHandler went away", e);
                         }
                     } else {
                         key.interestOps(SelectionKey.OP_WRITE);
                     }
                 } catch (CancelledKeyException e) {
                     if (LOG.isTraceEnabled())
-                        LOG.trace("the client went away", e);
+                        LOG.trace("the clientChannelHandler went away", e);
                 }
             }
         }
@@ -328,7 +328,7 @@ public class Server {
         }
 
         private void doResponse(Call call) throws IOException {
-            //if data not fully send, then register the channel for async writer
+            //if data not fully send, then register the channel for sendAsync writer
             if(!processResponse(call)) {
                 registerForWrite(call);
             }
@@ -459,7 +459,7 @@ public class Server {
         responder = new Responder();
         responder.start();
         startHandler();
-        LOG.info("server startup! ");
+        LOG.info("serverChannelHandler startup! ");
     }
 
     public static void main(String[] args) throws IOException {

@@ -122,8 +122,8 @@ public abstract class AbstractPromise<V> implements Promise<V>, Future<V> {
     @Override
     public V get() throws InterruptedException, ExecutionException {
         try {
-            ++waiters;
             lock.lock();
+            ++waiters;
             if (!isDone() && !isCancelled()) {
                 //拦截
                 condition.await();
@@ -137,12 +137,19 @@ public abstract class AbstractPromise<V> implements Promise<V>, Future<V> {
 
     @Override
     public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
-        lock.lock();
-        boolean await = timeoutCondition.await(timeout, unit);
-        if (!await && !isDone()) {
-            throw new TimeoutException();
+        try {
+            lock.lock();
+            ++waiters;
+            boolean await = timeoutCondition.await(timeout, unit);
+            if (!await && !isDone()) {
+                throw new TimeoutException();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            --waiters;
+            lock.unlock();
         }
-        lock.unlock();
         return result;
     }
 

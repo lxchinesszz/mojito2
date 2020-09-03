@@ -8,16 +8,13 @@ import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.handler.NettyExchangeServerHandler;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.hanframework.mojito.server.impl.MojitoChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
-
 import java.net.ConnectException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -63,7 +60,6 @@ public abstract class AbstractNettyClient<T extends RpcProtocolHeader, R extends
         this.protocol = protocol;
     }
 
-
     private String getRemoteHost() {
         return remoteHost;
     }
@@ -95,17 +91,7 @@ public abstract class AbstractNettyClient<T extends RpcProtocolHeader, R extends
             clientBootstrap.group(workerGroup);
             clientBootstrap.channel(NioSocketChannel.class);
             clientBootstrap.option(ChannelOption.TCP_NODELAY, false);
-            clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
-                @Override
-                protected void initChannel(SocketChannel ch) throws Exception {
-                    ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new IdleStateHandler(10, 10, 0, TimeUnit.SECONDS));
-                    pipeline.addLast(new HeartBeatReqHandler());
-                    pipeline.addLast(protocol.getRequestDecoder());
-                    pipeline.addLast(protocol.getResponseEncoder());
-                    pipeline.addLast(new NettyExchangeServerHandler(protocol.getRequestHandler().client()));
-                }
-            });
+            clientBootstrap.handler(new MojitoChannelInitializer(protocol,false));
             ChannelFuture channelFuture = clientBootstrap.connect(getRemoteHost(), getRemotePort()).sync();
             enhanceChannel = DefaultEnhanceChannel.getOrAddChannel(channelFuture.channel());
         } catch (Exception e) {
@@ -130,7 +116,7 @@ public abstract class AbstractNettyClient<T extends RpcProtocolHeader, R extends
     @SuppressWarnings("unchecked")
     public MojitoFuture<R> sendAsync(T message) throws Exception {
         checked();
-        return protocol.getClientPromiseHandler().async(enhanceChannel, message);
+        return protocol.getClientPromiseHandler().sendAsync(enhanceChannel, message);
     }
 
 

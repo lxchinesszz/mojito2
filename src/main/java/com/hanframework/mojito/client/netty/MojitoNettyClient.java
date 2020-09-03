@@ -8,8 +8,8 @@ import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
  * @author liuxin
  * 2020-08-23 00:54
  */
-public class DefaultNettyClient extends AbstractNettyClient<RpcRequest, RpcResponse> {
-    public DefaultNettyClient(Protocol protocol) {
+public class MojitoNettyClient extends AbstractNettyClient<RpcRequest, RpcResponse> {
+    public MojitoNettyClient(Protocol protocol) {
         super(protocol);
     }
 }

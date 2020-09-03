@@ -12,9 +12,6 @@ import org.junit.Test;
 import org.springframework.util.StopWatch;
 
 import java.util.concurrent.*;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
@@ -25,7 +22,7 @@ public class AbstractNettyClientTest {
 
     @Test
     public void testNettyClient() throws Exception {
-        AbstractNettyClient abstractNettyClient = new DefaultNettyClient(new MojitoProtocol());
+        AbstractNettyClient abstractNettyClient = new MojitoNettyClient(new MojitoProtocol());
         abstractNettyClient.connect("127.0.0.1", 8888);
 
         StopWatch stopWatch = new StopWatch();
@@ -48,7 +45,7 @@ public class AbstractNettyClientTest {
 
     @Test
     public void testNettyClientTimeout() throws Exception {
-        DefaultNettyClient abstractNettyClient = new DefaultNettyClient(new MojitoProtocol());
+        MojitoNettyClient abstractNettyClient = new MojitoNettyClient(new MojitoProtocol());
         abstractNettyClient.connect("127.0.0.1", 8888);
         StopWatch stopWatch = new StopWatch();
         for (int i = 1; i <= 1; i++) {

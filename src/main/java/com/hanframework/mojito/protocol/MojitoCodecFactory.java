@@ -1,15 +1,9 @@
 package com.hanframework.mojito.protocol;
 
-import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.client.handler.DefaultAsyncClientPromiseHandler;
-import com.hanframework.mojito.client.netty.DefaultNettyClient;
+import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
-import com.hanframework.mojito.server.Server;
-import com.hanframework.mojito.server.handler.DefaultServerHandler;
-import com.hanframework.mojito.server.handler.ServerHandler;
-import com.hanframework.mojito.server.impl.NettyServer;
+import com.hanframework.mojito.server.handler.SubServerHandler;
 
 /**
  * @author liuxin
@@ -18,23 +12,15 @@ import com.hanframework.mojito.server.impl.NettyServer;
 public class MojitoCodecFactory extends AbstractCodecFactory<RpcRequest, RpcResponse> {
 
 
-    @Override
-    public ServerHandler<RpcRequest, RpcResponse> doServerHandler() {
-        return new DefaultServerHandler();
+    private SubServerHandler<RpcRequest, RpcResponse> subServerHandler;
+
+
+    public MojitoCodecFactory(SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
+        this(new MojitoProtocol(), subServerHandler);
     }
 
-    @Override
-    public ClientPromiseHandler<RpcRequest, RpcResponse> doClientHandler() {
-        return new DefaultAsyncClientPromiseHandler();
+    public MojitoCodecFactory(Protocol<RpcRequest, RpcResponse> protocol, SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
+        super(protocol, subServerHandler);
     }
 
-    @Override
-    public Server getServer() {
-        return new NettyServer(this);
-    }
-
-    @Override
-    public Client<RpcRequest, RpcResponse> getClient() {
-        return new DefaultNettyClient(this);
-    }
 }

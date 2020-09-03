@@ -3,12 +3,13 @@ package com.hanframework.mojito.queue;
 import com.hanframework.kit.string.StringTools;
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.config.MojitoConfig;
+import com.hanframework.mojito.config.Installer;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.AbstractServerHandler;
+import com.hanframework.mojito.server.handler.SubServerHandler;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -66,8 +67,8 @@ public class QueueTest implements Serializable {
 
     @Test
     public void queueTest() {
-        MojitoConfig.server(Message.class, QueueStatus.class)
-                .serverHandler(new AbstractServerHandler<Message, QueueStatus>() {
+        Installer.server(Message.class, QueueStatus.class)
+                .serverHandler(new SubServerHandler<Message, QueueStatus>() {
                     //1. 收到消息之后如果处理成功就返回给客户端。
 
                     //2. 如果是订阅的链接,就启动服务去消费。
@@ -79,7 +80,7 @@ public class QueueTest implements Serializable {
 
 
                     @Override
-                    public QueueStatus doHandler(EnhanceChannel channel, Message message) throws Exception {
+                    public QueueStatus handler(EnhanceChannel channel, Message message){
                         ProtocolEnum protocolEnum = ProtocolEnum.byType(message.getProtocolType());
                         //2. 注册协议
                         if (protocolEnum == ProtocolEnum.MQ_REG) {
@@ -129,15 +130,15 @@ public class QueueTest implements Serializable {
                             }).start();
                         }
                     }
-                }).create().getServer().start(12306);
+                }).create().start(12306);
 
     }
 
 
     @Test
     public void subscriberTest1() throws Exception {
-        Client<Message, QueueStatus> client = MojitoConfig.client(Message.class, QueueStatus.class).create()
-                .getClient("127.0.0.1", 12306);
+        Client<Message, QueueStatus> client = Installer.client(Message.class, QueueStatus.class).create();
+        client.connect("127.0.0.1", 12306);
         Message message = new Message("testRouteKey", "第一条链接");
         message.setProtocolType(ProtocolEnum.MQ_REG.getType());
         MojitoFuture<QueueStatus> queueStatusMojitoFuture = client.sendAsync(message);
@@ -161,8 +162,8 @@ public class QueueTest implements Serializable {
 
     @Test
     public void subscriberTest2() throws Exception {
-        Client<Message, QueueStatus> client = MojitoConfig.client(Message.class, QueueStatus.class).create()
-                .getClient("127.0.0.1", 12306);
+        Client<Message, QueueStatus> client = Installer.client(Message.class, QueueStatus.class).create();
+        client.connect("127.0.0.1", 12306);
         Message message = new Message("testRouteKey", "第3条链接");
         message.setProtocolType(ProtocolEnum.MQ_SEND.getType());
         MojitoFuture<QueueStatus> queueStatusMojitoFuture = client.sendAsync(message);

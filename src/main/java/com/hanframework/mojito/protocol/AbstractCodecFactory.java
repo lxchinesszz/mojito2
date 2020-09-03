@@ -4,14 +4,18 @@ import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
+import com.hanframework.mojito.client.netty.MojitoNettyClient;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
 import com.hanframework.mojito.handler.MojitoCoreHandler;
-import com.hanframework.mojito.protocol.mojito.MojitoChannelDecoder;
-import com.hanframework.mojito.protocol.mojito.MojitoChannelEncoder;
+import com.hanframework.mojito.processor.Processor;
+import com.hanframework.mojito.processor.RequestProcessor;
+import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
 import com.hanframework.mojito.server.handler.ServerHandler;
+import com.hanframework.mojito.server.handler.SubServerHandler;
 import com.hanframework.mojito.server.impl.NettyServer;
+
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
@@ -27,9 +31,25 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     private Executor executor = new HanThreadPoolExecutor(new NamedThreadFactory("mojimo")).getExecutory();
 
-    private ServerHandler<T, R> serverHandler;
+    private SubServerHandler<T, R> subServerHandler;
 
     private ClientPromiseHandler<T, R> clientPromiseHandler;
+
+    private RequestProcessor<T>[] requestProcessors;
+
+    private ResponseProcessor<R>[] responseProcessors;
+
+    private Protocol<T, R> protocol;
+
+    public AbstractCodecFactory(Protocol<T, R> protocol) {
+        this.protocol = protocol;
+    }
+
+    public AbstractCodecFactory(Protocol<T, R> protocol, SubServerHandler<T, R> subServerHandler) {
+        this.protocol = protocol;
+        this.subServerHandler = subServerHandler;
+        protocol.getServerHandler().initWrapper(subServerHandler);
+    }
 
     @Override
     public String name() {
@@ -38,12 +58,12 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     @Override
     public Protocol<T, R> getProtocol() {
-        return this;
+        return protocol;
     }
 
     @Override
     public MojitoChannelHandler getRequestHandler() {
-        return new MojitoCoreHandler(this);
+        return new MojitoCoreHandler(getProtocol());
     }
 
     @Override
@@ -53,21 +73,23 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     @Override
     public ChannelDecoder getRequestDecoder() {
-        return new MojitoChannelDecoder("MojitoChannelDecoder");
+        return protocol.getRequestDecoder();
     }
 
     @Override
     public ChannelEncoder getResponseEncoder() {
-        return new MojitoChannelEncoder("MojitoChannelEncoder");
+        return protocol.getResponseEncoder();
     }
 
     @Override
     public Server getServer() {
-        return new NettyServer(this);
+        return new NettyServer(protocol);
     }
 
     @Override
-    public abstract Client<T, R> getClient();
+    public Client<T, R> getClient() {
+        return (Client<T, R>) new MojitoNettyClient(getProtocol());
+    }
 
     @Override
     public Client<T, R> getClient(String remoteHost, int remotePort) throws Exception {
@@ -76,29 +98,51 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
         return client;
     }
 
+    @Override
     public ServerHandler<T, R> getServerHandler() {
-        if (Objects.isNull(this.serverHandler)) {
-            this.serverHandler = doServerHandler();
+        ServerHandler<T, R> serverHandler = null;
+        if (Objects.isNull(this.subServerHandler)) {
+            serverHandler = protocol.getServerHandler();
+            //报错
+            //服务端的逻辑,交给用户自己去写,如果没有实现doServerHandler要去setServerHandler
         }
-        return this.serverHandler;
+        return serverHandler;
     }
+
 
     public ClientPromiseHandler<T, R> getClientPromiseHandler() {
         if (Objects.isNull(this.clientPromiseHandler)) {
-            this.clientPromiseHandler = doClientHandler();
+            this.clientPromiseHandler = protocol.getClientPromiseHandler();
+            if (this.clientPromiseHandler instanceof Processor) {
+                Processor<T, R> processor = (Processor<T, R>) this.clientPromiseHandler;
+                processor.setRequestProcessor(this.requestProcessors);
+                processor.setResponseProcessor(this.responseProcessors);
+            }
+
         }
         return this.clientPromiseHandler;
     }
 
+    public void setServerHandler(SubServerHandler<T, R> subServerHandler) {
+        this.subServerHandler = subServerHandler;
+    }
+
+    @Override
     public void setServerHandler(ServerHandler<T, R> serverHandler) {
-        this.serverHandler = serverHandler;
+        //修改协议内容的口子
+        protocol.setServerHandler(serverHandler);
     }
 
     public void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler) {
         this.clientPromiseHandler = clientPromiseHandler;
     }
 
-    public abstract ServerHandler<T, R> doServerHandler();
+    @Override
+    public void setRequestProcessor(RequestProcessor<T>[] requestProcessors) {
+        this.requestProcessors = requestProcessors;
+    }
 
-    public abstract ClientPromiseHandler<T, R> doClientHandler();
+    public void setResponseProcessor(ResponseProcessor<R>[] responseProcessors) {
+        this.responseProcessors = responseProcessors;
+    }
 }

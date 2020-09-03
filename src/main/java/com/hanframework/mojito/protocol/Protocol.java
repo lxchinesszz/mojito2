@@ -58,6 +58,14 @@ public interface Protocol<R, V> {
     ServerHandler<R, V> getServerHandler();
 
     /**
+     * 服务处理器，负责将请求信息转换成响应信息
+     * 注意: 非线程安全类
+     *
+     * @return ServerHandler
+     */
+    void setServerHandler(ServerHandler<R, V> serverHandler);
+
+    /**
      * 客户端处理器
      * 注意: 非线程安全类
      *

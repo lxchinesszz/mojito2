@@ -4,6 +4,8 @@ import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.serialization.SerializeEnum;
 
 import java.io.Serializable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -39,6 +41,39 @@ public class RpcProtocolHeader implements Serializable {
      * 唯一id
      */
     Long id;
+
+    private final Map<String, String> attachments = new ConcurrentHashMap<>();
+
+
+    public String getAttachment(String key) {
+        return (String) this.attachments.get(key);
+    }
+
+    public void setAttachment(String key, String value) {
+        if (value == null) {
+            this.attachments.remove(key);
+        } else {
+            this.attachments.put(key, value);
+        }
+    }
+
+    public void removeAttachment(String key) {
+        this.attachments.remove(key);
+    }
+
+    public Map<String, String> getAttachments() {
+        return this.attachments;
+    }
+
+    public void setAttachments(Map<String, String> attachment) {
+        if (attachment != null && attachment.size() > 0) {
+            this.attachments.putAll(attachment);
+        }
+    }
+
+    public void clearAttachments() {
+        this.attachments.clear();
+    }
 
     public int getType() {
         return type;

@@ -32,6 +32,9 @@ public class RpcRequest extends RpcProtocolHeader {
      */
     private Class returnType;
 
+    /**
+     * 版本号
+     */
     private String version;
 
     /**

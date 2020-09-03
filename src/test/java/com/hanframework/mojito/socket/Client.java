@@ -56,7 +56,7 @@ public class Client {
                         byte[] data = new byte[dataLength];
                         inputStream.readFully(data);
                         client.socket.close();
-                        LOG.info("receive from server: dataLength=" + data.length);
+                        LOG.info("receive from serverChannelHandler: dataLength=" + data.length);
                     } catch (IOException e) {
                         LOG.error("", e);
                     } catch (Exception e) {

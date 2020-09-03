@@ -2,6 +2,10 @@ package com.hanframework.mojito.server.handler;
 
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
+import com.hanframework.mojito.processor.Processor;
+import com.hanframework.mojito.processor.ProcessorHolder;
+import com.hanframework.mojito.processor.RequestProcessor;
+import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
@@ -22,6 +26,13 @@ import java.util.Objects;
 public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ServerHandler<T, R> {
 
 
+    private SubServerHandler<T, R> subServerHandler;
+
+    @Override
+    public void initWrapper(SubServerHandler<T, R> subServerHandler) {
+        this.subServerHandler = subServerHandler;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public R handler(EnhanceChannel channel, T rpcRequest) throws RemotingException {
@@ -29,7 +40,7 @@ public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R exten
         //2. 定义一些RpcResponse的子类，客户端判断是否拒绝
         final R response;
         try {
-            response = doHandler(channel, rpcRequest);
+            response = subServerHandler.handler(channel, rpcRequest);
             response.setId(rpcRequest.getId());
             response.setProtocolType(rpcRequest.getProtocolType());
             response.setSerializationType(rpcRequest.getSerializationType());
@@ -39,6 +50,6 @@ public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R exten
         return response;
     }
 
-    public abstract R doHandler(EnhanceChannel channel, T rpcRequest) throws Exception;
+
 
 }

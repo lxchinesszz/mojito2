@@ -97,5 +97,26 @@ public interface EnhanceChannel {
      */
     void exceptionCaught(Throwable throwable);
 
+    /**
+     * 是否可在写
+     *
+     * @return boolean
+     */
+    void markWrite();
+
+    /**
+     * 标记为不可写
+     *
+     * @return boolean
+     */
+    void markNotWrite();
+
+    /**
+     * 是否可写
+     *
+     * @return boolean
+     */
+    boolean isWrite();
 
 }
+

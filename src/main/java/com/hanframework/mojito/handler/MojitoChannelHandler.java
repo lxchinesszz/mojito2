@@ -16,12 +16,12 @@ public interface MojitoChannelHandler {
     /**
      * 服务端
      */
-    MojitoChannelHandler server();
+    MojitoChannelHandler serverChannelHandler();
 
     /**
      * 客户端
      */
-    MojitoChannelHandler client();
+    MojitoChannelHandler clientChannelHandler();
 
     /**
      * 接受连接

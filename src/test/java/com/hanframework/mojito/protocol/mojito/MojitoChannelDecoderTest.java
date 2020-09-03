@@ -268,7 +268,7 @@ public class MojitoChannelDecoderTest {
     public void testUnpackingServiceURLDecoder(ByteBuf unpackingByteBuf, ServiceURL serviceURL) throws Exception {
         System.out.println("可读的长度:" + unpackingByteBuf.readableBytes());
         System.out.println(unpackingByteBuf);
-        EmbeddedChannel channel = new EmbeddedChannel(new MojitoChannelDecoder("server"), new MojitoChannelEncoder("server"));
+        EmbeddedChannel channel = new EmbeddedChannel(new MojitoChannelDecoder("serverChannelHandler"), new MojitoChannelEncoder("serverChannelHandler"));
         channel.writeInbound(unpackingByteBuf.retain());
         //入栈对象
         System.out.println("第一次数据不足:" + channel.readInbound());
@@ -287,7 +287,7 @@ public class MojitoChannelDecoderTest {
     public void testServiceURLDecoder(ByteBuf buffer) throws Exception {
         System.out.println("可读的长度:" + buffer.readableBytes());
         System.out.println(buffer);
-        EmbeddedChannel channel = new EmbeddedChannel(new MojitoChannelDecoder("server"), new MojitoChannelEncoder("server"));
+        EmbeddedChannel channel = new EmbeddedChannel(new MojitoChannelDecoder("serverChannelHandler"), new MojitoChannelEncoder("serverChannelHandler"));
         channel.writeInbound(buffer.retain());
         //入栈对象
         Queue<Object> objects = channel.inboundMessages();

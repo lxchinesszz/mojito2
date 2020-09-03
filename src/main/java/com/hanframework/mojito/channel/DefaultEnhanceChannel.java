@@ -25,6 +25,8 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
      */
     private final String channelId;
 
+    private boolean write = true;
+
     /**
      * 通道信息
      */
@@ -143,5 +145,18 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
         throwable.printStackTrace();
     }
 
+    @Override
+    public void markWrite() {
+        this.write = true;
+    }
 
+    @Override
+    public void markNotWrite() {
+        this.write = false;
+    }
+
+    @Override
+    public boolean isWrite() {
+        return this.write;
+    }
 }

@@ -9,8 +9,21 @@ import com.hanframework.mojito.future.MojitoFuture;
  */
 public interface ClientPromiseHandler<T, R> {
 
+    /**
+     * 异步发送请求
+     *
+     * @param enhanceChannel 客户端和服务端建立的连接通道
+     * @param rpcRequest     客户端发送的请求信息
+     * @return MojitoFuture
+     */
+    MojitoFuture<R> sendAsync(EnhanceChannel enhanceChannel, T rpcRequest);
+
+    /**
+     * 接受服务端的响应
+     *
+     * @param rpcResponse 服务端的响应信息
+     */
     void received(R rpcResponse);
 
-    MojitoFuture<R> async(EnhanceChannel enhanceChannel, T rpcRequest);
 
 }

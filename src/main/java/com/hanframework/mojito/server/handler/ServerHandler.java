@@ -15,6 +15,7 @@ import com.hanframework.mojito.signature.service.SignatureManager;
  */
 public interface ServerHandler<T, R> {
 
+    void initWrapper(SubServerHandler<T, R> subServerHandler);
     /**
      * 根据请求找到签名信息根据签名处理结果
      *

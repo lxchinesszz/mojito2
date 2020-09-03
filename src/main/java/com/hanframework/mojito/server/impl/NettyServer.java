@@ -89,6 +89,7 @@ public class NettyServer extends AbstractServer {
         } catch (Exception e) {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
+            e.printStackTrace();
         }
         //bind
     }
