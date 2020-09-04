@@ -21,13 +21,16 @@ public class MojitoChannelEncoder extends ChannelEncoder<RpcProtocolHeader> {
 
     @Override
     protected void doEncode(ChannelHandlerContext ctx, RpcProtocolHeader msg, ByteBuf out) throws Exception {
-        byte protocolType = msg.getProtocolType();
-        byte serializationType = msg.getSerializationType();
-        out.writeByte(protocolType);
-        out.writeByte(serializationType);
-        Serializer serializer = SerializeEnum.ofByType(serializationType).getSerialize().newInstance();
+        //1. 获取协议类型(1个字节)
+        out.writeByte(msg.getProtocolType());
+        //2. 获取序列化类型(1个字节)
+        out.writeByte(msg.getSerializationType());
+        //3. 根据序列化类型找到数据转换器生成二进制数据
+        Serializer serializer = SerializeEnum.ofByType(msg.getSerializationType()).getSerialize().newInstance();
         byte[] data = serializer.serialize(msg);
+        //4. 写入报文长度(4个字节)
         out.writeInt(data.length);
+        //5. 写入报文内容(数组)
         out.writeBytes(data);
     }
 }

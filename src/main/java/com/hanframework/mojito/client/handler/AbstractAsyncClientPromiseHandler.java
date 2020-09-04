@@ -78,6 +78,7 @@ public class AbstractAsyncClientPromiseHandler<T extends RpcProtocolHeader, R ex
             future = new MojitoFuture<>();
             if (ProtocolEnum.MQ_REG == ProtocolEnum.byType(rpcRequest.getProtocolType())) {
                 messageList.add(future);
+                futureMap.put(rpcRequest.getId(), future);
             } else {
                 futureMap.put(rpcRequest.getId(), future);
             }

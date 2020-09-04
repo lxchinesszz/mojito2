@@ -55,7 +55,7 @@ public class MojitoChannelDecoder extends ChannelDecoder {
         }
         //2. 可读的数据大小
         int dataHeadSize = inByteBuf.readableBytes();
-        //3. 不是完整的数据头就直接返回
+        //3. 不是完整的数据头就是6个字节
         if (!isFullMessageHeader(dataHeadSize)) {
             return;
         }
