@@ -86,7 +86,6 @@ public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Obje
 
     }
 
-
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());

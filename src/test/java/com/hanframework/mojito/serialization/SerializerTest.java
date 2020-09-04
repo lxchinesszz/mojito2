@@ -1,10 +1,8 @@
 package com.hanframework.mojito.serialization;
 
 import com.hanframework.kit.text.UnixColor;
-import com.hanframework.mojito.protocol.ServiceURL;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
-import com.hanframework.mojito.test.pojo.TestSerialize;
 import com.hanframework.mojito.test.pojo.User;
 import org.junit.Test;
 
@@ -15,15 +13,15 @@ import java.io.Serializable;
  * @author liuxin
  * 2020-07-31 20:31
  */
-public class SerializeTest implements Serializable {
+public class SerializerTest implements Serializable {
 
     /**
      * 性能优先级
-     * 1. ProtostuffObjectSerialize
-     * 2. NettyCompactObjectSerialize
-     * 3. Hession2ObjectSerialize
-     * 4. NettyObjectSerialize
-     * 5. HessionObjectSerialize
+     * 1. ProtostuffObjectSerializer
+     * 2. NettyCompactObjectSerializer
+     * 3. Hession2ObjectSerializer
+     * 4. NettyObjectSerializer
+     * 5. HessionObjectSerializer
      */
     @Test
     public void testSerialize() {
@@ -31,33 +29,34 @@ public class SerializeTest implements Serializable {
 
         //指定要反序列化的类型
         System.out.println("指定要反序列化的类型");
-        printInfo(new NettyObjectSerialize(), user);
+        printInfoAccordingToType(new NettyObjectSerializer(), user);
 
-        printInfo(new NettyCompactObjectSerialize(), user);
+        printInfoAccordingToType(new NettyCompactObjectSerializer(), user);
 
-        printInfo(new HessionObjectSerialize(), user);
+        printInfoAccordingToType(new HessionObjectSerializer(), user);
 
-        printInfo(new Hession2ObjectSerialize(), user);
+        printInfoAccordingToType(new Hession2ObjectSerializer(), user);
 
-        printInfo(new ProtostuffObjectSerialize(), user);
+        printInfoAccordingToType(new ProtostuffObjectSerializer(), user);
 
 
         //不指定要反序列化的类型
         System.out.println("不指定要反序列化的类型");
-        printInfoNotClass(new NettyObjectSerialize(), user);
+        printInfoNotAccordingToType(new NettyObjectSerializer(), user);
 
-        printInfoNotClass(new NettyCompactObjectSerialize(), user);
+        printInfoNotAccordingToType(new NettyCompactObjectSerializer(), user);
 
-        printInfoNotClass(new HessionObjectSerialize(), user);
+        printInfoNotAccordingToType(new HessionObjectSerializer(), user);
 
-        printInfoNotClass(new Hession2ObjectSerialize(), user);
+        printInfoNotAccordingToType(new Hession2ObjectSerializer(), user);
 
-        printInfoNotClass(new ProtostuffObjectSerialize(), user);
+        //FIXME protostuff 如果不指定类型就会报错
+        printInfoNotAccordingToType(new ProtostuffObjectSerializer(), user);
     }
 
     @Test
     public void test() {
-        Hession2ObjectSerialize hession2ObjectSerialize = new Hession2ObjectSerialize();
+        Hession2ObjectSerializer hession2ObjectSerialize = new Hession2ObjectSerializer();
         RpcRequest rpcRequest = new RpcRequest();
         rpcRequest.setProtocolType((byte) 1);
         rpcRequest.setSerializationType((byte) 2);
@@ -68,11 +67,11 @@ public class SerializeTest implements Serializable {
     }
 
     /**
-     * ProtostuffObjectSerialize 反序列化必须要知道类型。
+     * ProtostuffObjectSerializer 反序列化必须要知道类型。
      */
     @Test
     public void testProtostuffObjectSerialize() {
-        ProtostuffObjectSerialize serialize = new ProtostuffObjectSerialize();
+        ProtostuffObjectSerializer serialize = new ProtostuffObjectSerializer();
         User testSerialize = new User();
         byte[] bytes = serialize.serialize(testSerialize);
         Object deserialize = serialize.deserialize(bytes);
@@ -80,7 +79,7 @@ public class SerializeTest implements Serializable {
     }
 
 
-    private synchronized void printInfo(Serialize serializetor, Object obj) {
+    private synchronized void printInfoAccordingToType(Serializer serializetor, Object obj) {
         byte[] serialize = serializetor.serialize(obj);
         Object deserialize = serializetor.deserialize(serialize, obj.getClass());
         System.out.println(deserialize);
@@ -95,7 +94,7 @@ public class SerializeTest implements Serializable {
     }
 
 
-    private synchronized void printInfoNotClass(Serialize serializetor, Object obj) {
+    private synchronized void printInfoNotAccordingToType(Serializer serializetor, Object obj) {
         byte[] serialize = serializetor.serialize(obj);
         Object deserialize = serializetor.deserialize(serialize);
         System.out.println(deserialize);

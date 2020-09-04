@@ -6,7 +6,7 @@ import com.hanframework.mojito.exception.DeserializeException;
  * @author liuxin
  * 2020-07-31 20:13
  */
-public interface Serialize {
+public interface Serializer {
 
 
     /**

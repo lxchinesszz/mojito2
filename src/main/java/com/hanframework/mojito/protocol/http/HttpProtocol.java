@@ -5,7 +5,7 @@ import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.MojitoCoreHandler;
+import com.hanframework.mojito.handler.SingletonDispatchHandler;
 import com.hanframework.mojito.protocol.ChannelDecoder;
 import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.Protocol;
@@ -34,7 +34,7 @@ public class HttpProtocol implements Protocol<HttpRequestFacade, HttpResponseFac
 
     @Override
     public MojitoChannelHandler getRequestHandler() {
-        return new MojitoCoreHandler(this);
+        return new SingletonDispatchHandler(this);
     }
 
     @Override

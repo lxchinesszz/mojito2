@@ -1,12 +1,9 @@
 package com.hanframework.mojito.serialization;
 
-import com.caucho.hessian.io.Hessian2Input;
-import com.caucho.hessian.io.Hessian2Output;
 import com.caucho.hessian.io.HessianInput;
 import com.caucho.hessian.io.HessianOutput;
 import com.hanframework.mojito.exception.DeserializeException;
 import com.hanframework.mojito.exception.SerializeException;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,14 +13,14 @@ import java.io.NotSerializableException;
  * @author liuxin
  * 2020-07-31 21:32
  */
-public class Hession2ObjectSerialize implements Serialize {
+public class HessionObjectSerializer implements Serializer {
 
     @Override
     public byte[] serialize(Object dataObject) throws SerializeException {
         ByteArrayOutputStream dataArr = new ByteArrayOutputStream();
-        Hessian2Output oeo = null;
+        HessianOutput oeo = null;
         try {
-            oeo = new Hessian2Output(dataArr);
+            oeo = new HessianOutput(dataArr);
             oeo.writeObject(dataObject);
             oeo.flush();
         } catch (IOException e) {
@@ -47,7 +44,7 @@ public class Hession2ObjectSerialize implements Serialize {
     @Override
     public Object deserialize(byte[] data) throws DeserializeException {
         Object o;
-        Hessian2Input odi = new Hessian2Input(new ByteArrayInputStream(data));
+        HessianInput odi = new HessianInput(new ByteArrayInputStream(data));
         try {
             o = odi.readObject();
         } catch (IOException e) {

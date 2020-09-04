@@ -5,31 +5,31 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 性能优先级
- * 1. ProtostuffObjectSerialize
- * 2. NettyCompactObjectSerialize
- * 3. Hession2ObjectSerialize
- * 4. NettyObjectSerialize
- * 5. HessionObjectSerialize
+ * 1. ProtostuffObjectSerializer
+ * 2. NettyCompactObjectSerializer
+ * 3. Hession2ObjectSerializer
+ * 4. NettyObjectSerializer
+ * 5. HessionObjectSerializer
  */
 
 public enum SerializeEnum {
 
-    PROTOSTUFF(1, ProtostuffObjectSerialize.class),
+    PROTOSTUFF(1, ProtostuffObjectSerializer.class),
 
-    COMPACT(2, NettyCompactObjectSerialize.class),
+    COMPACT(2, NettyCompactObjectSerializer.class),
 
-    HESSION2(3, Hession2ObjectSerialize.class),
+    HESSION2(3, Hession2ObjectSerializer.class),
 
-    SIMPLE(4, NettyObjectSerialize.class),
+    SIMPLE(4, NettyObjectSerializer.class),
 
-    HESSION(5, HessionObjectSerialize.class),
+    HESSION(5, HessionObjectSerializer.class),
     ;
 
     private byte type;
 
-    private Class<? extends Serialize> serialize;
+    private Class<? extends Serializer> serialize;
 
-    SerializeEnum(int type, Class<? extends Serialize> serialize) {
+    SerializeEnum(int type, Class<? extends Serializer> serialize) {
         this.type = (byte) type;
         this.serialize = serialize;
     }
@@ -38,7 +38,7 @@ public enum SerializeEnum {
         return type;
     }
 
-    public Class<? extends Serialize> getSerialize() {
+    public Class<? extends Serializer> getSerialize() {
         return serialize;
     }
 

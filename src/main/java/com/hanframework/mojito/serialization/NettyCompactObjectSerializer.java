@@ -11,7 +11,7 @@ import java.io.*;
  * @author liuxin
  * 2020-07-31 21:10
  */
-public class NettyCompactObjectSerialize implements Serialize {
+public class NettyCompactObjectSerializer implements Serializer {
 
     @Override
     public byte[] serialize(Object dataObject) {

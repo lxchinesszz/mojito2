@@ -8,6 +8,11 @@ import java.net.InetSocketAddress;
  */
 public interface Endpoint {
 
-  InetSocketAddress getLocalAddress();
+    /**
+     * 端点地址
+     *
+     * @return 网络地址
+     */
+    InetSocketAddress getLocalAddress();
 
 }

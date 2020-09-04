@@ -1,9 +1,9 @@
 package com.hanframework.mojito.serialization;
 
+import com.caucho.hessian.io.Hessian2Input;
+import com.caucho.hessian.io.Hessian2Output;
 import com.hanframework.mojito.exception.DeserializeException;
 import com.hanframework.mojito.exception.SerializeException;
-import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
-import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,17 +11,17 @@ import java.io.IOException;
 import java.io.NotSerializableException;
 
 /**
- * 必须要实现Serializable接口
- *
  * @author liuxin
- * 2020-07-31 20:16
+ * 2020-07-31 21:32
  */
-public class NettyObjectSerialize implements Serialize {
+public class Hession2ObjectSerializer implements Serializer {
 
     @Override
-    public byte[] serialize(Object dataObject) {
+    public byte[] serialize(Object dataObject) throws SerializeException {
         ByteArrayOutputStream dataArr = new ByteArrayOutputStream();
-        try (ObjectEncoderOutputStream oeo = new ObjectEncoderOutputStream(dataArr)) {
+        Hessian2Output oeo = null;
+        try {
+            oeo = new Hessian2Output(dataArr);
             oeo.writeObject(dataObject);
             oeo.flush();
         } catch (IOException e) {
@@ -30,6 +30,14 @@ public class NettyObjectSerialize implements Serialize {
             } else {
                 throw new SerializeException(e);
             }
+        } finally {
+            if (oeo != null) {
+                try {
+                    oeo.close();
+                } catch (IOException e) {
+                    throw new SerializeException(e);
+                }
+            }
         }
         return dataArr.toByteArray();
     }
@@ -37,9 +45,10 @@ public class NettyObjectSerialize implements Serialize {
     @Override
     public Object deserialize(byte[] data) throws DeserializeException {
         Object o;
-        try(ObjectDecoderInputStream odi = new ObjectDecoderInputStream(new ByteArrayInputStream(data))){
+        Hessian2Input odi = new Hessian2Input(new ByteArrayInputStream(data));
+        try {
             o = odi.readObject();
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (IOException e) {
             throw new DeserializeException(e);
         }
         return o;

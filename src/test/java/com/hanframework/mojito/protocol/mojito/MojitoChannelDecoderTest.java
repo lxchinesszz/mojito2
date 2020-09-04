@@ -5,8 +5,8 @@ import com.hanframework.kit.reflection.MethodTools;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.ServiceURL;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
-import com.hanframework.mojito.serialization.ProtostuffObjectSerialize;
-import com.hanframework.mojito.serialization.Serialize;
+import com.hanframework.mojito.serialization.ProtostuffObjectSerializer;
+import com.hanframework.mojito.serialization.Serializer;
 import com.hanframework.mojito.serialization.SerializeEnum;
 import com.hanframework.mojito.test.pojo.User;
 import com.hanframework.mojito.test.service.UserService;
@@ -101,7 +101,7 @@ public class MojitoChannelDecoderTest {
         buffer.writeByte(serviceURL.getProtocolType());
         //序列化类型
         buffer.writeByte(serviceURL.getSerializationType());
-        ProtostuffObjectSerialize protostuffObjectSerialize = new ProtostuffObjectSerialize();
+        ProtostuffObjectSerializer protostuffObjectSerialize = new ProtostuffObjectSerializer();
         byte[] serialize = protostuffObjectSerialize.serialize(new User());
         //数据长度
         buffer.writeInt(serialize.length);
@@ -143,7 +143,7 @@ public class MojitoChannelDecoderTest {
         //序列化类型
         buffer.writeByte(2);
 
-        ProtostuffObjectSerialize protostuffObjectSerialize = new ProtostuffObjectSerialize();
+        ProtostuffObjectSerializer protostuffObjectSerialize = new ProtostuffObjectSerializer();
         byte[] serialize = protostuffObjectSerialize.serialize(new User());
         //数据长度
         buffer.writeInt(serialize.length);
@@ -197,8 +197,8 @@ public class MojitoChannelDecoderTest {
         ByteBuf directBuffer = Unpooled.directBuffer();
         serviceURL.setProtocolType(ProtocolEnum.MOJITO.getType());
         serviceURL.setSerializationType(SerializeEnum.HESSION2.getType());
-        Serialize serialize = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
-        byte[] serializeData = serialize.serialize(serviceURL);
+        Serializer serializer = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
+        byte[] serializeData = serializer.serialize(serviceURL);
         //协议头
         directBuffer.writeByte(serviceURL.getProtocolType());
         //序列化类型
@@ -238,8 +238,8 @@ public class MojitoChannelDecoderTest {
         ByteBuf directBuffer = Unpooled.directBuffer();
         serviceURL.setProtocolType(ProtocolEnum.MOJITO.getType());
         serviceURL.setSerializationType(SerializeEnum.HESSION2.getType());
-        Serialize serialize = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
-        byte[] serializeData = serialize.serialize(serviceURL);
+        Serializer serializer = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
+        byte[] serializeData = serializer.serialize(serviceURL);
         //协议头
         directBuffer.writeByte(serviceURL.getProtocolType());
         //序列化类型
@@ -252,8 +252,8 @@ public class MojitoChannelDecoderTest {
     }
 
     private void fillWriteUnpackingServiceURL(ByteBuf unpackingByteBuf, ServiceURL serviceURL) throws Exception {
-        Serialize serialize = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
-        byte[] serializeData = serialize.serialize(serviceURL);
+        Serializer serializer = SerializeEnum.ofByType(serviceURL.getSerializationType()).getSerialize().newInstance();
+        byte[] serializeData = serializer.serialize(serviceURL);
         //重新填充报文
         unpackingByteBuf.writeBytes(serializeData);
     }

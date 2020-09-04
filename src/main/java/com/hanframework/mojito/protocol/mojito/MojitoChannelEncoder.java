@@ -2,7 +2,7 @@ package com.hanframework.mojito.protocol.mojito;
 
 import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.serialization.Serialize;
+import com.hanframework.mojito.serialization.Serializer;
 import com.hanframework.mojito.serialization.SerializeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -25,8 +25,8 @@ public class MojitoChannelEncoder extends ChannelEncoder<RpcProtocolHeader> {
         byte serializationType = msg.getSerializationType();
         out.writeByte(protocolType);
         out.writeByte(serializationType);
-        Serialize serialize = SerializeEnum.ofByType(serializationType).getSerialize().newInstance();
-        byte[] data = serialize.serialize(msg);
+        Serializer serializer = SerializeEnum.ofByType(serializationType).getSerialize().newInstance();
+        byte[] data = serializer.serialize(msg);
         out.writeInt(data.length);
         out.writeBytes(data);
     }

@@ -1,8 +1,7 @@
 package com.hanframework.mojito.protocol.mojito;
 
 import com.hanframework.mojito.protocol.ChannelDecoder;
-import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
-import com.hanframework.mojito.serialization.Serialize;
+import com.hanframework.mojito.serialization.Serializer;
 import com.hanframework.mojito.serialization.SerializeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -80,10 +79,10 @@ public class MojitoChannelDecoder extends ChannelDecoder {
         inByteBuf.readBytes(dataArr, 0, dataSize);
         //找到序列化器,性能有提升空间,可以序列化器可以进行池化
         SerializeEnum serializeEnum = SerializeEnum.ofByType(serializationType);
-        Class<? extends Serialize> serialize = serializeEnum.getSerialize();
+        Class<? extends Serializer> serialize = serializeEnum.getSerialize();
         //根据类型获取序列化器
-        Serialize serializeNewInstance = serialize.newInstance();
-        Object deserialize = serializeNewInstance.deserialize(dataArr);
+        Serializer serializerNewInstance = serialize.newInstance();
+        Object deserialize = serializerNewInstance.deserialize(dataArr);
         out.add(deserialize);
     }
 }

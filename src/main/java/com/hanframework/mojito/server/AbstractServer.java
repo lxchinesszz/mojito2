@@ -1,15 +1,9 @@
 package com.hanframework.mojito.server;
 
 import com.hanframework.kit.thread.ThreadHookTools;
-import com.hanframework.mojito.banner.Banner;
 import com.hanframework.mojito.exception.ProtocolException;
-import com.hanframework.mojito.exception.SignatureException;
 import com.hanframework.mojito.protocol.Protocol;
-import com.hanframework.mojito.protocol.ProtocolManager;
-import com.hanframework.mojito.signature.service.SignatureManager;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.common.logger.Logger;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -42,12 +36,6 @@ public abstract class AbstractServer implements Server {
         }
         ThreadHookTools.addHook(new Thread(this::close));
         doOpen(port, async);
-    }
-
-
-    @Override
-    public Protocol getProtocol() {
-        return null;
     }
 
     protected abstract void doOpen(int port, boolean async);

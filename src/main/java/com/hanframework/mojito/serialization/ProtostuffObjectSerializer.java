@@ -7,9 +7,6 @@ import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 
 /**
  * 注意:
@@ -17,7 +14,7 @@ import java.util.Objects;
  * @author liuxin
  * 2020-07-31 21:32
  */
-public class ProtostuffObjectSerialize implements Serialize {
+public class ProtostuffObjectSerializer implements Serializer {
 
     @Override
     public byte[] serialize(Object dataObject) throws SerializeException {

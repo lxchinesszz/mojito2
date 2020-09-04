@@ -2,30 +2,23 @@ package com.hanframework.mojito.server.handler;
 
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
-import com.hanframework.mojito.processor.Processor;
-import com.hanframework.mojito.processor.ProcessorHolder;
-import com.hanframework.mojito.processor.RequestProcessor;
-import com.hanframework.mojito.processor.ResponseProcessor;
+import com.hanframework.mojito.exception.SubServerHandlerException;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
-import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
-import com.hanframework.mojito.protocol.mojito.model.RpcTools;
-import com.hanframework.mojito.signature.service.SignatureHodler;
-import com.hanframework.mojito.signature.service.SignatureManager;
 
 import java.util.Objects;
 
 /**
- * 判读处理的类是否有返回值,没有返回值的,处理完成直接就构建RpcResponse true。
- * 如果报错或者是false。
- * 如果有返回值但是不匹配，返回了null。也返回true.
+ * 这一层目的是能让框架做更多的扩展
  *
  * @author liuxin
  * 2020-08-01 19:06
  */
-public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ServerHandler<T, R> {
+public class AbstractServerHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ServerHandler<T, R> {
 
 
+    /**
+     * 业务方要定义的处理器
+     */
     private SubServerHandler<T, R> subServerHandler;
 
     @Override
@@ -33,11 +26,18 @@ public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R exten
         this.subServerHandler = subServerHandler;
     }
 
+    private void checked() {
+        if (Objects.isNull(subServerHandler)) {
+            throw new SubServerHandlerException(SubServerHandler.class + "不能为空,请先指定业务处理器");
+        }
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public R handler(EnhanceChannel channel, T rpcRequest) throws RemotingException {
         //1. 过滤器?
         //2. 定义一些RpcResponse的子类，客户端判断是否拒绝
+        checked();
         final R response;
         try {
             response = subServerHandler.handler(channel, rpcRequest);
@@ -49,7 +49,6 @@ public abstract class AbstractServerHandler<T extends RpcProtocolHeader, R exten
         }
         return response;
     }
-
 
 
 }

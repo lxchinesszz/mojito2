@@ -7,11 +7,11 @@ import java.util.Map;
 
 /**
  * 性能优先级
- * 1. ProtostuffObjectSerialize
- * 2. NettyCompactObjectSerialize
- * 3. Hession2ObjectSerialize
- * 4. NettyObjectSerialize
- * 5. HessionObjectSerialize
+ * 1. ProtostuffObjectSerializer
+ * 2. NettyCompactObjectSerializer
+ * 3. Hession2ObjectSerializer
+ * 4. NettyObjectSerializer
+ * 5. HessionObjectSerializer
  */
 
 public enum ProtocolEnum {

@@ -1,5 +1,6 @@
 package com.hanframework.mojito.client.netty;
 
+import com.hanframework.kit.util.StopWatch;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
@@ -9,7 +10,6 @@ import com.hanframework.mojito.serialization.SerializeEnum;
 import com.hanframework.mojito.test.pojo.User;
 import com.hanframework.mojito.test.service.UserService;
 import org.junit.Test;
-import org.springframework.util.StopWatch;
 
 import java.util.concurrent.*;
 

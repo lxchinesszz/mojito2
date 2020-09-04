@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author liuxin
  * 2020-07-25 22:18
  */
-public class MojitoCoreHandler implements MojitoChannelHandler {
+public class SingletonDispatchHandler implements MojitoChannelHandler {
 
     private Protocol protocol;
 
@@ -44,12 +44,12 @@ public class MojitoCoreHandler implements MojitoChannelHandler {
     }
 
 
-    public MojitoCoreHandler(Protocol protocol, boolean isServer) {
+    public SingletonDispatchHandler(Protocol protocol, boolean isServer) {
         this.protocol = protocol;
         this.isServer = isServer;
     }
 
-    public MojitoCoreHandler(Protocol protocol) {
+    public SingletonDispatchHandler(Protocol protocol) {
         this.protocol = protocol;
     }
 
@@ -88,9 +88,9 @@ public class MojitoCoreHandler implements MojitoChannelHandler {
      * @throws RemotingException 远程执行异常
      */
     public void write(EnhanceChannel channel, Object message) throws RemotingException {
-        RpcResponse rpcResponse = new RpcResponse();
-        System.out.println("向" + toAddressString(channel.getRemoteAddress()) + "发送了一条数据:" + rpcResponse);
-        channel.sendAndClose(rpcResponse);
+//        RpcResponse rpcResponse = new RpcResponse();
+//        System.out.println("向" + toAddressString(channel.getRemoteAddress()) + "发送了一条数据:" + rpcResponse);
+//        channel.sendAndClose(rpcResponse);
     }
 
     /**

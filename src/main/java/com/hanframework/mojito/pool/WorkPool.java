@@ -1,23 +1,50 @@
 package com.hanframework.mojito.pool;
 
-import com.hanframework.mojito.protocol.ChannelEncoder;
-import org.apache.commons.pool2.PooledObjectFactory;
+import org.apache.commons.pool2.BasePooledObjectFactory;
+import org.apache.commons.pool2.PooledObject;
+import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
+import java.util.function.Supplier;
+
 /**
- * 后面在考虑优化的问题
+ * 并不是多有的资源池化都会提高性能
+ * 只有哪些资源有限的资源,如数据库连接,网络连接才会。
  *
  * @author liuxin
  * 2020-08-21 23:00
  */
-public class CodePoolConfig {
+public class WorkPool<T> {
 
     private GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
 
-//    private GenericObjectPool<ChannelEncoder> pool = new GenericObjectPool<ChannelEncoder>(factory, poolConfig);
+    private GenericObjectPool<T> pool;
 
-    public void config() {
+    private Supplier<T> objSupplier;
+
+    public WorkPool(Supplier<T> objSupplier) {
+        initConfig();
+        this.objSupplier = objSupplier;
+        this.pool = new GenericObjectPool<>(buildObjectPool(), poolConfig);
+    }
+
+    private BasePooledObjectFactory<T> buildObjectPool() {
+        return new BasePooledObjectFactory<T>() {
+            @Override
+            public T create() throws Exception {
+                return objSupplier.get();
+            }
+
+            @Override
+            public PooledObject<T> wrap(T t) {
+                return new DefaultPooledObject<>(objSupplier.get());
+            }
+        };
+    }
+
+
+    private void initConfig() {
         // 最大空闲数
         poolConfig.setMaxIdle(5);
         // 最小空闲数, 池中只有一个空闲对象的时候，池会在创建一个对象，并借出一个对象，从而保证池中最小空闲数为1
@@ -44,10 +71,19 @@ public class CodePoolConfig {
         poolConfig.setNumTestsPerEvictionRun(3);
     }
 
-    public GenericObjectPool genericObjectPool() {
-//        PooledObjectFactory<ChannelEncoder> factory = new EncodePoolableObjectFactory();
-//        GenericObjectPool<ChannelEncoder> channelEncoderPool = new GenericObjectPool<ChannelEncoder>(factory, poolConfig);
-//        channelEncoderPool.borrowObject();
-        return null;
+    public int getNumActive() {
+        return pool.getNumActive();
+    }
+
+    public int getMinIdle() {
+        return pool.getMinIdle();
+    }
+
+    public T getObject() throws Exception {
+        return pool.borrowObject();
+    }
+
+    public void returnObject(T obj) {
+        pool.returnObject(obj);
     }
 }

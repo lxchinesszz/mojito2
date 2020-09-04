@@ -6,7 +6,7 @@ import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.MojitoNettyClient;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.MojitoCoreHandler;
+import com.hanframework.mojito.handler.SingletonDispatchHandler;
 import com.hanframework.mojito.processor.Processor;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
@@ -63,7 +63,7 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     @Override
     public MojitoChannelHandler getRequestHandler() {
-        return new MojitoCoreHandler(getProtocol());
+        return new SingletonDispatchHandler(getProtocol());
     }
 
     @Override

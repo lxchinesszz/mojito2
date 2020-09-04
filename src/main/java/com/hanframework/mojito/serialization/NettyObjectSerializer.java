@@ -1,26 +1,27 @@
 package com.hanframework.mojito.serialization;
 
-import com.caucho.hessian.io.HessianInput;
-import com.caucho.hessian.io.HessianOutput;
 import com.hanframework.mojito.exception.DeserializeException;
 import com.hanframework.mojito.exception.SerializeException;
+import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
+import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.NotSerializableException;
 
 /**
+ * 必须要实现Serializable接口
+ *
  * @author liuxin
- * 2020-07-31 21:32
+ * 2020-07-31 20:16
  */
-public class HessionObjectSerialize implements Serialize {
+public class NettyObjectSerializer implements Serializer {
 
     @Override
-    public byte[] serialize(Object dataObject) throws SerializeException {
+    public byte[] serialize(Object dataObject) {
         ByteArrayOutputStream dataArr = new ByteArrayOutputStream();
-        HessianOutput oeo = null;
-        try {
-            oeo = new HessianOutput(dataArr);
+        try (ObjectEncoderOutputStream oeo = new ObjectEncoderOutputStream(dataArr)) {
             oeo.writeObject(dataObject);
             oeo.flush();
         } catch (IOException e) {
@@ -29,14 +30,6 @@ public class HessionObjectSerialize implements Serialize {
             } else {
                 throw new SerializeException(e);
             }
-        } finally {
-            if (oeo != null) {
-                try {
-                    oeo.close();
-                } catch (IOException e) {
-                    throw new SerializeException(e);
-                }
-            }
         }
         return dataArr.toByteArray();
     }
@@ -44,10 +37,9 @@ public class HessionObjectSerialize implements Serialize {
     @Override
     public Object deserialize(byte[] data) throws DeserializeException {
         Object o;
-        HessianInput odi = new HessianInput(new ByteArrayInputStream(data));
-        try {
+        try(ObjectDecoderInputStream odi = new ObjectDecoderInputStream(new ByteArrayInputStream(data))){
             o = odi.readObject();
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             throw new DeserializeException(e);
         }
         return o;

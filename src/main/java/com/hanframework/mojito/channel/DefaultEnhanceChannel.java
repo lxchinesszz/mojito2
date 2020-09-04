@@ -25,6 +25,9 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
      */
     private final String channelId;
 
+    /**
+     * 是否可以写
+     */
     private boolean write = true;
 
     /**
@@ -32,7 +35,7 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
      */
     private static final ConcurrentMap<Channel, DefaultEnhanceChannel> channelMap = new ConcurrentHashMap<Channel, DefaultEnhanceChannel>();
 
-    private final Map<String, Object> attributes = new ConcurrentHashMap<String, Object>();
+    private final Map<String, Object> attributes = new ConcurrentHashMap<>();
 
     private DefaultEnhanceChannel(Channel channel) {
         if (channel == null) {

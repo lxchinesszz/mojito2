@@ -3,7 +3,6 @@ package com.hanframework.mojito.handler;
 
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
-import com.hanframework.mojito.signature.service.SignatureManager;
 
 /**
  * 逻辑层尽量不在netty的API中进行调用,而在自己定义的处理器中处理
@@ -41,6 +40,7 @@ public interface MojitoChannelHandler {
 
     /**
      * 发送消息
+     * FIXME 因为只定义了入栈处理器,所以不会有出站写动作,当有写操作会直接发送给编码处理器去处理
      *
      * @param channel channel.
      * @param message message.

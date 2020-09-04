@@ -5,22 +5,17 @@ import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.client.handler.DefaultAbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.netty.AbstractNettyClient;
 import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.MojitoCoreHandler;
+import com.hanframework.mojito.handler.SingletonDispatchHandler;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.*;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelDecoder;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelEncoder;
-import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
-import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.Server;
 import com.hanframework.mojito.server.handler.AbstractServerHandler;
-import com.hanframework.mojito.server.handler.MojitoServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 
@@ -170,7 +165,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
 
             @Override
             public MojitoChannelHandler getRequestHandler() {
-                return new MojitoCoreHandler(this);
+                return new SingletonDispatchHandler(this);
             }
 
             @Override
