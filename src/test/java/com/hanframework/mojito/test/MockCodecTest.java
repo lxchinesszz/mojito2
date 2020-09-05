@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 1. 如何自定义数据模型
+ *如何自定义数据模型
  *
  * @author liuxin
  * 2020-08-22 16:43

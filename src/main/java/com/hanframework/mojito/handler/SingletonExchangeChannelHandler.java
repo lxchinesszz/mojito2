@@ -6,7 +6,6 @@ import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 
 import java.net.InetSocketAddress;
@@ -17,14 +16,17 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author liuxin
  * 2020-07-25 22:18
  */
-public class SingletonDispatchHandler implements MojitoChannelHandler {
+public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
 
-    private Protocol protocol;
+    /**
+     * 一旦确定了模型就不能再替换
+     */
+    private final Protocol protocol;
 
     /**
      * 用于记录连接数量
      */
-    private AtomicLong connections = new AtomicLong(0);
+    private final AtomicLong connections = new AtomicLong(0);
 
     /**
      * 是否服务端
@@ -32,24 +34,24 @@ public class SingletonDispatchHandler implements MojitoChannelHandler {
     private boolean isServer = true;
 
     @Override
-    public MojitoChannelHandler serverChannelHandler() {
+    public ExchangeChannelHandler serverChannelHandler() {
         this.isServer = true;
         return this;
     }
 
     @Override
-    public MojitoChannelHandler clientChannelHandler() {
+    public ExchangeChannelHandler clientChannelHandler() {
         this.isServer = false;
         return this;
     }
 
 
-    public SingletonDispatchHandler(Protocol protocol, boolean isServer) {
+    public SingletonExchangeChannelHandler(Protocol protocol, boolean isServer) {
         this.protocol = protocol;
         this.isServer = isServer;
     }
 
-    public SingletonDispatchHandler(Protocol protocol) {
+    public SingletonExchangeChannelHandler(Protocol protocol) {
         this.protocol = protocol;
     }
 

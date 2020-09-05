@@ -4,8 +4,8 @@ import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.handler.DefaultAbstractAsyncClientPromiseHandler;
-import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.SingletonDispatchHandler;
+import com.hanframework.mojito.handler.ExchangeChannelHandler;
+import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.protocol.ChannelDecoder;
 import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.Protocol;
@@ -38,8 +38,8 @@ public class MojitoProtocol implements Protocol<RpcRequest, RpcResponse> {
     }
 
     @Override
-    public MojitoChannelHandler getRequestHandler() {
-        return new SingletonDispatchHandler(this);
+    public ExchangeChannelHandler getExchangeChannelHandler() {
+        return new SingletonExchangeChannelHandler(this);
     }
 
     @Override

@@ -6,8 +6,8 @@ import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.AbstractNettyClient;
-import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.SingletonDispatchHandler;
+import com.hanframework.mojito.handler.ExchangeChannelHandler;
+import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.*;
@@ -164,8 +164,8 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             }
 
             @Override
-            public MojitoChannelHandler getRequestHandler() {
-                return new SingletonDispatchHandler(this);
+            public ExchangeChannelHandler getExchangeChannelHandler() {
+                return new SingletonExchangeChannelHandler(this);
             }
 
             @Override

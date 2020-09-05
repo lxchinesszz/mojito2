@@ -1,7 +1,7 @@
 package com.hanframework.mojito.protocol;
 
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.handler.MojitoChannelHandler;
+import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 import java.util.concurrent.Executor;
@@ -26,7 +26,7 @@ public interface Protocol<R, V> {
      * 连接处理器
      * 面向连接编程,处理客户端和服务端的交互。
      */
-    MojitoChannelHandler getRequestHandler();
+    ExchangeChannelHandler getExchangeChannelHandler();
 
     /**
      * 可以指定处理器,如果不指定默认使用netty work线程
@@ -61,7 +61,7 @@ public interface Protocol<R, V> {
      * 服务处理器，负责将请求信息转换成响应信息
      * 注意: 非线程安全类
      *
-     * @return ServerHandler
+     * @param serverHandler 服务端处理,这里注意这里并不是开发者要直接编程的地方
      */
     void setServerHandler(ServerHandler<R, V> serverHandler);
 

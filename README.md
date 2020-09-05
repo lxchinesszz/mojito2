@@ -6,29 +6,22 @@
   
   
   
-大的思路是底层使用Netty进行通信,但是API尽量使用自己定义的API,降低开发成本。
+大的思路是底层使用Netty进行通信,屏蔽掉数据层的拆包粘包问题
+API尽量使用自己定义的API屏蔽掉Netty的API,降低学习成本。
 
 
-- signature  签名信息
-- server     服务daunt
+# 模块解释
+
+
+- protocol   HTTP协议/自定义协议
+- server     服务端
 - client     客户端
-- proxy      代理
-- protocol   定制的协议
-- handler    逻辑处理内
 - exception  异常处理
-- channel    通道模型,数据信息  
-
-
-
-1. 协议层只处理二进制数据与模型转换
-
-
-
-# 优化要做的
-
-# 支持的消息模式
-
-1. 消息模式,支持订阅服务端。
+- channel    通道模型,对Netty通道进行增强
+- config     为RPC风格通信提供更加简单的API
+- signature  签名信息 [废弃,不使用]
+- proxy      代理     [废弃]
+- pool       池化工具
 
 
 

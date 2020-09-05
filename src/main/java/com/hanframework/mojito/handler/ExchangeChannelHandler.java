@@ -10,17 +10,17 @@ import com.hanframework.mojito.exception.RemotingException;
  * @author liuxin
  * @version Id: ChannelHandler.java, v 0.1 2019-05-11 14:47
  */
-public interface MojitoChannelHandler {
+public interface ExchangeChannelHandler {
 
     /**
      * 服务端
      */
-    MojitoChannelHandler serverChannelHandler();
+    ExchangeChannelHandler serverChannelHandler();
 
     /**
      * 客户端
      */
-    MojitoChannelHandler clientChannelHandler();
+    ExchangeChannelHandler clientChannelHandler();
 
     /**
      * 接受连接

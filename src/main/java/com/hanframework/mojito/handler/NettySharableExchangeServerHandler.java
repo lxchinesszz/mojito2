@@ -1,15 +1,9 @@
 package com.hanframework.mojito.handler;
 
 import com.hanframework.mojito.channel.DefaultEnhanceChannel;
-import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.ReferenceCountUtil;
-
-import java.net.InetSocketAddress;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -25,13 +19,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version Id: ServerHandler.java, v 0.1 2019-03-27 10:58
  */
 @io.netty.channel.ChannelHandler.Sharable
-public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Object> {
+public class NettySharableExchangeServerHandler extends SimpleChannelInboundHandler<Object> {
 
 
-    private MojitoChannelHandler mojitoChannelHandler;
+    private ExchangeChannelHandler exchangeChannelHandler;
 
-    public NettyExchangeServerHandler(MojitoChannelHandler mojitoChannelHandler) {
-        this.mojitoChannelHandler = mojitoChannelHandler;
+    public NettySharableExchangeServerHandler(ExchangeChannelHandler exchangeChannelHandler) {
+        this.exchangeChannelHandler = exchangeChannelHandler;
     }
 
     /**
@@ -44,7 +38,7 @@ public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Obje
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());
         try {
-            mojitoChannelHandler.connected(channel);
+            exchangeChannelHandler.connected(channel);
         } finally {
             //连接断开就移除
             DefaultEnhanceChannel.removeChannelIfDisconnected(ctx.channel());
@@ -62,7 +56,7 @@ public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Obje
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());
         try {
-            mojitoChannelHandler.disconnected(channel);
+            exchangeChannelHandler.disconnected(channel);
         } finally {
             DefaultEnhanceChannel.removeChannelIfDisconnected(ctx.channel());
         }
@@ -79,7 +73,7 @@ public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Obje
     public void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());
         try {
-            mojitoChannelHandler.read(channel, msg);
+            exchangeChannelHandler.read(channel, msg);
         } finally {
             DefaultEnhanceChannel.removeChannelIfDisconnected(ctx.channel());
         }
@@ -90,7 +84,7 @@ public class NettyExchangeServerHandler extends SimpleChannelInboundHandler<Obje
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());
         try {
-            mojitoChannelHandler.caught(channel, cause);
+            exchangeChannelHandler.caught(channel, cause);
         } finally {
             DefaultEnhanceChannel.removeChannelIfDisconnected(ctx.channel());
         }

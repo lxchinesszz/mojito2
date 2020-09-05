@@ -5,8 +5,8 @@ import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.MojitoNettyClient;
-import com.hanframework.mojito.handler.MojitoChannelHandler;
-import com.hanframework.mojito.handler.SingletonDispatchHandler;
+import com.hanframework.mojito.handler.ExchangeChannelHandler;
+import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.Processor;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
@@ -28,8 +28,6 @@ import java.util.concurrent.Executor;
  * 2020-08-22 13:27
  */
 public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements CodecFactory<T, R> {
-
-    private Executor executor = new HanThreadPoolExecutor(new NamedThreadFactory("mojimo")).getExecutory();
 
     private SubServerHandler<T, R> subServerHandler;
 
@@ -62,13 +60,13 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
     }
 
     @Override
-    public MojitoChannelHandler getRequestHandler() {
-        return new SingletonDispatchHandler(getProtocol());
+    public ExchangeChannelHandler getExchangeChannelHandler() {
+        return new SingletonExchangeChannelHandler(getProtocol());
     }
 
     @Override
     public Executor getExecutor() {
-        return executor;
+        return getProtocol().getExecutor();
     }
 
     @Override

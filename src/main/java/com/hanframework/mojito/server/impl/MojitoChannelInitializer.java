@@ -1,6 +1,6 @@
 package com.hanframework.mojito.server.impl;
 
-import com.hanframework.mojito.handler.NettyExchangeServerHandler;
+import com.hanframework.mojito.handler.NettySharableExchangeServerHandler;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.HttpProtocol;
 import com.hanframework.mojito.protocol.http.HttpRequestDecoderWrapper;
@@ -55,9 +55,9 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
             }
         }
         if (isServer) {
-            cp.addLast(new NettyExchangeServerHandler(protocol.getRequestHandler().serverChannelHandler()));
+            cp.addLast(new NettySharableExchangeServerHandler(protocol.getExchangeChannelHandler().serverChannelHandler()));
         } else {
-            cp.addLast(new NettyExchangeServerHandler(protocol.getRequestHandler().clientChannelHandler()));
+            cp.addLast(new NettySharableExchangeServerHandler(protocol.getExchangeChannelHandler().clientChannelHandler()));
         }
     }
 }
