@@ -10,7 +10,10 @@ import com.hanframework.mojito.server.handler.SubServerHandler;
 public class HttpCodecFactory extends AbstractCodecFactory<HttpRequestFacade, HttpResponseFacade> {
 
     public HttpCodecFactory(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        super(new HttpProtocol(),subServerHandler);
+        super(new HttpProtocol(), subServerHandler);
     }
 
+    public HttpCodecFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol, SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
+        super(protocol);
+    }
 }

@@ -21,6 +21,8 @@ public final class HttpRequestFacade extends RpcProtocolHeader {
 
     private final Map<String, String> headers;
 
+    private final HttpHeaders httpHeaders;
+
     private final HttpMethod httpMethod;
 
     public HttpRequestFacade(FullHttpRequest fullHttpRequest) {
@@ -28,11 +30,21 @@ public final class HttpRequestFacade extends RpcProtocolHeader {
         this.paramMap = Collections.unmodifiableMap(FullHttpRequestUtils.parseParams(fullHttpRequest));
         this.headers = Collections.unmodifiableMap(FullHttpRequestUtils.parseHeaders(fullHttpRequest));
         this.httpMethod = FullHttpRequestUtils.parseHttpMethod(fullHttpRequest);
+        this.httpHeaders = FullHttpRequestUtils.fetchHttpHeaders(fullHttpRequest);
     }
 
     public HttpMethod method() {
         return httpMethod;
     }
+
+    public HttpHeaders getHttpHeaders() {
+        return httpHeaders;
+    }
+
+    public String getRequestURI() {
+        return fullHttpRequest.uri();
+    }
+
 
     public Map<String, String> getRequestParams() {
         return paramMap;
@@ -72,9 +84,9 @@ public final class HttpRequestFacade extends RpcProtocolHeader {
      *
      * @return boolean
      */
-    public boolean KeepAlive() {
-        String keepAlive = fullHttpRequest.headers().get("Connection", "false");
-        return Boolean.parseBoolean(keepAlive);
+    public boolean keepAlive() {
+        String head = getHttpHeaders().getHead(HttpHeaders.Names.CONNECTION);
+        return HttpHeaders.Values.KEEP_ALIVE.equalsIgnoreCase(head);
     }
 
 

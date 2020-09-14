@@ -2,15 +2,20 @@ package com.hanframework.mojito.config;
 
 import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
+import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.AbstractNettyClient;
+import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.*;
+import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import com.hanframework.mojito.protocol.http.HttpResponseFacade;
+import com.hanframework.mojito.protocol.https.HttpsProtocol;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelDecoder;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelEncoder;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
@@ -19,6 +24,9 @@ import com.hanframework.mojito.server.handler.AbstractServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 
+import javax.net.ssl.SSLException;
+import java.io.File;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
@@ -41,6 +49,37 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
     private Installer(CodecFactory<T, V> codecFactory) {
         this.codecFactory = codecFactory;
     }
+
+    /**
+     * 构建一个支持http协议的服务器
+     * 1. 生成ssl私钥  openssl genrsa -out server.key 2048
+     * 2. 生政自签名证书 openssl req -new -sha256 -x509 -days 365 -key server.key -out server.crt
+     *
+     * @param subServerHandler 服务处理器
+     * @return Server
+     */
+    //FIXME 未验证
+    public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, File certificate, File privateKey) throws SSLException {
+        HttpsProtocol httpsProtocol = new HttpsProtocol(certificate, privateKey);
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(httpsProtocol, subServerHandler));
+        tvInstaller.setRequestType(HttpRequestFacade.class);
+        tvInstaller.setResponseType(HttpResponseFacade.class);
+        return tvInstaller.getCodecFactory().getServer();
+    }
+
+    /**
+     * 构建一个支持http协议的服务器
+     *
+     * @param subServerHandler 服务处理器
+     * @return Server
+     */
+    public static Server httpServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(subServerHandler));
+        tvInstaller.setRequestType(HttpRequestFacade.class);
+        tvInstaller.setResponseType(HttpResponseFacade.class);
+        return tvInstaller.getCodecFactory().getServer();
+    }
+
 
     /**
      * 使用该方法需要注意如果是服务端,一定要调用serverHandler方法创建

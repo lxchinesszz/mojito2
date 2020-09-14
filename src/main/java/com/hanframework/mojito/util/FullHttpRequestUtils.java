@@ -25,6 +25,11 @@ public final class FullHttpRequestUtils {
         return com.hanframework.mojito.protocol.http.HttpMethod.ofByName(method.name());
     }
 
+    public static com.hanframework.mojito.protocol.http.HttpHeaders fetchHttpHeaders(FullHttpRequest fullHttpRequest) {
+        Map<String, String> parseHeaders = parseHeaders(fullHttpRequest);
+        return new com.hanframework.mojito.protocol.http.HttpHeaders(parseHeaders);
+    }
+
     public static Map<String, String> parseHeaders(FullHttpRequest fullHttpRequest) {
         if (fullHttpRequest == null) {
             return Collections.emptyMap();
@@ -53,7 +58,6 @@ public final class FullHttpRequestUtils {
                 parmMap.put(key, value.get(0));
             });
         } else if (HttpMethod.POST == method) {
-            // 是POST请求
             HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(fullHttpRequest);
             decoder.offer(fullHttpRequest);
 

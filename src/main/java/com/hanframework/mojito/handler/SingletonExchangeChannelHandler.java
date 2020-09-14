@@ -3,9 +3,14 @@ package com.hanframework.mojito.handler;
 import com.hanframework.kit.date.DatePatternEnum;
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
+import com.hanframework.mojito.handler.task.HandlerTask;
+import com.hanframework.mojito.handler.task.HttpHandlerTask;
+import com.hanframework.mojito.handler.task.RpcClientHandlerTask;
+import com.hanframework.mojito.handler.task.RpcServerHandlerTask;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.hanframework.mojito.server.handler.ServerHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
 
 import java.net.InetSocketAddress;
@@ -105,56 +110,31 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
     @SuppressWarnings("unchecked")
     public void read(EnhanceChannel channel, final Object message) throws RemotingException {
         Executor executor = protocol.getExecutor();
-        Runnable runnable;
+        ServerHandler serverHandler = protocol.getServerHandler();
+        HandlerTask handlerTask;
         try {
+            //1. 服务端的处理逻辑
             if (isServer) {
-                runnable = () -> {
-                    System.out.println("ServerHandler处理" + toAddressString(channel.getRemoteAddress()) + "发送来的一条数据:" + message);
-                    Object response;
-                    boolean keepAlive = true;
-                    if (message instanceof FullHttpRequest || message instanceof RpcProtocolHeader) {
-                        try {
-                            if (message instanceof FullHttpRequest) {
-                                HttpRequestFacade httpRequestFacade = new HttpRequestFacade((FullHttpRequest) message);
-                                keepAlive = httpRequestFacade.KeepAlive();
-                                response = protocol.getServerHandler().handler(channel, httpRequestFacade);
-                            } else {
-                                response = protocol.getServerHandler().handler(channel, message);
-                            }
-                            // 服务端也可以对通道进行写,但是写完之后要将标记置位不可写。否则这里会在写一次
-                            if (channel.isWrite()) {
-                                if (keepAlive) {
-                                    channel.send(response);
-                                } else {
-                                    channel.sendAndClose(response);
-                                }
-                            } else {
-                                //重置可写
-                                channel.markWrite();
-                            }
-                        } catch (Throwable throwable) {
-                            System.err.println("Server1312321312");
-                            channel.exceptionCaught(new RemotingException(throwable));
-                            channel.disconnected();
-                        }
-                    }
-                };
+                if (message instanceof FullHttpRequest) {
+                    HttpRequestFacade httpRequestFacade = new HttpRequestFacade((FullHttpRequest) message);
+                    channel.setAttribute(KeepAlive.KEEPALIVE, httpRequestFacade.keepAlive());
+                    handlerTask = new HttpHandlerTask(serverHandler, channel, httpRequestFacade);
+                } else {
+                    RpcProtocolHeader rpcProtocolHeader = (RpcProtocolHeader) message;
+                    String keepAlive = rpcProtocolHeader.getAttachment(KeepAlive.KEEPALIVE);
+                    channel.setAttribute(KeepAlive.KEEPALIVE, Boolean.valueOf(keepAlive));
+                    handlerTask = new RpcServerHandlerTask(serverHandler, channel, (RpcProtocolHeader) message);
+                }
             } else {
-                runnable = () -> {
-                    System.out.println("ClientHandler收到来自服务端" + toAddressString(channel.getRemoteAddress()) + "返回的一条数据:" + message);
-                    try {
-                        protocol.getClientPromiseHandler().received(message);
-                    } catch (Throwable throwable) {
-                        System.err.println("Client1312321312");
-                        channel.exceptionCaught(new RemotingException(throwable));
-                        channel.disconnected();
-                    }
-                };
+                //2. 客户端的处理逻辑
+                handlerTask = new RpcClientHandlerTask(protocol, channel, message);
             }
+            //3. 如果指定了线程池就交给线程池来处理
             if (executor != null) {
-                executor.execute(runnable);
+                executor.execute(handlerTask);
             } else {
-                runnable.run();
+                // 没有指定线程池就直接运行
+                handlerTask.justStart();
             }
         } catch (Throwable throwable) {
             channel.exceptionCaught(new RemotingException(throwable));

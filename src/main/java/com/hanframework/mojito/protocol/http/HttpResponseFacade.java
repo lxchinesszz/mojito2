@@ -28,4 +28,11 @@ public class HttpResponseFacade extends RpcProtocolHeader {
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
         return new HttpResponseFacade(response);
     }
+
+    public static HttpResponseFacade JSON() {
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
+                HttpResponseStatus.OK);
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.APPLICATION_JSON);
+        return new HttpResponseFacade(response);
+    }
 }

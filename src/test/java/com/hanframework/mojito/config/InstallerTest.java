@@ -5,15 +5,19 @@ import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.CodecFactory;
+import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -100,7 +104,7 @@ public class InstallerTest implements Serializable {
         System.out.println(mojitoFuture.get());
 //        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
 //        StopWatch stopWatch = new StopWatch("请求验证");
-//        stopWatch.start();
+//        stopWatch.justStart();
 //        for (int i = 0; i < 10000; i++) {
 //            MojitoFuture<RpcUserResponse> async = client.sendAsync(new RpcUserRequest("I'am RpcUser_" + i));
 //            result.add(async);
@@ -146,24 +150,24 @@ public class InstallerTest implements Serializable {
     public void testRpcServer() {
         Installer.ServerCreator<RpcRequest, RpcResponse> serverCreator = Installer.server(RpcRequest.class, RpcResponse.class)
                 .serverHandler((channel, request) -> {
-            RpcResponse response = new RpcResponse();
-            try {
-                //1. 拿到要执行的类
-                Class<?> serviceType = request.getServiceType();
-                //2. 拿到要执行类的方法
-                Method method = serviceType.getMethod(request.getMethodName(), request.getArgsType());
-                Constructor<?> constructor = serviceType.getConstructor();
-                Object instance = constructor.newInstance();
-                //3. 反射执行结果
-                Object invoke = method.invoke(instance, request.getArgs());
-                response.setSuccess(true);
-                response.setResult(invoke);
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.setSuccess(false);
-            }
-            return response;
-        });
+                    RpcResponse response = new RpcResponse();
+                    try {
+                        //1. 拿到要执行的类
+                        Class<?> serviceType = request.getServiceType();
+                        //2. 拿到要执行类的方法
+                        Method method = serviceType.getMethod(request.getMethodName(), request.getArgsType());
+                        Constructor<?> constructor = serviceType.getConstructor();
+                        Object instance = constructor.newInstance();
+                        //3. 反射执行结果
+                        Object invoke = method.invoke(instance, request.getArgs());
+                        response.setSuccess(true);
+                        response.setResult(invoke);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        response.setSuccess(false);
+                    }
+                    return response;
+                });
         serverCreator.create().start(8084);
     }
 
@@ -183,5 +187,27 @@ public class InstallerTest implements Serializable {
         rpcRequest.setArgs(new Object[]{"欢迎关注程序猿升级课"});
         MojitoFuture<RpcResponse> future = client.sendAsync(rpcRequest);
         System.out.println(future.get());
+    }
+
+    @Test
+    public void testHttpServer() {
+        Installer.httpServer((channel, request) -> {
+            System.out.println(request.getRequestURI());
+            Map<String, String> requestParams = request.getRequestParams();
+            System.out.println(requestParams);
+            return HttpResponseFacade.JSON();
+        }).start(8080);
+    }
+
+    @Test
+    public void testHttpsServer() throws Exception {
+        File cert = new File("/Users/liuxin/Github/mojito/server.crt");
+        File key = new File("/Users/liuxin/Github/mojito/pkcs8Private.key");
+        Installer.httpsServer((channel, request) -> {
+            System.out.println(request.getRequestURI());
+            Map<String, String> requestParams = request.getRequestParams();
+            System.out.println(requestParams);
+            return HttpResponseFacade.JSON();
+        }, cert, key).start(8080);
     }
 }

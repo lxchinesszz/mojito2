@@ -1,7 +1,5 @@
 package com.hanframework.mojito.protocol;
 
-import com.hanframework.kit.thread.HanThreadPoolExecutor;
-import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.MojitoNettyClient;
