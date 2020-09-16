@@ -1,23 +1,22 @@
 package com.hanframework.mojito.config;
 
+import com.hanframework.kit.util.StopWatch;
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.CodecFactory;
-import com.hanframework.mojito.protocol.http.HttpRequestFacade;
-import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 import org.junit.Test;
-
-import java.io.File;
+import org.openjdk.jmh.annotations.*;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -28,6 +27,11 @@ import java.util.concurrent.TimeUnit;
  * @author liuxin
  * 2020-08-23 21:34
  */
+@BenchmarkMode(Mode.AverageTime)//平均响应时间
+@Fork(1)
+@Warmup(iterations = 3)//预热3次
+@Measurement(iterations = 2)//进行2次测试
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class InstallerTest implements Serializable {
 
     class RpcUserRequest extends RpcProtocolHeader {
@@ -96,24 +100,25 @@ public class InstallerTest implements Serializable {
      * @throws Exception
      */
     @Test
+    @Benchmark
     public void clientTest() throws Exception {
         Client<RpcUserRequest, RpcUserResponse> client = Installer.client(RpcUserRequest.class, RpcUserResponse.class)
                 .conncet("127.0.0.1", 12306);
 
         MojitoFuture<RpcUserResponse> mojitoFuture = client.sendAsync(new RpcUserRequest("关注微信公众号:程序猿升级课"));
         System.out.println(mojitoFuture.get());
-//        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
-//        StopWatch stopWatch = new StopWatch("请求验证");
-//        stopWatch.justStart();
-//        for (int i = 0; i < 10000; i++) {
-//            MojitoFuture<RpcUserResponse> async = client.sendAsync(new RpcUserRequest("I'am RpcUser_" + i));
-//            result.add(async);
-//        }
-//        stopWatch.stop();
-//        for (MojitoFuture<RpcUserResponse> rpcUserResponseMojitoFuture : result) {
-//            System.out.println(rpcUserResponseMojitoFuture.get());
-//        }
-//        System.out.println(stopWatch.prettyPrint());
+        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
+        StopWatch stopWatch = new StopWatch("请求验证");
+        stopWatch.start();
+        for (int i = 0; i < 10000; i++) {
+            MojitoFuture<RpcUserResponse> async = client.sendAsync(new RpcUserRequest("I'am RpcUser_" + i));
+            result.add(async);
+        }
+        stopWatch.stop();
+        for (MojitoFuture<RpcUserResponse> rpcUserResponseMojitoFuture : result) {
+            System.out.println(rpcUserResponseMojitoFuture.get());
+        }
+        System.out.println(stopWatch.prettyPrint());
         client.close();
     }
 
@@ -171,10 +176,6 @@ public class InstallerTest implements Serializable {
         serverCreator.create().start(8084);
     }
 
-    public class User {
-
-
-    }
 
     @Test
     public void testRpcClient() throws Exception {
@@ -189,25 +190,4 @@ public class InstallerTest implements Serializable {
         System.out.println(future.get());
     }
 
-    @Test
-    public void testHttpServer() {
-        Installer.httpServer((channel, request) -> {
-            System.out.println(request.getRequestURI());
-            Map<String, String> requestParams = request.getRequestParams();
-            System.out.println(requestParams);
-            return HttpResponseFacade.JSON();
-        }).start(8080);
-    }
-
-    @Test
-    public void testHttpsServer() throws Exception {
-        File cert = new File("/Users/liuxin/Github/mojito/server.crt");
-        File key = new File("/Users/liuxin/Github/mojito/pkcs8Private.key");
-        Installer.httpsServer((channel, request) -> {
-            System.out.println(request.getRequestURI());
-            Map<String, String> requestParams = request.getRequestParams();
-            System.out.println(requestParams);
-            return HttpResponseFacade.JSON();
-        }, cert, key).start(8080);
-    }
 }

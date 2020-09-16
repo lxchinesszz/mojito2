@@ -24,6 +24,7 @@ import com.hanframework.mojito.server.handler.AbstractServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 
+import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLException;
 import java.io.File;
 import java.util.Map;
@@ -56,9 +57,11 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      * 2. 生政自签名证书 openssl req -new -sha256 -x509 -days 365 -key server.key -out server.crt
      *
      * @param subServerHandler 服务处理器
+     * @param certificate      证书文件
+     * @param privateKey       私钥
      * @return Server
+     * @throws SSLException ssl异常
      */
-    //FIXME 未验证
     public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, File certificate, File privateKey) throws SSLException {
         HttpsProtocol httpsProtocol = new HttpsProtocol(certificate, privateKey);
         Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(httpsProtocol, subServerHandler));
@@ -66,6 +69,22 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
     }
+
+
+    /**
+     * @param subServerHandler  服务处理器
+     * @param keyManagerFactory 秘钥管理器
+     * @return Server
+     * @throws SSLException ssl异常
+     */
+    public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, KeyManagerFactory keyManagerFactory) throws SSLException {
+        HttpsProtocol httpsProtocol = new HttpsProtocol(keyManagerFactory);
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(httpsProtocol, subServerHandler));
+        tvInstaller.setRequestType(HttpRequestFacade.class);
+        tvInstaller.setResponseType(HttpResponseFacade.class);
+        return tvInstaller.getCodecFactory().getServer();
+    }
+
 
     /**
      * 构建一个支持http协议的服务器
@@ -78,6 +97,13 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
+    }
+
+    public static Client<HttpRequestFacade, HttpResponseFacade> httpClient() {
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory());
+        tvInstaller.setRequestType(HttpRequestFacade.class);
+        tvInstaller.setResponseType(HttpResponseFacade.class);
+        return tvInstaller.getCodecFactory().getClient();
     }
 
 

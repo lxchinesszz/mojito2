@@ -45,6 +45,7 @@ public abstract class AbstractHandlerTask<R, V> implements HandlerTask {
         return enhanceChannel;
     }
 
+
     public R getRequest() {
         return request;
     }

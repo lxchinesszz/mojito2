@@ -1,6 +1,8 @@
 package com.hanframework.mojito.protocol.http;
 
-import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.google.common.base.Strings;
+import com.hanframework.mojito.config.Constant;
+import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.util.FullHttpRequestUtils;
 import io.netty.handler.codec.http.FullHttpRequest;
 
@@ -13,33 +15,36 @@ import java.util.Map;
  * @author liuxin
  * 2020-09-02 14:18
  */
-public final class HttpRequestFacade extends RpcProtocolHeader {
+public final class HttpRequestFacade extends BaseHttpMessage {
 
     private final FullHttpRequest fullHttpRequest;
 
     private final Map<String, String> paramMap;
 
-    private final Map<String, String> headers;
-
-    private final HttpHeaders httpHeaders;
-
     private final HttpMethod httpMethod;
 
+    public FullHttpRequest getFullHttpRequest() {
+        return fullHttpRequest;
+    }
+
     public HttpRequestFacade(FullHttpRequest fullHttpRequest) {
+        this(fullHttpRequest, false);
+        addHeader(Constant.REQUEST_ID, getId());
+    }
+
+    public HttpRequestFacade(FullHttpRequest fullHttpRequest, boolean server) {
+        super(fullHttpRequest, server);
         this.fullHttpRequest = fullHttpRequest;
         this.paramMap = Collections.unmodifiableMap(FullHttpRequestUtils.parseParams(fullHttpRequest));
-        this.headers = Collections.unmodifiableMap(FullHttpRequestUtils.parseHeaders(fullHttpRequest));
         this.httpMethod = FullHttpRequestUtils.parseHttpMethod(fullHttpRequest);
-        this.httpHeaders = FullHttpRequestUtils.fetchHttpHeaders(fullHttpRequest);
+        this.setProtocolType(ProtocolEnum.HTTP.getType());
     }
+
 
     public HttpMethod method() {
         return httpMethod;
     }
 
-    public HttpHeaders getHttpHeaders() {
-        return httpHeaders;
-    }
 
     public String getRequestURI() {
         return fullHttpRequest.uri();
@@ -60,14 +65,6 @@ public final class HttpRequestFacade extends RpcProtocolHeader {
         return paramMap.get(paramName);
     }
 
-    /**
-     * 获取请求头
-     *
-     * @return Map
-     */
-    public Map<String, String> getHeaders() {
-        return headers;
-    }
 
     /**
      * 获取请求头
@@ -85,7 +82,7 @@ public final class HttpRequestFacade extends RpcProtocolHeader {
      * @return boolean
      */
     public boolean keepAlive() {
-        String head = getHttpHeaders().getHead(HttpHeaders.Names.CONNECTION);
+        String head = headers.get(HttpHeaders.Names.CONNECTION);
         return HttpHeaders.Values.KEEP_ALIVE.equalsIgnoreCase(head);
     }
 

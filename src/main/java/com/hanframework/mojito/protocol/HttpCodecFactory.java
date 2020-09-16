@@ -9,11 +9,18 @@ import com.hanframework.mojito.server.handler.SubServerHandler;
  */
 public class HttpCodecFactory extends AbstractCodecFactory<HttpRequestFacade, HttpResponseFacade> {
 
+    public HttpCodecFactory(){
+        this(new HttpProtocol());
+    }
+    public HttpCodecFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol) {
+        super(protocol);
+    }
+
     public HttpCodecFactory(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
         super(new HttpProtocol(), subServerHandler);
     }
 
     public HttpCodecFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol, SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        super(protocol);
+        super(protocol,subServerHandler);
     }
 }

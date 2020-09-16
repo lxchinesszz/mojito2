@@ -1,9 +1,6 @@
 package com.hanframework.mojito.util;
 
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpHeaders;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.QueryStringDecoder;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.Attribute;
 import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import io.netty.handler.codec.http.multipart.InterfaceHttpData;
@@ -20,8 +17,8 @@ import java.util.Map;
  */
 public final class FullHttpRequestUtils {
 
-    public static com.hanframework.mojito.protocol.http.HttpMethod parseHttpMethod(FullHttpRequest fullHttpRequest) {
-        HttpMethod method = fullHttpRequest.method();
+    public static com.hanframework.mojito.protocol.http.HttpMethod parseHttpMethod(HttpRequest httpRequest) {
+        HttpMethod method = httpRequest.method();
         return com.hanframework.mojito.protocol.http.HttpMethod.ofByName(method.name());
     }
 
@@ -30,11 +27,11 @@ public final class FullHttpRequestUtils {
         return new com.hanframework.mojito.protocol.http.HttpHeaders(parseHeaders);
     }
 
-    public static Map<String, String> parseHeaders(FullHttpRequest fullHttpRequest) {
-        if (fullHttpRequest == null) {
+    public static Map<String, String> parseHeaders(HttpMessage httpMessage) {
+        if (httpMessage == null) {
             return Collections.emptyMap();
         }
-        HttpHeaders headers = fullHttpRequest.headers();
+        HttpHeaders headers = httpMessage.headers();
         Map<String, String> headerMap = new HashMap<>(headers.size());
         for (Map.Entry<String, String> entry : headers.entries()) {
             headerMap.put(entry.getKey(), entry.getValue());

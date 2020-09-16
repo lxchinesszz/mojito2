@@ -1,11 +1,8 @@
 package com.hanframework.mojito.protocol.http;
 
-import io.netty.handler.codec.http.HttpHeaderValues;
-import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author liuxin
@@ -339,7 +336,6 @@ public final class HttpHeaders {
     }
 
     /**
-     * @deprecated Use {@link HttpHeaderValues} instead.
      * <p>
      * Standard HTTP header values.
      */

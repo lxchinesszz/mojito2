@@ -40,7 +40,7 @@ public class RpcProtocolHeader implements Serializable {
     /**
      * 唯一id
      */
-    Long id;
+    String id;
 
     private final Map<String, String> attachments = new ConcurrentHashMap<>();
 
@@ -84,14 +84,14 @@ public class RpcProtocolHeader implements Serializable {
     }
 
     public RpcProtocolHeader() {
-        id = INVOKE_ID.incrementAndGet();
+        id = String.valueOf(INVOKE_ID.incrementAndGet());
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

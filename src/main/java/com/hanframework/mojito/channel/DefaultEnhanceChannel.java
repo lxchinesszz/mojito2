@@ -126,6 +126,7 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
     @Override
     public void send(Object message, long timeout, boolean close) {
         ChannelFuture channelFuture = channel.writeAndFlush(message);
+        channel.flush();
         if (close) {
             channelFuture.addListener(ChannelFutureListener.CLOSE);
         }

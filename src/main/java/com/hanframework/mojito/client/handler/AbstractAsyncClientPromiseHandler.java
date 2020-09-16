@@ -24,7 +24,7 @@ public class AbstractAsyncClientPromiseHandler<T extends RpcProtocolHeader, R ex
     /**
      * 当前通道正在发送的数据信息
      */
-    private final Map<Long, Promise<R>> futureMap = new ConcurrentHashMap<>();
+    private final Map<String, Promise<R>> futureMap = new ConcurrentHashMap<>();
 
     /**
      * 通用的

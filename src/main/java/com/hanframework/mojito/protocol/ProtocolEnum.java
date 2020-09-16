@@ -1,5 +1,6 @@
 package com.hanframework.mojito.protocol;
 
+import com.hanframework.mojito.protocol.http.HttpProtocol;
 import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 
 import java.util.HashMap;
@@ -34,7 +35,12 @@ public enum ProtocolEnum {
     /**
      * mojito协议
      */
-    MOJITO(2, MojitoProtocol.class);
+    MOJITO(2, MojitoProtocol.class),
+
+    /**
+     * http、https协议
+     */
+    HTTP(5, HttpProtocol.class);
 
     private byte type;
 

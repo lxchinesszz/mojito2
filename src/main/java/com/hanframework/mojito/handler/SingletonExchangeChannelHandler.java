@@ -9,9 +9,11 @@ import com.hanframework.mojito.handler.task.RpcClientHandlerTask;
 import com.hanframework.mojito.handler.task.RpcServerHandlerTask;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.FullHttpResponse;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executor;
@@ -116,18 +118,24 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
             //1. 服务端的处理逻辑
             if (isServer) {
                 if (message instanceof FullHttpRequest) {
-                    HttpRequestFacade httpRequestFacade = new HttpRequestFacade((FullHttpRequest) message);
+                    HttpRequestFacade httpRequestFacade = new HttpRequestFacade((FullHttpRequest) message, true);
+                    //http协议，因为不确定请求是来自浏览器还是开发者，所以严格按照http协议的长连接方式来处理
                     channel.setAttribute(KeepAlive.KEEPALIVE, httpRequestFacade.keepAlive());
                     handlerTask = new HttpHandlerTask(serverHandler, channel, httpRequestFacade);
                 } else {
                     RpcProtocolHeader rpcProtocolHeader = (RpcProtocolHeader) message;
+                    //对于rpc协议，一般都是代码调用，如果不指定是否长连接，默认就用长连接
                     String keepAlive = rpcProtocolHeader.getAttachment(KeepAlive.KEEPALIVE);
-                    channel.setAttribute(KeepAlive.KEEPALIVE, Boolean.valueOf(keepAlive));
+                    channel.setAttribute(KeepAlive.KEEPALIVE, keepAlive != null ? Boolean.valueOf(keepAlive) : true);
                     handlerTask = new RpcServerHandlerTask(serverHandler, channel, (RpcProtocolHeader) message);
                 }
             } else {
                 //2. 客户端的处理逻辑
-                handlerTask = new RpcClientHandlerTask(protocol, channel, message);
+                if (message instanceof FullHttpResponse) {
+                    handlerTask = new RpcClientHandlerTask(protocol, channel, new HttpResponseFacade(((FullHttpResponse) message), true));
+                } else {
+                    handlerTask = new RpcClientHandlerTask(protocol, channel, message);
+                }
             }
             //3. 如果指定了线程池就交给线程池来处理
             if (executor != null) {
