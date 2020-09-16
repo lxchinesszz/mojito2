@@ -12,44 +12,81 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/AbstractServer.java" description="protected abstract void doOpen(int port, boolean a..." line="40" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="SingletonExchangeChannelHandler 代码优化&#10;添加对https的支持,待验证。">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Constant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/BaseHttpMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpHeaderEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocolHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestEncoderWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseDecoderWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpsSafeInstallerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/channel/DefaultEnhanceChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/channel/DefaultEnhanceChannel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/handler/AbstractAsyncClientPromiseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/handler/AbstractAsyncClientPromiseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/SingletonExchangeChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/SingletonExchangeChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/HttpCodecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/HttpCodecFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ProtocolEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ProtocolEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpHeaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpHeaders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/https/HttpsProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/https/HttpsProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/FullHttpRequestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/FullHttpRequestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/DefaultEnhanceChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/DefaultEnhanceChannel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcTools.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/AbstractServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/AbstractServerHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/MojitoChannelInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/MojitoChannelInitializer.class" afterDir="false" />
+    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="完善对于HTTP协议的支持,支持长连接">
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/mojito.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/banner/Banner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/AbstractEnhanceChannel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/DefaultEnhanceChannel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/Endpoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/EnhanceChannel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/handler/HeartBeatReqHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/netty/AbstractNettyClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/DeserializeException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/ProtocolException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/RemotingException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/SerializeException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/SignatureException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/AbstractPromise.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/MojitoFuture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/Promise.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/listener/MojitoListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/handler/HeatBeatHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/AbstractCodecFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ChannelDecoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ChannelEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/CodecFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/CustomerProtocolManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/MojitoCodecFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/Protocol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ServiceURL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/http/HttpProtocol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoChannelEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoProtocol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/NetType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcTools.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/serialization/SerializeEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/AbstractServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/ProtocolRegister.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/ServiceRegister.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/AbstractServerHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/HeartBeatRespHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/ServerHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/MojitoChannelInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/NettyServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/method/MethodSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/method/SimpleMethodSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/AbstractServiceSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/DefaultSignatureManager$ServiceSignatureKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/DefaultSignatureManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/PrototypeServiceServiceSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/ServiceSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureHodler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SingletonServiceServiceSignature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/MockCodec.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/pojo/TestSerialize.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/pojo/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/mojito.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoderTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/signature/ServiceSignatureTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/test/MockCodecTest$CustomerRpcInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/test/MockCodecTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -76,10 +113,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="299">
               <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
             </state>
           </provider>
@@ -141,12 +178,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="224">
-                <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+              <first_editor relative-caret-position="526">
+                <caret line="98" column="3" lean-forward="true" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -536,7 +573,7 @@
       <workItem from="1599820718167" duration="319000" />
       <workItem from="1600018360900" duration="13245000" />
       <workItem from="1600159547383" duration="3000" />
-      <workItem from="1600171503979" duration="38288000" />
+      <workItem from="1600171503979" duration="38535000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1598367646019</created>
@@ -580,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600089257662</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完善对于HTTP协议的支持,支持长连接">
+      <created>1600274974983</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600274974983</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -616,7 +660,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303164000" />
+    <option name="totallyTimeSpent" value="303411000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -629,9 +673,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2401491" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2401491" />
       <window_info id="Structure" order="1" sideWeight="0.8217822" side_tool="true" weight="0.24813631" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -640,14 +683,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32871288" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.3920792" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" weight="0.3920792" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49733758" weight="0.27326733" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.32891566" />
       <window_info anchor="bottom" id="Thumbnails" order="7" weight="0.32970297" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946752" weight="0.32871288" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946752" visible="true" weight="0.32871288" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5026624" side_tool="true" weight="0.3960396" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32673267" />
@@ -678,7 +721,8 @@
     <MESSAGE value="支持http协议" />
     <MESSAGE value="add docs" />
     <MESSAGE value="SingletonExchangeChannelHandler 代码优化&#10;添加对https的支持,待验证。" />
-    <option name="LAST_COMMIT_MESSAGE" value="SingletonExchangeChannelHandler 代码优化&#10;添加对https的支持,待验证。" />
+    <MESSAGE value="完善对于HTTP协议的支持,支持长连接" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善对于HTTP协议的支持,支持长连接" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1322,20 +1366,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="224">
-            <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+          <first_editor relative-caret-position="526">
+            <caret line="98" column="3" lean-forward="true" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
         </state>
       </provider>
     </entry>
