@@ -1,7 +1,7 @@
-package com.hanframework.mojito.util;
+package com.hanframework.mojito.protocol.http;
 
 import com.google.common.base.Strings;
-import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.*;
 
 import java.net.URI;

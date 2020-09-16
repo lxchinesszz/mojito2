@@ -12,81 +12,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/AbstractServer.java" description="protected abstract void doOpen(int port, boolean a..." line="40" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="完善对于HTTP协议的支持,支持长连接">
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/mojito.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/banner/Banner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/AbstractEnhanceChannel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/DefaultEnhanceChannel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/Endpoint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/channel/EnhanceChannel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/handler/HeartBeatReqHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/client/netty/AbstractNettyClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/DeserializeException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/ProtocolException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/RemotingException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/SerializeException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/exception/SignatureException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/AbstractPromise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/MojitoFuture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/Promise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/future/listener/MojitoListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/handler/HeatBeatHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/AbstractCodecFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ChannelDecoder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ChannelEncoder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/CodecFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/CustomerProtocolManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/MojitoCodecFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/Protocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ProtocolManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/ServiceURL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/http/HttpProtocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoChannelEncoder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/MojitoProtocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/NetType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/protocol/mojito/model/RpcTools.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/serialization/SerializeEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/AbstractServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/ProtocolRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/ServiceRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/AbstractServerHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/HeartBeatRespHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/handler/ServerHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/MojitoChannelInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/server/impl/NettyServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/method/MethodSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/method/SimpleMethodSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/AbstractServiceSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/DefaultSignatureManager$ServiceSignatureKey.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/DefaultSignatureManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/PrototypeServiceServiceSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/ServiceSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureHodler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SignatureManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/signature/service/SingletonServiceServiceSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/MockCodec.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/pojo/TestSerialize.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hanframework/mojito/test/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/mojito.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/client/netty/AbstractNettyClientTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/lock/LockTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoderTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/signature/ServiceSignatureTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/test/MockCodecTest$CustomerRpcInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hanframework/mojito/test/MockCodecTest.class" beforeDir="false" />
+    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -104,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+            <state relative-caret-position="385">
+              <caret line="30" column="53" lean-forward="true" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,19 +42,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+            <state relative-caret-position="213">
+              <caret line="77" column="55" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpVersion.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+            <state relative-caret-position="299">
+              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2532">
+              <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,18 +85,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
               <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -183,18 +120,9 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="526">
-                <caret line="98" column="3" lean-forward="true" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
+                <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/DefaultFullHttpRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -228,7 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>解码器</find>
       <find>=</find>
       <find>AnnotatedConnectException</find>
       <find>ctx</find>
@@ -258,6 +185,7 @@
       <find>ACCEPT</find>
       <find>AGE</find>
       <find>WWW_AUTHENTICATE</find>
+      <find>请给我的爱人来一杯Mojito</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -277,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoder.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/UserInvoker.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java" />
@@ -328,6 +255,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" />
       </list>
     </option>
   </component>
@@ -361,6 +289,113 @@
             <path>
               <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
               <item name="mojito" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="banner" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
+              <item name="mojito" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
@@ -573,7 +608,7 @@
       <workItem from="1599820718167" duration="319000" />
       <workItem from="1600018360900" duration="13245000" />
       <workItem from="1600159547383" duration="3000" />
-      <workItem from="1600171503979" duration="38535000" />
+      <workItem from="1600171503979" duration="38783000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1598367646019</created>
@@ -624,16 +659,17 @@
       <option name="project" value="LOCAL" />
       <updated>1600274974983</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="完善对于HTTP协议的支持,支持长连接">
+      <created>1600275244705</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600275244705</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="InstallerTest_testRpcClient - 2020.09.16 at 22h 25m 03s.xml">
-      <configuration name="InstallerTest.testRpcClient" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="InstallerTest_mojitoClientTest - 2020.09.16 at 22h 25m 21s.xml">
-      <configuration name="InstallerTest.mojitoClientTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="InstallerTest_testRpcServer - 2020.09.16 at 22h 25m 31s.xml">
       <configuration name="InstallerTest.testRpcServer" configurationId="JUnit" />
     </history-entry>
@@ -658,9 +694,15 @@
     <history-entry file="HttpInstallerTest_testHttpClient - 2020.09.17 at 00h 40m 42s.xml">
       <configuration name="HttpInstallerTest.testHttpClient" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 00h 55m 20s.xml">
+      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 00h 56m 38s.xml">
+      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303411000" />
+    <option name="totallyTimeSpent" value="303659000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,6 +715,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2401491" />
       <window_info id="Structure" order="1" sideWeight="0.8217822" side_tool="true" weight="0.24813631" />
@@ -683,14 +726,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32871288" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" weight="0.3920792" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.3920792" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49733758" weight="0.27326733" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.32891566" />
       <window_info anchor="bottom" id="Thumbnails" order="7" weight="0.32970297" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946752" visible="true" weight="0.32871288" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946752" weight="0.32871288" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5026624" side_tool="true" weight="0.3960396" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32673267" />
@@ -935,20 +978,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/RpcServerHandlerTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HandlerTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1283,16 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2144">
-          <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpVersion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1356,21 +1375,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="526">
-            <caret line="98" column="3" lean-forward="true" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
+            <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
@@ -1379,7 +1388,41 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
-          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2532">
+          <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="30" column="53" lean-forward="true" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="77" column="55" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="55" />
         </state>
       </provider>
     </entry>

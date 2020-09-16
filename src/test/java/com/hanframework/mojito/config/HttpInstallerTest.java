@@ -45,9 +45,9 @@ public class HttpInstallerTest {
         Client<HttpRequestFacade, HttpResponseFacade> httpClient = Installer.httpClient();
         httpClient.connect("127.0.0.1", 8080);
         URI uri = new URI("/user/get");
-        FullHttpRequest fullHttpRequest = new HttpRequestBuilder().GET(uri).addHeader(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE).build();
+        HttpRequestBuilder httpRequestBuilder = new HttpRequestBuilder().GET(uri).addHeader(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
         for (int i = 0; i < 10; i++) {
-            HttpRequestFacade httpRequestFacade = new HttpRequestFacade(fullHttpRequest);
+            HttpRequestFacade httpRequestFacade = httpRequestBuilder.wrapBuild();
             System.out.println("request-id-request-" + i + "-" + httpRequestFacade.getId());
             MojitoFuture<HttpResponseFacade> httpResponseFacadeMojitoFuture = httpClient.sendAsync(httpRequestFacade);
             System.out.println("request-id-response-" + i + "-" + httpResponseFacadeMojitoFuture.get().getId());

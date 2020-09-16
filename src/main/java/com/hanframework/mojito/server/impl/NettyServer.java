@@ -74,8 +74,8 @@ public class NettyServer extends AbstractServer {
                             "|: \\.        |(: (____/ //___|  / |.  |   |.  | (: (____/ //  \n" +
                             "|.  \\    /:  | \\        //  :|_/ )/\\  |\\  \\:  |  \\        /   \n" +
                             "|___|\\__/|___|  \\\"_____/(_______/(__\\_|_)  \\__|   \\\"_____/   ");
-                    log.info(Banner.print("请给我的爱人来一杯Mojito", Ansi.Color.RED));
-                    log.info("启动成功,端口号:" + port);
+                    log.info(Banner.print("麻烦给我的爱人来一杯Mojito,我喜欢阅读她微醺时的眼眸！", Ansi.Color.RED));
+                    log.info("Mojito启动成功,端口号:" + port);
                 }
             });
             channel = sync.channel();

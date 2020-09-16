@@ -99,6 +99,11 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
         return tvInstaller.getCodecFactory().getServer();
     }
 
+    /**
+     * 构建一个http客户端
+     *
+     * @return Client
+     */
     public static Client<HttpRequestFacade, HttpResponseFacade> httpClient() {
         Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory());
         tvInstaller.setRequestType(HttpRequestFacade.class);
