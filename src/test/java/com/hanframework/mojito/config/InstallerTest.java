@@ -11,7 +11,6 @@ import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.*;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -27,11 +26,6 @@ import java.util.concurrent.TimeUnit;
  * @author liuxin
  * 2020-08-23 21:34
  */
-@BenchmarkMode(Mode.AverageTime)//平均响应时间
-@Fork(1)
-@Warmup(iterations = 3)//预热3次
-@Measurement(iterations = 2)//进行2次测试
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class InstallerTest implements Serializable {
 
     class RpcUserRequest extends RpcProtocolHeader {
@@ -79,13 +73,10 @@ public class InstallerTest implements Serializable {
 
     @Test
     public void mojitoServerTest() {
-        Installer.server(RpcRequest.class, RpcResponse.class).serverHandler(new SubServerHandler<RpcRequest, RpcResponse>() {
-            @Override
-            public RpcResponse handler(EnhanceChannel channel, RpcRequest rpcRequest) throws RemotingException {
-                RpcResponse response = new RpcResponse();
-                response.setMessage("hello2");
-                return response;
-            }
+        Installer.server(RpcRequest.class, RpcResponse.class).serverHandler((channel, rpcRequest) -> {
+            RpcResponse response = new RpcResponse();
+            response.setMessage("hello2");
+            return response;
         }).create().start(12306);
 
 
@@ -100,7 +91,6 @@ public class InstallerTest implements Serializable {
      * @throws Exception
      */
     @Test
-    @Benchmark
     public void clientTest() throws Exception {
         Client<RpcUserRequest, RpcUserResponse> client = Installer.client(RpcUserRequest.class, RpcUserResponse.class)
                 .conncet("127.0.0.1", 12306);
@@ -137,7 +127,8 @@ public class InstallerTest implements Serializable {
         Installer.server(RpcUserRequest.class, RpcUserResponse.class)
                 //这里接受客户端的请求,并返回一个相应
                 .serverHandler((channel, rpcRequest) -> new RpcUserResponse("服务端返回: " + rpcRequest.message))
-                .create().start(12306);
+                .create()
+                .start(12306);
     }
 
     @Test

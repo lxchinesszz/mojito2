@@ -1,6 +1,5 @@
 package com.hanframework.mojito.protocol.http;
 
-import com.google.common.base.Strings;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;

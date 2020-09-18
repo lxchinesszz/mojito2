@@ -67,13 +67,7 @@ public class NettyServer extends AbstractServer {
             ChannelFuture sync = serverBootstrap.bind(port).sync();
             sync.addListener((ChannelFutureListener) channelFuture -> {
                 if (channelFuture.isSuccess()) {
-                    new UnixColor().red(" ___      ___     ______      ___  __  ___________  ______    \n" +
-                            "|\"  \\    /\"  |   /    \" \\    |\"  ||\" \\(\"     _   \")/    \" \\   \n" +
-                            " \\   \\  //   |  // ____  \\   ||  |||  |)__/  \\\\__/// ____  \\  \n" +
-                            " /\\\\  \\/.    | /  /    ) :)  |:  ||:  |   \\\\_ /  /  /    ) :) \n" +
-                            "|: \\.        |(: (____/ //___|  / |.  |   |.  | (: (____/ //  \n" +
-                            "|.  \\    /:  | \\        //  :|_/ )/\\  |\\  \\:  |  \\        /   \n" +
-                            "|___|\\__/|___|  \\\"_____/(_______/(__\\_|_)  \\__|   \\\"_____/   ");
+                    Banner.print();
                     log.info(Banner.print("麻烦给我的爱人来一杯Mojito,我喜欢阅读她微醺时的眼眸！", Ansi.Color.RED));
                     log.info("Mojito启动成功,端口号:" + port);
                 }

@@ -2,6 +2,7 @@ package com.hanframework.mojito.banner;
 
 import com.hanframework.kit.text.Ansi;
 import com.hanframework.kit.text.UnixColor;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -21,11 +22,13 @@ import static com.hanframework.kit.text.Ansi.ansi;
 public final class Banner {
 
     private static final String name = "Tomato";
-    private static final String defaultBanner = " _____                      _        \n" +
-            "/__   \\___  _ __ ___   __ _| |_ ___  \n" +
-            "  / /\\/ _ \\| '_ ` _ \\ / _` | __/ _ \\ \n" +
-            " / / | (_) | | | | | | (_| | || (_) |\n" +
-            " \\/   \\___/|_| |_| |_|\\__,_|\\__\\___/ ";
+    private static final String defaultBanner = " ___      ___     ______      ___  __  ___________  ______    \n" +
+            "|\"  \\    /\"  |   /    \" \\    |\"  ||\" \\(\"     _   \")/    \" \\   \n" +
+            " \\   \\  //   |  // ____  \\   ||  |||  |)__/  \\\\__/// ____  \\  \n" +
+            " /\\\\  \\/.    | /  /    ) :)  |:  ||:  |   \\\\_ /  /  /    ) :) \n" +
+            "|: \\.        |(: (____/ //___|  / |.  |   |.  | (: (____/ //  \n" +
+            "|.  \\    /:  | \\        //  :|_/ )/\\  |\\  \\:  |  \\        /   \n" +
+            "|___|\\__/|___|  \\\"_____/(_______/(__\\_|_)  \\__|   \\\"_____/   ";
 
     public static void print() {
         printVersion();
