@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/michaelliao/openweixin.svg?branch=master)](https://travis-ci.org/michaelliao/openweixin)
+[![Build Status](https://travis-ci.org/lxchinesszz/mojito.svg?branch=master)](https://travis-ci.org/github/lxchinesszz/mojito)
 
 # 设计模式
 
