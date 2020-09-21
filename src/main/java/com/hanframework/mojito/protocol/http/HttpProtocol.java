@@ -9,7 +9,7 @@ import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.protocol.ChannelDecoder;
 import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.Protocol;
-import com.hanframework.mojito.server.handler.AbstractServerHandler;
+import com.hanframework.mojito.server.handler.DefaultServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 import java.util.Objects;
@@ -57,7 +57,7 @@ public class HttpProtocol implements Protocol<HttpRequestFacade, HttpResponseFac
     @Override
     public ServerHandler<HttpRequestFacade, HttpResponseFacade> getServerHandler() {
         if (Objects.isNull(this.serverHandler)) {
-            this.serverHandler = new AbstractServerHandler<HttpRequestFacade, HttpResponseFacade>() {
+            this.serverHandler = new DefaultServerHandler<HttpRequestFacade, HttpResponseFacade>() {
             };
         }
         return this.serverHandler;

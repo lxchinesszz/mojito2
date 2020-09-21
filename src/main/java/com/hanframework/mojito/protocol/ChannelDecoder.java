@@ -3,6 +3,7 @@ package com.hanframework.mojito.protocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author liuxin
  * 2020-07-25 22:03
  */
+@Slf4j
 public abstract class ChannelDecoder extends ByteToMessageDecoder {
 
     private String name;
@@ -26,10 +28,10 @@ public abstract class ChannelDecoder extends ByteToMessageDecoder {
      * @param ctx 通道上下文信息
      * @param in  网络传过来的信息(注意粘包和拆包问题)
      * @param out in中的数据转换成对象调用out.add方法
-     * @throws Exception
+     * @throws Exception 未知异常
      */
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        System.out.println("二进制数据已进入到" + name + "解码器");
+        log.debug("二进制数据已进入到" + name + "解码器");
         doDecode(ctx, in, out);
     }
 
@@ -40,7 +42,7 @@ public abstract class ChannelDecoder extends ByteToMessageDecoder {
      * @param ctx 通道上下文信息
      * @param in  网络传过来的信息(注意粘包和拆包问题)
      * @param out in中的数据转换成对象调用out.add方法
-     * @throws Exception
+     * @throws Exception 未知异常
      */
     protected abstract void doDecode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception;
 }

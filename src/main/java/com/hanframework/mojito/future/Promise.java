@@ -34,7 +34,6 @@ public interface Promise<V> {
      * 设置失败标识
      *
      * @param cause 异常
-     * @return this
      */
     void setFailure(Throwable cause);
 

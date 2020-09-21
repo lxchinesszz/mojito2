@@ -25,6 +25,8 @@ public interface Protocol<R, V> {
     /**
      * 连接处理器
      * 面向连接编程,处理客户端和服务端的交互。
+     *
+     * @return ExchangeChannelHandler 数据交换通道处理器
      */
     ExchangeChannelHandler getExchangeChannelHandler();
 

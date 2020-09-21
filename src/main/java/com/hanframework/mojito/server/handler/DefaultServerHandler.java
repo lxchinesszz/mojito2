@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author liuxin
  * 2020-08-01 19:06
  */
-public class AbstractServerHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ServerHandler<T, R> {
+public class DefaultServerHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ServerHandler<T, R> {
 
 
     /**

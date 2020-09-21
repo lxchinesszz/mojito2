@@ -25,6 +25,7 @@ public abstract class AbstractHandlerTask<R, V> implements HandlerTask {
         this.protocol = protocol;
         this.enhanceChannel = enhanceChannel;
         this.request = request;
+        this.serverHandler = protocol.getServerHandler();
     }
 
     public AbstractHandlerTask(ServerHandler<R, V> serverHandler, EnhanceChannel enhanceChannel, R request) {

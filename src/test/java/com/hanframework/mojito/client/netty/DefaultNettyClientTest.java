@@ -18,12 +18,12 @@ import java.util.concurrent.*;
  * @author liuxin
  * 2020-08-01 17:38
  */
-public class AbstractNettyClientTest {
+public class DefaultNettyClientTest {
 
     @Test
     public void testNettyClient() throws Exception {
-        AbstractNettyClient abstractNettyClient = new MojitoNettyClient(new MojitoProtocol());
-        abstractNettyClient.connect("127.0.0.1", 8888);
+        DefaultNettyClient defaultNettyClient = new MojitoNettyClient(new MojitoProtocol());
+        defaultNettyClient.connect("127.0.0.1", 8888);
 
         StopWatch stopWatch = new StopWatch();
         for (int i = 1; i <= 1; i++) {
@@ -33,14 +33,14 @@ public class AbstractNettyClientTest {
             rpcRequest.setReturnType(User.class);
             rpcRequest.setServiceType(UserService.class);
             stopWatch.start("第" + i + "次");
-            MojitoFuture<RpcResponse> future = abstractNettyClient.sendAsync(rpcRequest);
+            MojitoFuture<RpcResponse> future = defaultNettyClient.sendAsync(rpcRequest);
             RpcResponse response = future.get();
             System.out.println(response);
             System.out.println(future.get());
             stopWatch.stop();
         }
         System.out.println(stopWatch.prettyPrint());
-        abstractNettyClient.close();
+        defaultNettyClient.close();
     }
 
     @Test

@@ -37,7 +37,10 @@ public interface CodecFactory<T extends RpcProtocolHeader, R extends RpcProtocol
     /**
      * 客户端实例
      *
+     * @param remoteHost 连接ip
+     * @param remotePort 连接端口
      * @return Client
+     * @throws Exception 未知异常
      */
     Client<T, R> getClient(String remoteHost, int remotePort) throws Exception;
 
@@ -51,8 +54,9 @@ public interface CodecFactory<T extends RpcProtocolHeader, R extends RpcProtocol
 
     /**
      * 设置客户端通知处理器
+     * 通道是长连接,该处理器目的是保证在长连接下,数据的一一对应关系
      *
-     * @param clientPromiseHandler
+     * @param clientPromiseHandler 客户处理器
      */
     void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler);
 

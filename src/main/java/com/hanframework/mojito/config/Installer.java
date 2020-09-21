@@ -2,12 +2,10 @@ package com.hanframework.mojito.config;
 
 import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
-import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.client.netty.AbstractNettyClient;
-import com.hanframework.mojito.exception.RemotingException;
+import com.hanframework.mojito.client.netty.DefaultNettyClient;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.RequestProcessor;
@@ -20,14 +18,13 @@ import com.hanframework.mojito.protocol.mojito.MojitoChannelDecoder;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelEncoder;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
-import com.hanframework.mojito.server.handler.AbstractServerHandler;
+import com.hanframework.mojito.server.handler.DefaultServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 import com.hanframework.mojito.server.handler.SubServerHandler;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLException;
 import java.io.File;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
@@ -72,6 +69,8 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
 
 
     /**
+     * 构建一个支持http协议的服务器
+     *
      * @param subServerHandler  服务处理器
      * @param keyManagerFactory 秘钥管理器
      * @return Server
@@ -114,15 +113,29 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
 
     /**
      * 使用该方法需要注意如果是服务端,一定要调用serverHandler方法创建
+     *
+     * @param requestType  定义的请求数据类型
+     * @param responseType 定义的响应数据类型
+     * @return ModuleConfig 模型
      */
     public static <T extends RpcProtocolHeader, V extends RpcProtocolHeader> ModuleConfig<T, V> modules(Class<T> requestType, Class<V> responseType) {
         return new ModuleConfig<>(Installer.module(requestType, responseType));
     }
 
+    /**
+     * @param requestType  定义的请求数据类型
+     * @param responseType 定义的响应数据类型
+     * @return ServerConfig 服务端配置器
+     */
     public static <T extends RpcProtocolHeader, V extends RpcProtocolHeader> ServerConfig<T, V> server(Class<T> requestType, Class<V> responseType) {
         return new ServerConfig<>(Installer.module(requestType, responseType));
     }
 
+    /**
+     * @param requestType  定义的请求数据类型
+     * @param responseType 定义的响应数据类型
+     * @return ServerConfig 客户端配置器
+     */
     public static <T extends RpcProtocolHeader, V extends RpcProtocolHeader> ClientConfig<T, V> client(Class<T> requestType, Class<V> responseType) {
         return new ClientConfig<>(Installer.module(requestType, responseType));
     }
@@ -169,6 +182,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             this.config = serverConfig;
         }
 
+
         public Client<T, V> create() {
             return config.getCodecFactory().getClient();
         }
@@ -208,6 +222,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             this.config.getCodecFactory().setResponseProcessor(responseProcessors);
             return this;
         }
+
 
         public Client<T, V> create() {
             return new ClientCreator<>(this.config).create();
@@ -256,8 +271,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             @Override
             public ServerHandler<T, V> getServerHandler() {
                 if (Objects.isNull(this.serverHandler)) {
-                    this.serverHandler = new AbstractServerHandler<T, V>() {
-                    };
+                    this.serverHandler = new DefaultServerHandler<>();
                 }
                 return this.serverHandler;
             }
@@ -280,7 +294,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
 
             @Override
             public Client<T, V> getClient() {
-                return new AbstractNettyClient<T, V>(customerModelProtocol) {
+                return new DefaultNettyClient<T, V>(customerModelProtocol) {
                     @Override
                     public void connect(String remoteHost, int remotePort) throws Exception {
                         super.connect(remoteHost, remotePort);

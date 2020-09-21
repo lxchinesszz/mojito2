@@ -1,14 +1,11 @@
 package com.hanframework.mojito.config;
 
-import cn.hutool.core.util.StrUtil;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.http.HttpHeaders;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
-import com.hanframework.mojito.server.handler.SubServerHandler;
 import com.hanframework.mojito.util.HttpRequestBuilder;
-import io.netty.handler.codec.http.*;
 import org.junit.Test;
 
 import java.net.URI;
@@ -27,10 +24,9 @@ public class HttpInstallerTest {
     @Test
     public void testHttpServer() {
         Installer.httpServer((channel, request) -> {
-            System.out.println(request.getRequestURI());
-            System.out.println(request.getHeaders());
-            Map<String, String> requestParams = request.getRequestParams();
-            System.out.println(requestParams);
+            System.out.println("请求地址:" + request.getRequestURI());
+            System.out.println("请求头" + request.getHeaders());
+            System.out.println("请求参数:" + request.getRequestParams());
             return HttpResponseFacade.ok(request.getId());
         }).start(8080);
     }
@@ -45,7 +41,10 @@ public class HttpInstallerTest {
         Client<HttpRequestFacade, HttpResponseFacade> httpClient = Installer.httpClient();
         httpClient.connect("127.0.0.1", 8080);
         URI uri = new URI("/user/get");
-        HttpRequestBuilder httpRequestBuilder = new HttpRequestBuilder().GET(uri).addHeader(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+        HttpRequestBuilder httpRequestBuilder = new HttpRequestBuilder()
+                .GET(uri)
+                //设置长连接
+                .addHeader(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
         for (int i = 0; i < 10; i++) {
             HttpRequestFacade httpRequestFacade = httpRequestBuilder.wrapBuild();
             System.out.println("request-id-request-" + i + "-" + httpRequestFacade.getId());

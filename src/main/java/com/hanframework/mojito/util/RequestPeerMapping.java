@@ -1,13 +1,13 @@
 package com.hanframework.mojito.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 
-import java.util.Objects;
 
 /**
- * http协议数据的传输原始报文还是FullHttpRequest & FullHttpResponse
- * 为了适应框架会将数据包装成HttpRequestFacade & HttpResponseFacade
+ * http协议数据的传输原始报文还是FullHttpRequest - FullHttpResponse
+ * 为了适应框架会将数据包装成HttpRequestFacade - HttpResponseFacade
  * 如何保证在长连接下内容传输是一一对应的,要根据请求id进行判断
  * RPC协议因为继承了RpcProtocolHeader,同时RpcProtocolHeader会在网络中传输,所以RpcProtocolHeader中的id就是请求id
  * 而HTTP协议虽然也适配成了RpcProtocolHeader,即HttpRequestFacade的父类,但是网络中传输的并不是RpcProtocolHeader,而是FullHttpRequest
@@ -18,12 +18,12 @@ import java.util.Objects;
  * @author liuxin
  * 2020-09-16 21:22
  */
-public class HttpRequestIdCopy {
+public class RequestPeerMapping {
 
     public static void copyRequestId(HttpRequestFacade httpRequestFacade, HttpResponseFacade httpResponseFacade) {
         String originId = httpRequestFacade.getOriginId();
         //当时web请求时候可能就没有请求头,此时不需要请求头
-        if (Objects.nonNull(originId)) {
+        if (StrUtil.isNotBlank(originId)) {
             //拷贝头id
             httpResponseFacade.setId(originId);
             //拷贝请求id

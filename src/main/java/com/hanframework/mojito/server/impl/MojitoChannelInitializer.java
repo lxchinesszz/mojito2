@@ -1,6 +1,6 @@
 package com.hanframework.mojito.server.impl;
 
-import com.hanframework.mojito.handler.NettySharableExchangeServerHandler;
+import com.hanframework.mojito.handler.NettySharableExchangeServerInboundHandler;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.*;
 import com.hanframework.mojito.protocol.https.HttpsProtocol;
@@ -70,14 +70,8 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
                     cp.addLast(protocol.name() + "-encoder", protocol.getResponseEncoder());
                 }
             }
-            cp.addLast(new NettySharableExchangeServerHandler(protocol.getExchangeChannelHandler().serverChannelHandler()));
-            cp.addLast(new ChannelOutboundHandlerAdapter() {
-                @Override
-                public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
-                    System.out.println("执行写:" + msg);
-                    super.write(ctx, msg, promise);
-                }
-            });
+            cp.addLast(new NettySharableExchangeServerInboundHandler(protocol.getExchangeChannelHandler().serverChannelHandler()));
+            cp.addLast(new NettySharableExchangeServerInboundHandler.ChannelOutboundWriter());
         } else {
             if (protocol instanceof HttpsProtocol) {
                 SslContext context = ((HttpsProtocol) protocol).getContext();
@@ -104,7 +98,8 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
                     cp.addLast(protocol.name() + "-encoder", protocol.getResponseEncoder());
                 }
             }
-            cp.addLast(new NettySharableExchangeServerHandler(protocol.getExchangeChannelHandler().clientChannelHandler()));
+            cp.addLast(new NettySharableExchangeServerInboundHandler(protocol.getExchangeChannelHandler().clientChannelHandler()));
+            cp.addLast(new NettySharableExchangeServerInboundHandler.ChannelOutboundWriter());
         }
     }
 }

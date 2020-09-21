@@ -4,7 +4,7 @@ import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.server.handler.ServerHandler;
-import com.hanframework.mojito.util.HttpRequestIdCopy;
+import com.hanframework.mojito.util.RequestPeerMapping;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpHeaderValues;
@@ -30,7 +30,7 @@ public class HttpHandlerTask extends AbstractHandlerTask<HttpRequestFacade, Http
             fullHttpResponse.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         }
         //拷贝请求id
-        HttpRequestIdCopy.copyRequestId(httpRequestFacade, httpResponseFacade);
+        RequestPeerMapping.copyRequestId(httpRequestFacade, httpResponseFacade);
         log.debug("服务端收到的响应头request-id:" + httpRequestFacade.getOriginId());
         log.debug("服务端返回的响应头request-id:" + httpResponseFacade.getOriginId());
         return httpResponseFacade;

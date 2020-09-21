@@ -14,13 +14,14 @@ import java.net.ConnectException;
  * @author liuxin
  * 2020-07-23 23:04
  */
-public interface Client<T extends RpcProtocolHeader,R extends RpcProtocolHeader> {
+public interface Client<T extends RpcProtocolHeader, R extends RpcProtocolHeader> {
 
     /**
      * 连接远程服务
      *
      * @param remoteHost 远程地址
      * @param remotePort 远程端口
+     * @throws Exception 未知异常
      */
     void connect(String remoteHost, int remotePort) throws Exception;
 
@@ -29,6 +30,8 @@ public interface Client<T extends RpcProtocolHeader,R extends RpcProtocolHeader>
      * 数据的解析和数据的编码要用指定的类处理
      *
      * @param message 发送的数据
+     * @return MojitoFuture 异常结果
+     * @throws Exception 未知异常
      */
     MojitoFuture<R> sendAsync(T message) throws Exception;
 

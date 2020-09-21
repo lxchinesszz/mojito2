@@ -46,6 +46,8 @@ public abstract class MockCodec {
      * 2. 拆包的数据报文
      * 3. 粘包的数据报文
      *
+     * @param rpcProtocolHeader 协议头数据
+     * @return ByteBuf 二进制数据载体
      * @throws Exception 异常
      */
     public static ByteBuf encode(RpcProtocolHeader rpcProtocolHeader) throws Exception {
@@ -87,7 +89,6 @@ public abstract class MockCodec {
         ByteBuf buf = Unpooled.buffer();
         return buf.writeBytes(data);
     }
-
 
 
     /**

@@ -5,7 +5,7 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" description="void start(int port);" line="17" />
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" description="void caught(EnhanceChannel channel, Throwable exce..." line="66" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" description="void caught(EnhanceChannel channel, Throwable exce..." line="70" />
     <bookmark url="file://$USER_HOME$/demo_net/gic-game/src/main/java/com/gic/game/service/impl/GameServiceImpl.java" description="public Page&lt;GameListDTO&gt; getGameList(String gameSt..." line="111" />
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoder.java" description="//协议类型" line="63" />
     <bookmark url="file://$USER_HOME$/demo_net/gic-game/src/main/java/com/gic/game/service/impl/GameAccountServiceImpl.java" description="public GamePlayCostResponseDTO costGameAccountValu..." line="121" />
@@ -13,14 +13,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/monitor/Monitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/CountRetryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Retry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ChannelOutboundWriteHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/RetryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/AbstractNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/DefaultNettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/MojitoNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/MojitoNettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/Promise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerInboundHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/AbstractServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/DefaultServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/MojitoServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/MojitoServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/RequestPeerMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/AbstractNettyClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/DefaultNettyClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,10 +66,59 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestFacade.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/DefaultNettyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="17" column="36" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="36" />
+            <state relative-caret-position="527">
+              <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+              <folding>
+                <element signature="e#1427#1428#0" expanded="true" />
+                <element signature="e#1467#1468#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Retry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/CountRetryImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+              <folding>
+                <element signature="e#845#846#0" expanded="true" />
+                <element signature="e#899#900#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="85" column="51" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#642#643#0" expanded="true" />
+                <element signature="e#688#689#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,14 +126,45 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/AbstractPromise.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+              <folding>
+                <element signature="e#4134#4135#0" expanded="true" />
+                <element signature="e#4170#4171#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="391">
+                <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -62,29 +172,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="79" column="53" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+            <state relative-caret-position="-436">
+              <caret line="138" column="96" selection-start-line="138" selection-start-column="96" selection-end-line="138" selection-end-column="96" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#7109#7110#0" expanded="true" />
+                <element signature="e#7159#7160#0" expanded="true" />
+                <element signature="e#8007#8008#0" expanded="true" />
+                <element signature="e#8051#8052#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -97,17 +192,15 @@
         <option value="JUnit5 Test Class" />
         <option value="Kotlin File" />
         <option value="Tag Library Descriptor" />
-        <option value="JUnit4 Test Class" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>=</find>
-      <find>AnnotatedConnectException</find>
       <find>ctx</find>
       <find>准备发送数据</find>
       <find>signatureManager</find>
@@ -136,6 +229,8 @@
       <find>AGE</find>
       <find>WWW_AUTHENTICATE</find>
       <find>请给我的爱人来一杯Mojito</find>
+      <find>serverHandler</find>
+      <find>parent</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,57 +250,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpMethod.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstarctProtocol.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/test/MThreadGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/RpcHandlerTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/KeepAlive.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/RpcClientHandlerTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/exception/HttpsTokenFileException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HandlerTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestDecoderWrapper.java" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/https/HttpsProtocol.java" />
-        <option value="$PROJECT_DIR$/server.zs" />
-        <option value="$PROJECT_DIR$/server.csr" />
-        <option value="$PROJECT_DIR$/server.key" />
-        <option value="$PROJECT_DIR$/server_pkcs8.key" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/HttpCodecFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestEncoderWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseDecoderWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/channel/DefaultEnhanceChannel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/SingletonExchangeChannelHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ProtocolEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpReqeustIdCopy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpsSafeInstallerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/FullHttpRequestUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocolHeader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/handler/AbstractAsyncClientPromiseHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/BaseHttpMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpHeaderEnum.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpHeaders.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestFacade.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/ProtostuffObjectSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/monitor/Monitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java" />
+        <option value="$PROJECT_DIR$/LICENSE" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/Promise.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/RequestPeerMapping.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerOutboundHandler.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ChannelOutboundWriteHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerInboundHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/CountRetryImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/RetryTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/AbstractNettyClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/DefaultServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/DefaultNettyClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Retry.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -232,177 +327,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
               <item name="mojito" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="protocol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="protocol" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="protocol" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="serialization" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="hanframework" type="462c0819:PsiDirectoryNode" />
-              <item name="mojito" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mojito" type="b2602c69:ProjectViewProjectNode" />
@@ -413,6 +343,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -433,14 +364,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.hanframework.mojito.client" />
       <recent name="com.hanframework.mojito.pool" />
       <recent name="com.hanframework.mojito.protocol" />
       <recent name="com.hanframework.mojito.config" />
       <recent name="com.hanframework.mojito.test" />
-      <recent name="com.hanframework.mojito.client.netty" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.hanframework.mojito.protocol" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/hanframework/mojito" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.hanframework.mojito.protocol.http" />
@@ -451,11 +387,6 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/hanframework/mojito" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -470,8 +401,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HttpInstallerTest.testHttpClient">
-    <configuration name="HttpInstallerTest.testHttpClient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Installer2Test.clientTest">
+    <configuration name="Installer2Test.clientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mojito" />
       <extension name="coverage">
         <pattern>
@@ -480,14 +411,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.hanframework.mojito.config" />
-      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.HttpInstallerTest" />
-      <option name="METHOD_NAME" value="testHttpClient" />
+      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.Installer2Test" />
+      <option name="METHOD_NAME" value="clientTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpInstallerTest.testHttpServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Installer2Test.serverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mojito" />
       <extension name="coverage">
         <pattern>
@@ -496,14 +427,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.hanframework.mojito.config" />
-      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.HttpInstallerTest" />
-      <option name="METHOD_NAME" value="testHttpServer" />
+      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.Installer2Test" />
+      <option name="METHOD_NAME" value="serverTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InstallerTest.mojitoClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InstallerTest.serverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mojito" />
       <extension name="coverage">
         <pattern>
@@ -513,58 +444,58 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.hanframework.mojito.config" />
       <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.InstallerTest" />
-      <option name="METHOD_NAME" value="mojitoClientTest" />
+      <option name="METHOD_NAME" value="serverTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InstallerTest.mojitoServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RetryTest.notRetryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mojito" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.hanframework.mojito.config.*" />
+          <option name="PATTERN" value="com.hanframework.mojito.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.hanframework.mojito.config" />
-      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.InstallerTest" />
-      <option name="METHOD_NAME" value="mojitoServerTest" />
+      <option name="PACKAGE_NAME" value="com.hanframework.mojito.client" />
+      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.client.RetryTest" />
+      <option name="METHOD_NAME" value="notRetryTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InstallerTest.testRpcClient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RetryTest.retryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mojito" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.hanframework.mojito.config.*" />
+          <option name="PATTERN" value="com.hanframework.mojito.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.hanframework.mojito.config" />
-      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.config.InstallerTest" />
-      <option name="METHOD_NAME" value="testRpcClient" />
+      <option name="PACKAGE_NAME" value="com.hanframework.mojito.client" />
+      <option name="MAIN_CLASS_NAME" value="com.hanframework.mojito.client.RetryTest" />
+      <option name="METHOD_NAME" value="retryTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.InstallerTest.testRpcClient" />
-      <item itemvalue="JUnit.InstallerTest.mojitoServerTest" />
-      <item itemvalue="JUnit.InstallerTest.mojitoClientTest" />
-      <item itemvalue="JUnit.HttpInstallerTest.testHttpServer" />
-      <item itemvalue="JUnit.HttpInstallerTest.testHttpClient" />
+      <item itemvalue="JUnit.Installer2Test.serverTest" />
+      <item itemvalue="JUnit.Installer2Test.clientTest" />
+      <item itemvalue="JUnit.RetryTest.retryTest" />
+      <item itemvalue="JUnit.RetryTest.notRetryTest" />
+      <item itemvalue="JUnit.InstallerTest.serverTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HttpInstallerTest.testHttpServer" />
-        <item itemvalue="JUnit.HttpInstallerTest.testHttpClient" />
-        <item itemvalue="JUnit.InstallerTest.mojitoClientTest" />
-        <item itemvalue="JUnit.InstallerTest.mojitoServerTest" />
-        <item itemvalue="JUnit.InstallerTest.testRpcClient" />
+        <item itemvalue="JUnit.Installer2Test.clientTest" />
+        <item itemvalue="JUnit.Installer2Test.serverTest" />
+        <item itemvalue="JUnit.InstallerTest.serverTest" />
+        <item itemvalue="JUnit.RetryTest.notRetryTest" />
+        <item itemvalue="JUnit.RetryTest.retryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -616,6 +547,7 @@
       <workItem from="1600018360900" duration="13245000" />
       <workItem from="1600159547383" duration="3000" />
       <workItem from="1600171503979" duration="47310000" />
+      <workItem from="1600420928595" duration="11525000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1598367646019</created>
@@ -680,43 +612,50 @@
       <option name="project" value="LOCAL" />
       <updated>1600275634100</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add LICENSE">
+      <created>1600420997303</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1600420997303</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 00h 55m 20s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="RetryTest_notRetryTest - 2020.09.18 at 22h 44m 45s.xml">
+      <configuration name="RetryTest.notRetryTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 00h 56m 38s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="InstallerTest_serverTest - 2020.09.21 at 15h 05m 00s.xml">
+      <configuration name="InstallerTest.serverTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 00h 56m 52s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_serverTest - 2020.09.21 at 15h 05m 08s.xml">
+      <configuration name="Installer2Test.serverTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpClient - 2020.09.17 at 01h 00m 08s.xml">
-      <configuration name="HttpInstallerTest.testHttpClient" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 06m 30s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpClient - 2020.09.17 at 13h 00m 38s.xml">
-      <configuration name="HttpInstallerTest.testHttpClient" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 06m 49s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 13h 00m 52s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 07m 36s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 13h 01m 16s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 08m 15s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 13h 03m 11s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 44m 26s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 13h 05m 32s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 44m 46s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HttpInstallerTest_testHttpServer - 2020.09.17 at 13h 06m 45s.xml">
-      <configuration name="HttpInstallerTest.testHttpServer" configurationId="JUnit" />
+    <history-entry file="Installer2Test_clientTest - 2020.09.21 at 15h 45m 26s.xml">
+      <configuration name="Installer2Test.clientTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312186000" />
+    <option name="totallyTimeSpent" value="323711000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -731,7 +670,7 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2401491" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2428115" />
       <window_info id="Structure" order="1" sideWeight="0.8217822" side_tool="true" weight="0.24813631" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -740,7 +679,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32871288" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" weight="0.3920792" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.3920792" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49733758" weight="0.27326733" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -780,7 +719,8 @@
     <MESSAGE value="SingletonExchangeChannelHandler 代码优化&#10;添加对https的支持,待验证。" />
     <MESSAGE value="完善对于HTTP协议的支持,支持长连接" />
     <MESSAGE value="提供构建HTTP请求工具类" />
-    <option name="LAST_COMMIT_MESSAGE" value="提供构建HTTP请求工具类" />
+    <MESSAGE value="add LICENSE" />
+    <option name="LAST_COMMIT_MESSAGE" value="add LICENSE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -870,7 +810,7 @@
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/AbstractNettyClientTest.java</url>
+          <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/DefaultNettyClientTest.java</url>
           <line>101</line>
           <properties />
           <option name="timeStamp" value="111" />
@@ -895,7 +835,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java</url>
-          <line>68</line>
+          <line>36</line>
           <properties />
           <option name="timeStamp" value="146" />
         </line-breakpoint>
@@ -949,21 +889,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java</url>
-          <line>147</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="220" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java</url>
-          <line>81</line>
+          <line>82</line>
           <properties />
           <option name="timeStamp" value="229" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelEncoder.java</url>
-          <line>23</line>
+          <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java</url>
+          <line>82</line>
           <properties />
-          <option name="timeStamp" value="235" />
+          <option name="timeStamp" value="243" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoderTest.java</url>
@@ -987,384 +927,413 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/AbstractServerHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/AbstractEventExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        <state relative-caret-position="471">
+          <caret line="160" column="26" selection-start-line="160" selection-start-column="26" selection-end-line="160" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/SingleThreadEventExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="576">
+          <caret line="425" selection-start-line="425" selection-end-line="425" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/MojitoServerHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/nio/NioEventLoop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="518">
+          <caret line="459" selection-start-line="459" selection-end-line="459" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/HeartBeatRespHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/MessageToByteEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/AbstractChannelHandlerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="843" selection-start-line="843" selection-end-line="843" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/internal/PromiseNotificationUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+        <state relative-caret-position="255">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/banner/Banner.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar!/java/util/concurrent/Future.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+        <state relative-caret-position="68">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/Promise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-248">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/DefaultProgressivePromise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/DefaultChannelProgressivePromise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/ChannelPromise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/DefaultPromise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/concurrent/Future.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.8.5/dubbo-2.8.5.jar!/com/alibaba/dubbo/rpc/protocol/rest/BaseRestServer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.8.5/dubbo-2.8.5.jar!/com/alibaba/dubbo/rpc/protocol/rest/NettyServer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
           <folding>
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.8.5/dubbo-2.8.5.jar!/com/alibaba/dubbo/rpc/protocol/http/HttpProtocol.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.8.5/dubbo-2.8.5.jar!/com/alibaba/dubbo/remoting/transport/netty/NettyServer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.8.5/dubbo-2.8.5.jar!/com/alibaba/dubbo/remoting/transport/netty/NettyHandler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="122" column="21" lean-forward="true" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
+        <state relative-caret-position="253">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar!/java/io/ByteArrayInputStream.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/CombinedChannelDuplexHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/ProcessorHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/ChannelInboundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="31" column="91" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/handler/AbstractAsyncClientPromiseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/ChannelOutboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerOutboundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/SimpleChannelInboundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="47" column="76" selection-start-line="47" selection-start-column="76" selection-end-line="47" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ChannelOutboundWriteHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+        <state relative-caret-position="267">
+          <caret line="80" column="51" selection-start-line="80" selection-start-column="51" selection-end-line="80" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar!/java/util/concurrent/locks/Lock.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        <state relative-caret-position="102">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/RetryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        <state relative-caret-position="108">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerInboundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/MojitoNettyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="27" column="118" selection-start-line="27" selection-start-column="118" selection-end-line="27" selection-end-column="118" />
+        <state relative-caret-position="567">
+          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+          <folding>
+            <element signature="e#2646#2647#0" expanded="true" />
+            <element signature="e#2712#2713#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ConfigurableCodecFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/DefaultServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="170">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="13" column="134" lean-forward="true" selection-start-line="13" selection-start-column="134" selection-end-line="13" selection-end-column="134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1022">
-          <caret line="71" column="35" lean-forward="true" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/monitor/Monitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Hession2ObjectSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/ProtostuffObjectSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/serialization/ObjectEncoderOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-          <folding>
-            <element signature="e#1532#1533#0" expanded="true" />
-            <element signature="e#1562#1563#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/NettyCompactObjectSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="36" column="58" lean-forward="true" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/NettyObjectSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/SerializeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-          <folding>
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/https/HttpsProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoChannelEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestEncoderWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/SingletonExchangeChannelHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseEncoderWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="61" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpResponseEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpObjectEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="194" column="17" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestDecoderWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpRequestDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/buffer/ByteBuf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="2139" column="24" selection-start-line="2139" selection-start-column="24" selection-end-line="2139" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/util/internal/AppendableCharSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/handler/codec/http/HttpObjectDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="211" column="58" selection-start-line="211" selection-start-column="58" selection-end-line="211" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpRequestFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpResponseFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="79" column="53" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/Home/utils.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/Home/less/banner0.less">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/Home/less/antMotionStyle.less">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/Home/data.source.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/Home/documentation.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="34">
-            <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="56" />
-          </first_editor>
-          <second_editor />
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+        <state relative-caret-position="-489">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-436">
+          <caret line="138" column="96" selection-start-line="138" selection-start-column="96" selection-end-line="138" selection-end-column="96" />
+          <folding>
+            <element signature="e#7109#7110#0" expanded="true" />
+            <element signature="e#7159#7160#0" expanded="true" />
+            <element signature="e#8007#8008#0" expanded="true" />
+            <element signature="e#8051#8052#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/DefaultNettyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+          <folding>
+            <element signature="e#1427#1428#0" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Retry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/CountRetryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding>
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/AbstractPromise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+          <folding>
+            <element signature="e#4134#4135#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="85" column="51" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="391">
+            <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>

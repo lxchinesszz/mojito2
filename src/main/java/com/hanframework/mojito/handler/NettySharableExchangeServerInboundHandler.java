@@ -2,8 +2,7 @@ package com.hanframework.mojito.handler;
 
 import com.hanframework.mojito.channel.DefaultEnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 
 
 /**
@@ -19,12 +18,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @version Id: ServerHandler.java, v 0.1 2019-03-27 10:58
  */
 @io.netty.channel.ChannelHandler.Sharable
-public class NettySharableExchangeServerHandler extends SimpleChannelInboundHandler<Object> {
+public class NettySharableExchangeServerInboundHandler extends SimpleChannelInboundHandler<Object> {
 
 
     private ExchangeChannelHandler exchangeChannelHandler;
 
-    public NettySharableExchangeServerHandler(ExchangeChannelHandler exchangeChannelHandler) {
+    public NettySharableExchangeServerInboundHandler(ExchangeChannelHandler exchangeChannelHandler) {
         this.exchangeChannelHandler = exchangeChannelHandler;
     }
 
@@ -90,5 +89,18 @@ public class NettySharableExchangeServerHandler extends SimpleChannelInboundHand
         }
     }
 
-
+    @Sharable
+    public static class ChannelOutboundWriter extends ChannelOutboundWriteHandler {
+        @Override
+        public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+            try {
+                super.write(ctx, msg, promise);
+                if (promise.cause() != null) {
+                    promise.cause().printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

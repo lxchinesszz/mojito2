@@ -2,7 +2,7 @@ package com.hanframework.mojito.protocol;
 
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.client.netty.MojitoNettyClient;
+import com.hanframework.mojito.client.netty.DefaultNettyClient;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.Processor;
@@ -84,7 +84,7 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     @Override
     public Client<T, R> getClient() {
-        return (Client<T, R>) new MojitoNettyClient(getProtocol());
+        return new DefaultNettyClient<>(getProtocol());
     }
 
     @Override

@@ -19,7 +19,8 @@ import java.util.concurrent.Executor;
 
 /**
  * 系统默认的数据模型
- * RpcRequest & RpcResponse
+ * RpcRequest
+ * RpcResponse
  *
  * @author liuxin
  * 2020-07-31 22:01

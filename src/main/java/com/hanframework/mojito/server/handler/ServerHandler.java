@@ -25,6 +25,7 @@ public interface ServerHandler<T, R> {
     /**
      * 根据请求找到签名信息根据签名处理结果
      *
+     * @param channel    连接
      * @param rpcRequest rpc请求信息
      * @return RpcResponse
      */

@@ -1,6 +1,8 @@
 package com.hanframework.mojito.processor;
 
 /**
+ * 这个能力真的是很鸡肋，提供了这样的接口? 自己却不用？
+ *
  * @author liuxin
  * 2020-09-01 17:03
  */

@@ -14,11 +14,15 @@ public interface ExchangeChannelHandler {
 
     /**
      * 服务端
+     *
+     * @return ExchangeChannelHandler 通道处理器
      */
     ExchangeChannelHandler serverChannelHandler();
 
     /**
      * 客户端
+     *
+     * @return ExchangeChannelHandler 通道处理器
      */
     ExchangeChannelHandler clientChannelHandler();
 
