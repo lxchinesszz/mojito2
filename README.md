@@ -12,6 +12,17 @@
 API尽量使用自己定义的API屏蔽掉Netty的API,降低学习成本。
 
 
+
+## 快照版本
+
+```
+<dependency>
+  <groupId>com.hanframework</groupId>
+  <artifactId>mojito</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+</dependency>
+```
+
 # 模块解释
 
 
