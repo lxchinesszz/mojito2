@@ -12,46 +12,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/AbstractServer.java" description="protected abstract void doOpen(int port, boolean a..." line="40" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/CountRetryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Retry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ChannelOutboundWriteHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/RetryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/Installer2Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/AbstractNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/DefaultNettyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/MojitoNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/client/netty/MojitoNettyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/future/Promise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/ExchangeChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerInboundHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/AbstractHandlerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/task/HttpHandlerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/processor/RequestProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/AbstractCodecFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/ChannelDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/CodecFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/Protocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/http/HttpProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/MojitoProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/serialization/Serializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/AbstractServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/DefaultServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/MojitoServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/MojitoServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/ServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/handler/SubServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/MojitoChannelInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/test/MockCodec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/HttpRequestIdCopy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hanframework/mojito/util/RequestPeerMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/AbstractNettyClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/client/netty/DefaultNettyClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/InstallerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hanframework/mojito/queue/QueueTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="284314aa-eda9-4072-b1c1-b53920c0c736" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="497">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,11 +87,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+            <state relative-caret-position="34">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="969">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/server/impl/NettyServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -152,34 +131,10 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="391">
-                <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+              <first_editor relative-caret-position="238">
+                <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/protocol/mojito/model/RpcProtocolHeader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/config/Installer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-436">
-              <caret line="138" column="96" selection-start-line="138" selection-start-column="96" selection-end-line="138" selection-end-column="96" />
-              <folding>
-                <element signature="e#7109#7110#0" expanded="true" />
-                <element signature="e#7159#7160#0" expanded="true" />
-                <element signature="e#8007#8008#0" expanded="true" />
-                <element signature="e#8051#8052#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -655,7 +610,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323711000" />
+    <option name="totallyTimeSpent" value="323952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -668,7 +623,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.17821783" visible="true" weight="0.2428115" />
       <window_info id="Structure" order="1" sideWeight="0.8217822" side_tool="true" weight="0.24813631" />
@@ -1075,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="141" selection-start-line="141" selection-end-line="141" />
+        <state relative-caret-position="969">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
         </state>
       </provider>
     </entry>
@@ -1129,16 +1083,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerOutboundHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hanframework/mojito/handler/NettySharableExchangeServerOutboundHandler.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.32.Final/netty-all-4.1.32.Final-sources.jar!/io/netty/channel/SimpleChannelInboundHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -1313,7 +1258,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/hanframework/mojito/config/HttpInstallerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1323,8 +1268,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="391">
-            <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <first_editor relative-caret-position="238">
+            <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           </first_editor>
           <second_editor />
         </state>
@@ -1332,8 +1277,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
