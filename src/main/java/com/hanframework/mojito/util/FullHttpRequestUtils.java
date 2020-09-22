@@ -39,6 +39,10 @@ public final class FullHttpRequestUtils {
         return headerMap;
     }
 
+    public static String fetchBody(FullHttpRequest fullHttpRequest) {
+        return ByteBufUtils.toString(fullHttpRequest.content());
+    }
+
     public static Map<String, String> parseParams(FullHttpRequest fullHttpRequest) {
         if (fullHttpRequest == null) {
             return Collections.emptyMap();
@@ -57,11 +61,8 @@ public final class FullHttpRequestUtils {
         } else if (HttpMethod.POST == method) {
             HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(fullHttpRequest);
             decoder.offer(fullHttpRequest);
-
             List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();
-
             for (InterfaceHttpData parm : parmList) {
-
                 Attribute data = (Attribute) parm;
                 try {
                     parmMap.put(data.getName(), data.getValue());
@@ -69,7 +70,6 @@ public final class FullHttpRequestUtils {
                     e.printStackTrace();
                 }
             }
-
         } else {
             // 不支持其它方法
             throw new RuntimeException("不支持其它方法"); // 这是个自定义的异常, 可删掉这一行

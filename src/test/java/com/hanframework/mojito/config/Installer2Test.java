@@ -3,7 +3,9 @@ package com.hanframework.mojito.config;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
+import com.hanframework.mojito.protocol.http.HttpProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.hanframework.mojito.server.Server;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -67,6 +69,20 @@ public class Installer2Test implements Serializable {
     }
 
     /**
+     * 构建支持多协议服务
+     *
+     * @throws Exception 位置异常
+     */
+    @Test
+    public void multiServerTest() throws Exception {
+        Server server = Installer.server(RpcUserRequest.class, RpcUserResponse.class)
+                //这里接受客户端的请求,并返回一个相应
+                .serverHandler((channel, rpcRequest) -> new RpcUserResponse("服务端返回: " + rpcRequest.message))
+                .create();
+        server.start(12307);
+    }
+
+    /**
      * 如何快速构建一个客户端
      * <p>
      * 长时间没有心跳,如何处理。自动重连还是放弃。
@@ -91,7 +107,7 @@ public class Installer2Test implements Serializable {
                 System.out.println("是否异常");
             }
         });
-         while (true);
+        while (true) ;
 //        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
 //        StopWatch stopWatch = new StopWatch("请求验证");
 //        stopWatch.start();

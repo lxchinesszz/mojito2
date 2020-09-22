@@ -2,7 +2,7 @@ package com.hanframework.mojito.protocol.http;
 
 import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
-import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
+import com.hanframework.mojito.client.handler.AsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
@@ -66,7 +66,7 @@ public class HttpProtocol implements Protocol<HttpRequestFacade, HttpResponseFac
     @Override
     public ClientPromiseHandler<HttpRequestFacade, HttpResponseFacade> getClientPromiseHandler() {
         if (Objects.isNull(this.clientPromiseHandler)) {
-            this.clientPromiseHandler = new AbstractAsyncClientPromiseHandler<>();
+            this.clientPromiseHandler = new AsyncClientPromiseHandler<>();
         }
         return this.clientPromiseHandler;
     }

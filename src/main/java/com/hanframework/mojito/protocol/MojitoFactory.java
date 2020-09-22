@@ -9,17 +9,17 @@ import com.hanframework.mojito.server.handler.SubServerHandler;
  * @author liuxin
  * 2020-08-22 14:44
  */
-public class MojitoCodecFactory extends AbstractCodecFactory<RpcRequest, RpcResponse> {
+public class MojitoFactory extends AbstractFactory<RpcRequest, RpcResponse> {
 
 
     private SubServerHandler<RpcRequest, RpcResponse> subServerHandler;
 
 
-    public MojitoCodecFactory(SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
+    public MojitoFactory(SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
         this(new MojitoProtocol(), subServerHandler);
     }
 
-    public MojitoCodecFactory(Protocol<RpcRequest, RpcResponse> protocol, SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
+    public MojitoFactory(Protocol<RpcRequest, RpcResponse> protocol, SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
         super(protocol, subServerHandler);
     }
 

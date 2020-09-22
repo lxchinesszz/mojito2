@@ -18,7 +18,7 @@ import com.hanframework.mojito.protocol.http.HttpResponseFacade;
  * @author liuxin
  * 2020-09-16 21:22
  */
-public class RequestPeerMapping {
+public final class RequestPeerMapping {
 
     public static void copyRequestId(HttpRequestFacade httpRequestFacade, HttpResponseFacade httpResponseFacade) {
         String originId = httpRequestFacade.getOriginId();

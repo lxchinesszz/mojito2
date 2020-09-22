@@ -4,6 +4,7 @@ import com.hanframework.mojito.config.Constant;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.util.FullHttpRequestUtils;
 import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpMessage;
 
 import java.util.Collections;
 import java.util.Map;
@@ -20,6 +21,8 @@ public final class HttpRequestFacade extends BaseHttpMessage {
 
     private final Map<String, String> paramMap;
 
+    private final String body;
+
     private final HttpMethod httpMethod;
 
     public FullHttpRequest getFullHttpRequest() {
@@ -31,12 +34,21 @@ public final class HttpRequestFacade extends BaseHttpMessage {
         addHeader(Constant.REQUEST_ID, getId());
     }
 
+    public HttpRequestFacade(HttpContentHolder httpContentHolder) {
+        super(httpContentHolder.getFullHttpRequest(), true);
+        this.body = httpContentHolder.getBody();
+        this.paramMap = httpContentHolder.getParamMap();
+        this.httpMethod = httpContentHolder.getHttpMethod();
+        this.fullHttpRequest = httpContentHolder.getFullHttpRequest();
+        this.setProtocolType(ProtocolEnum.HTTP.getType());
+    }
+
     public HttpRequestFacade(FullHttpRequest fullHttpRequest, boolean server) {
         super(fullHttpRequest, server);
         this.fullHttpRequest = fullHttpRequest;
+        this.body = FullHttpRequestUtils.fetchBody(fullHttpRequest);
         this.paramMap = Collections.unmodifiableMap(FullHttpRequestUtils.parseParams(fullHttpRequest));
         this.httpMethod = FullHttpRequestUtils.parseHttpMethod(fullHttpRequest);
-        this.setProtocolType(ProtocolEnum.HTTP.getType());
     }
 
     public HttpMethod method() {
@@ -84,5 +96,7 @@ public final class HttpRequestFacade extends BaseHttpMessage {
         return HttpHeaders.Values.KEEP_ALIVE.equalsIgnoreCase(head);
     }
 
-
+    public String getBody() {
+        return body;
+    }
 }

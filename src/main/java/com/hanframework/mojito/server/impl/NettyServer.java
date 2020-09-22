@@ -19,6 +19,9 @@ import io.netty.util.NettyRuntime;
 import io.netty.util.internal.SystemPropertyUtil;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author liuxin
  * 2020-07-25 21:11
@@ -32,6 +35,8 @@ public class NettyServer extends AbstractServer {
 
     private EventLoopGroup workerGroup;
 
+    private ServerBootstrap serverBootstrap = new ServerBootstrap();
+
     private static final int DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
 
     /**
@@ -44,15 +49,14 @@ public class NettyServer extends AbstractServer {
      */
     private static final int DEFAULT_IO_THREADS = Math.min(Runtime.getRuntime().availableProcessors() + 1, 32);
 
-    private Protocol protocol;
 
+    private Protocol protocol;
 
     public NettyServer(Protocol protocol) {
         this.protocol = protocol;
     }
 
-    public void doOpen(int port, boolean async) {
-        ServerBootstrap serverBootstrap = new ServerBootstrap();
+    private void initServer(int port, boolean async) {
         bossGroup = new NioEventLoopGroup(1, new NamedThreadFactory("mojito-boss", true));
         workerGroup = new NioEventLoopGroup(DEFAULT_IO_THREADS, new NamedThreadFactory("mojito-work", true));
         serverBootstrap.group(bossGroup, workerGroup)
@@ -88,17 +92,26 @@ public class NettyServer extends AbstractServer {
         //bind
     }
 
+    public void doOpen(int port, boolean async) {
+        super.setPort(port);
+        super.setAsync(async);
+        initServer(port, async);
+    }
+
     public void doClose() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
         bossGroup = null;
         workerGroup = null;
         channel = null;
+        serverBootstrap = null;
     }
 
     @Override
     public void registerProtocol(Protocol protocol) {
         this.protocol = protocol;
+        doClose();
+        initServer(getPort(), isAsync());
     }
 
     @Override

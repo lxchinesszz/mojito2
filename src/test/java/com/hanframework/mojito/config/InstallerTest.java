@@ -1,10 +1,8 @@
 package com.hanframework.mojito.config;
 
-import com.hanframework.kit.util.StopWatch;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.future.MojitoFuture;
-import com.hanframework.mojito.protocol.CodecFactory;
-import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.hanframework.mojito.protocol.Factory;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import org.junit.Test;
@@ -12,8 +10,6 @@ import org.junit.Test;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -29,7 +25,7 @@ public class InstallerTest implements Serializable {
 
     @Test
     public void clientTest() throws Exception {
-        CodecFactory<RpcRequest, RpcResponse> codecFactory = Installer.modules(RpcRequest.class, RpcResponse.class).create();
+        Factory<RpcRequest, RpcResponse> codecFactory = Installer.modules(RpcRequest.class, RpcResponse.class).create();
         //构建客户端并链接
         Client<RpcRequest, RpcResponse> client = codecFactory.getClient("127.0.0.1", 12306);
         MojitoFuture<RpcResponse> async = client.sendAsync(new RpcRequest());

@@ -148,7 +148,7 @@ public class DefaultNettyClient<T extends RpcProtocolHeader, R extends RpcProtoc
     private void checked() throws ConnectException {
         if ((enhanceChannel == null || !enhanceChannel.isConnected()) && !boltRetry.canRetry()) {
             throw new ConnectException("未连接请先检查连接");
-        } else if (boltRetry.canRetry()){
+        } else if (boltRetry.canRetry()) {
             //重试
             retryConnection();
         }
@@ -169,6 +169,7 @@ public class DefaultNettyClient<T extends RpcProtocolHeader, R extends RpcProtoc
                 closed.compareAndSet(false, true);
                 workerGroup.shutdownGracefully();
                 enhanceChannel.disconnected();
+                log.info("Client 关闭成功");
             } else {
                 //TODO 关闭状态
             }

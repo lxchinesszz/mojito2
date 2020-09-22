@@ -24,6 +24,7 @@ public class HttpHandlerTask extends AbstractHandlerTask<HttpRequestFacade, Http
     @Override
     public HttpResponseFacade doResult() {
         HttpRequestFacade httpRequestFacade = getRequest();
+        httpRequestFacade.setId(httpRequestFacade.getOriginId());
         HttpResponseFacade httpResponseFacade = getServerHandler().handler(getEnhanceChannel(), httpRequestFacade);
         if (getRequest().keepAlive()) {
             FullHttpResponse fullHttpResponse = httpResponseFacade.getFullHttpResponse();
@@ -35,5 +36,6 @@ public class HttpHandlerTask extends AbstractHandlerTask<HttpRequestFacade, Http
         log.debug("服务端返回的响应头request-id:" + httpResponseFacade.getOriginId());
         return httpResponseFacade;
     }
+
 
 }

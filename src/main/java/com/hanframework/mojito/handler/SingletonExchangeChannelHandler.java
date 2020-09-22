@@ -8,12 +8,16 @@ import com.hanframework.mojito.handler.task.HttpHandlerTask;
 import com.hanframework.mojito.handler.task.RpcClientHandlerTask;
 import com.hanframework.mojito.handler.task.RpcServerHandlerTask;
 import com.hanframework.mojito.protocol.Protocol;
+import com.hanframework.mojito.protocol.http.HttpContentHolder;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import com.hanframework.mojito.protocol.http.HttpRequestParser;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
+import com.hanframework.mojito.util.EnhanceServiceLoader;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executor;
@@ -23,6 +27,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author liuxin
  * 2020-07-25 22:18
  */
+@Slf4j
 public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
 
     /**
@@ -39,6 +44,11 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * 是否服务端
      */
     private boolean isServer = true;
+
+    /**
+     * http解析器扩展
+     */
+    private EnhanceServiceLoader<HttpRequestParser> requestParserWrapper = EnhanceServiceLoader.ofType(HttpRequestParser.class);
 
     @Override
     public ExchangeChannelHandler serverChannelHandler() {
@@ -75,7 +85,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      */
     public void connected(EnhanceChannel channel) throws RemotingException {
         connections.incrementAndGet();
-        System.out.println(toAddressString(channel.getRemoteAddress()) + "已连接到服务端");
+        log.info(toAddressString(channel.getRemoteAddress()) + "已连接到服务端");
     }
 
     /**
@@ -86,7 +96,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      */
     public void disconnected(EnhanceChannel channel) throws RemotingException {
         connections.decrementAndGet();
-        System.out.println(toAddressString(channel.getRemoteAddress()) + "-->于" + DatePatternEnum.ZN_DATE_TIME_MS_PATTERN.format() + ",已断开到服务端");
+        log.info(toAddressString(channel.getRemoteAddress()) + "-->于" + DatePatternEnum.ZN_DATE_TIME_MS_PATTERN.format() + ",已断开到服务端");
     }
 
     /**
@@ -97,9 +107,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * @throws RemotingException 远程执行异常
      */
     public void write(EnhanceChannel channel, Object message) throws RemotingException {
-//        RpcResponse rpcResponse = new RpcResponse();
-//        System.out.println("向" + toAddressString(channel.getRemoteAddress()) + "发送了一条数据:" + rpcResponse);
-//        channel.sendAndClose(rpcResponse);
+        //不处理写操作
     }
 
     /**
@@ -118,7 +126,10 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
             //1. 服务端的处理逻辑
             if (isServer) {
                 if (message instanceof FullHttpRequest) {
-                    HttpRequestFacade httpRequestFacade = new HttpRequestFacade((FullHttpRequest) message, true);
+                    //拿到数据解析器
+                    HttpRequestParser httpRequestParser = requestParserWrapper.getAvailable();
+                    HttpContentHolder httpContentHolder = httpRequestParser.parseHttpContent((FullHttpRequest) message);
+                    HttpRequestFacade httpRequestFacade = new HttpRequestFacade(httpContentHolder);
                     //http协议，因为不确定请求是来自浏览器还是开发者，所以严格按照http协议的长连接方式来处理
                     channel.setAttribute(KeepAlive.KEEPALIVE, httpRequestFacade.keepAlive());
                     handlerTask = new HttpHandlerTask(serverHandler, channel, httpRequestFacade);

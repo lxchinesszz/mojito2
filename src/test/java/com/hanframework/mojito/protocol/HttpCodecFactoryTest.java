@@ -22,7 +22,7 @@ public class HttpCodecFactoryTest {
     @Test
     public void testHttpServer() {
 
-        HttpCodecFactory httpCodecFactory = new HttpCodecFactory(new SubServerHandler<HttpRequestFacade, HttpResponseFacade>() {
+        HttpFactory httpCodecFactory = new HttpFactory(new SubServerHandler<HttpRequestFacade, HttpResponseFacade>() {
             @Override
             public HttpResponseFacade handler(EnhanceChannel channel, HttpRequestFacade request) throws RemotingException {
                 Map<String, String> requestParams = request.getRequestParams();

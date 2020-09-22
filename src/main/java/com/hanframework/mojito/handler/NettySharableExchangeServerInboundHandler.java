@@ -3,6 +3,8 @@ package com.hanframework.mojito.handler;
 import com.hanframework.mojito.channel.DefaultEnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
 import io.netty.channel.*;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 
 
 /**
@@ -86,6 +88,23 @@ public class NettySharableExchangeServerInboundHandler extends SimpleChannelInbo
             exchangeChannelHandler.caught(channel, cause);
         } finally {
             DefaultEnhanceChannel.removeChannelIfDisconnected(ctx.channel());
+        }
+    }
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        DefaultEnhanceChannel channel = DefaultEnhanceChannel.getOrAddChannel(ctx.channel());
+        if (evt instanceof IdleStateEvent) {
+            IdleStateEvent event = (IdleStateEvent) evt;
+            if (event.state() == IdleState.READER_IDLE) {
+                System.err.println("读超时，关闭通道");
+                channel.disconnected();
+            } else if (event.state() == IdleState.WRITER_IDLE) {
+                System.err.println("写超时，关闭通道");
+                channel.disconnected();
+            }
+        } else {
+            super.userEventTriggered(ctx, evt);
         }
     }
 

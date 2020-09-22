@@ -6,7 +6,7 @@
 
     <groupId>com.hanframework</groupId>
     <artifactId>mojito</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -29,6 +29,7 @@
         <junit.version>4.12</junit.version>
         <java.version>1.8</java.version>
         <gpg.executable>gpg</gpg.executable>
+        <okhttp.version>3.11.0</okhttp.version>
     </properties>
 
     <developers>
@@ -141,6 +142,12 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <distributionManagement>

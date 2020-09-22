@@ -19,7 +19,7 @@ public class MojitoCodecFactoryTest {
 
     @Test
     public void testMojitoServer() {
-        MojitoCodecFactory mojitoCodecFactory = new MojitoCodecFactory((channel, rpcRequest) -> {
+        MojitoFactory mojitoCodecFactory = new MojitoFactory((channel, rpcRequest) -> {
             RpcResponse response = new RpcResponse();
             response.setMessage("hello");
             return response;
@@ -31,7 +31,7 @@ public class MojitoCodecFactoryTest {
 
     @Test
     public void testMojitoClient() throws Exception {
-        MojitoCodecFactory mojitoCodecFactory = new MojitoCodecFactory(new SubServerHandler<RpcRequest, RpcResponse>() {
+        MojitoFactory mojitoCodecFactory = new MojitoFactory(new SubServerHandler<RpcRequest, RpcResponse>() {
             @Override
             public RpcResponse handler(EnhanceChannel channel, RpcRequest rpcRequest) throws RemotingException {
                 RpcResponse response = new RpcResponse();

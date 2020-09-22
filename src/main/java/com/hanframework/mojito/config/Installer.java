@@ -3,7 +3,7 @@ package com.hanframework.mojito.config;
 import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.client.handler.AbstractAsyncClientPromiseHandler;
+import com.hanframework.mojito.client.handler.AsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.DefaultNettyClient;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
@@ -38,13 +38,13 @@ import java.util.concurrent.Executor;
  */
 public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader> {
 
-    private CodecFactory<T, V> codecFactory;
+    private Factory<T, V> codecFactory;
 
     private Class<T> requestType;
 
     private Class<V> responseType;
 
-    private Installer(CodecFactory<T, V> codecFactory) {
+    private Installer(Factory<T, V> codecFactory) {
         this.codecFactory = codecFactory;
     }
 
@@ -61,7 +61,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      */
     public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, File certificate, File privateKey) throws SSLException {
         HttpsProtocol httpsProtocol = new HttpsProtocol(certificate, privateKey);
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(httpsProtocol, subServerHandler));
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, subServerHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -78,7 +78,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      */
     public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, KeyManagerFactory keyManagerFactory) throws SSLException {
         HttpsProtocol httpsProtocol = new HttpsProtocol(keyManagerFactory);
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(httpsProtocol, subServerHandler));
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, subServerHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -92,7 +92,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      * @return Server
      */
     public static Server httpServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory(subServerHandler));
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(subServerHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -104,7 +104,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      * @return Client
      */
     public static Client<HttpRequestFacade, HttpResponseFacade> httpClient() {
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpCodecFactory());
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory());
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getClient();
@@ -153,7 +153,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             return this;
         }
 
-        public CodecFactory<T, V> create() {
+        public Factory<T, V> create() {
             return config.getCodecFactory();
         }
     }
@@ -284,13 +284,13 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             @Override
             public ClientPromiseHandler<T, V> getClientPromiseHandler() {
                 if (Objects.isNull(this.clientPromiseHandler)) {
-                    this.clientPromiseHandler = new AbstractAsyncClientPromiseHandler<>();
+                    this.clientPromiseHandler = new AsyncClientPromiseHandler<>();
                 }
                 return this.clientPromiseHandler;
             }
         };
 
-        CodecFactory<T, V> codecFactory = new AbstractCodecFactory<T, V>(customerModelProtocol) {
+        Factory<T, V> codecFactory = new AbstractFactory<T, V>(customerModelProtocol) {
 
             @Override
             public Client<T, V> getClient() {
@@ -331,7 +331,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
         this.responseType = responseType;
     }
 
-    private CodecFactory<T, V> getCodecFactory() {
+    private Factory<T, V> getCodecFactory() {
         return this.codecFactory;
     }
 

@@ -7,10 +7,11 @@ import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 /**
+ * ConfigurableFactory
  * @author liuxin
  * 2020-08-23 21:10
  */
-public interface ConfigurableCodecFactory<T, R> extends Processor<T,R> {
+public interface ConfigurableFactory<T, R> extends Processor<T,R> {
 
     /**
      * 服务端处理逻辑

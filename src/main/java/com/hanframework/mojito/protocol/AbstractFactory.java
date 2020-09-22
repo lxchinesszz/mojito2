@@ -25,7 +25,7 @@ import java.util.concurrent.Executor;
  * @author liuxin
  * 2020-08-22 13:27
  */
-public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements CodecFactory<T, R> {
+public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements Factory<T, R> {
 
     private SubServerHandler<T, R> subServerHandler;
 
@@ -37,11 +37,11 @@ public abstract class AbstractCodecFactory<T extends RpcProtocolHeader, R extend
 
     private Protocol<T, R> protocol;
 
-    public AbstractCodecFactory(Protocol<T, R> protocol) {
+    public AbstractFactory(Protocol<T, R> protocol) {
         this.protocol = protocol;
     }
 
-    public AbstractCodecFactory(Protocol<T, R> protocol, SubServerHandler<T, R> subServerHandler) {
+    public AbstractFactory(Protocol<T, R> protocol, SubServerHandler<T, R> subServerHandler) {
         this.protocol = protocol;
         this.subServerHandler = subServerHandler;
         protocol.getServerHandler().initWrapper(subServerHandler);

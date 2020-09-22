@@ -11,7 +11,7 @@ import com.hanframework.mojito.server.handler.ServerHandler;
  * @author liuxin
  * 2020-08-22 14:32
  */
-public interface CodecFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> extends ConfigurableCodecFactory<T, R>, Protocol<T, R> {
+public interface Factory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> extends ConfigurableFactory<T, R>, Protocol<T, R> {
 
     /**
      * 通信的协议信息

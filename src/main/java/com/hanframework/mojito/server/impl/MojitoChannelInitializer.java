@@ -12,6 +12,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.net.ssl.SSLEngine;
 import java.util.Objects;
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @author liuxin
  * 2020-08-21 22:49
  */
+@Slf4j
 public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> {
 
 
@@ -41,10 +43,9 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-        System.out.println("开始构建ChannelContext上下文");
+        log.info("开始构建ChannelContext上下文");
         ChannelPipeline cp = socketChannel.pipeline();
         cp.addLast("idleStateHandler", new IdleStateHandler(5, 5, 5, TimeUnit.SECONDS));
-        cp.addLast(new HeartBeatRespHandler());
         if (isServer) {
             if (protocol instanceof HttpsProtocol) {
                 SslContext context = ((HttpsProtocol) protocol).getContext();

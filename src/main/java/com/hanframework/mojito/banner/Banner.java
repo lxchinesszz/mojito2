@@ -21,7 +21,8 @@ import static com.hanframework.kit.text.Ansi.ansi;
  */
 public final class Banner {
 
-    private static final String name = "Tomato";
+    private static final String name = "Mojito";
+
     private static final String defaultBanner = " ___      ___     ______      ___  __  ___________  ______    \n" +
             "|\"  \\    /\"  |   /    \" \\    |\"  ||\" \\(\"     _   \")/    \" \\   \n" +
             " \\   \\  //   |  // ____  \\   ||  |||  |)__/  \\\\__/// ____  \\  \n" +

@@ -19,7 +19,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @author liuxin
  * 2020-08-23 00:14
  */
-public class AbstractAsyncClientPromiseHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ClientPromiseHandler<T, R>, Processor<T, R> {
+public class AsyncClientPromiseHandler<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements ClientPromiseHandler<T, R>, Processor<T, R> {
 
     /**
      * 当前通道正在发送的数据信息

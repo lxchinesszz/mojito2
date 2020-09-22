@@ -139,9 +139,10 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
 
     @Override
     public void disconnected() {
-        removeChannelIfDisconnected(channel);
-        channel.close();
+        channel.disconnect();
         attributes.clear();
+        channel.close();
+        removeChannelIfDisconnected(channel);
     }
 
     @Override

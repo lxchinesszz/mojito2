@@ -3,7 +3,7 @@ package com.hanframework.mojito.protocol.mojito;
 import com.hanframework.kit.thread.HanThreadPoolExecutor;
 import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
-import com.hanframework.mojito.client.handler.DefaultAbstractAsyncClientPromiseHandler;
+import com.hanframework.mojito.client.handler.DefaultAsyncClientPromiseHandler;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.protocol.ChannelDecoder;
@@ -69,7 +69,7 @@ public class MojitoProtocol implements Protocol<RpcRequest, RpcResponse> {
     @Override
     public ClientPromiseHandler<RpcRequest, RpcResponse> getClientPromiseHandler() {
         if (Objects.isNull(this.clientPromiseHandler)) {
-            this.clientPromiseHandler = new DefaultAbstractAsyncClientPromiseHandler();
+            this.clientPromiseHandler = new DefaultAsyncClientPromiseHandler();
         }
         return this.clientPromiseHandler;
     }

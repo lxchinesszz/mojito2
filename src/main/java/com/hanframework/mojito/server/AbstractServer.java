@@ -4,6 +4,7 @@ import com.hanframework.kit.thread.ThreadHookTools;
 import com.hanframework.mojito.exception.ProtocolException;
 import com.hanframework.mojito.protocol.Protocol;
 import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -19,6 +20,27 @@ public abstract class AbstractServer implements Server {
 
 
     private AtomicBoolean running = new AtomicBoolean(false);
+
+    private boolean async;
+
+    private int port;
+
+    public boolean isAsync() {
+        return async;
+    }
+
+    public void setAsync(boolean async) {
+        this.async = async;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    @Override
+    public int getPort() {
+        return port;
+    }
 
     public void start(int port) {
         start0(port, false);

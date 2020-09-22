@@ -28,4 +28,18 @@ public interface Server extends ProtocolRegister {
      * 关闭服务
      */
     void close();
+
+    /**
+     * 服务器端口
+     *
+     * @return int
+     */
+    int getPort();
+
+    /**
+     * 同步异步标识
+     *
+     * @return boolean
+     */
+    boolean isAsync();
 }
