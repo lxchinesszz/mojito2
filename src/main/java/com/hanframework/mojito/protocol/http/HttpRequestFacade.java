@@ -1,6 +1,5 @@
 package com.hanframework.mojito.protocol.http;
 
-import com.google.common.base.Strings;
 import com.hanframework.mojito.config.Constant;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.util.FullHttpRequestUtils;
@@ -39,7 +38,6 @@ public final class HttpRequestFacade extends BaseHttpMessage {
         this.httpMethod = FullHttpRequestUtils.parseHttpMethod(fullHttpRequest);
         this.setProtocolType(ProtocolEnum.HTTP.getType());
     }
-
 
     public HttpMethod method() {
         return httpMethod;

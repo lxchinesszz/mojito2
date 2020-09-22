@@ -228,7 +228,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             return new ClientCreator<>(this.config).create();
         }
 
-        public Client<T, V> conncet(String remoteHost, int remotePort) throws Exception {
+        public Client<T, V> connect(String remoteHost, int remotePort) throws Exception {
             return new ClientCreator<>(this.config).connect(remoteHost, remotePort);
         }
     }

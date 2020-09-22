@@ -23,9 +23,14 @@ public class BaseHttpMessage extends RpcProtocolHeader implements HttpProtocolHe
      */
     protected final Map<String, String> headers;
 
-
+    /**
+     * 协议头
+     */
     protected final HttpMessage httpMessage;
 
+    /**
+     * 原始id
+     */
     protected String originId;
 
 

@@ -1,6 +1,5 @@
 package com.hanframework.mojito.config;
 
-import com.hanframework.kit.util.StopWatch;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
@@ -8,8 +7,6 @@ import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import org.junit.Test;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 自定义通信模型演示
@@ -79,7 +76,7 @@ public class Installer2Test implements Serializable {
     @Test
     public void clientTest() throws Exception {
         Client<RpcUserRequest, RpcUserResponse> client = Installer.client(RpcUserRequest.class, RpcUserResponse.class)
-                .conncet("127.0.0.1", 12306);
+                .connect("127.0.0.1", 12306);
         MojitoFuture<RpcUserResponse> mojitoFuture = client.sendAsync(new RpcUserRequest("关注微信公众号:程序猿升级课"));
 //        System.out.println(mojitoFuture.get());
 
