@@ -99,11 +99,9 @@ public abstract class AbstractProtocol<R extends RpcProtocolHeader, V extends Rp
     }
 
     @Override
-    public void setServerHandler(ServerHandler<R, V> serverHandler) {
-        this.serverHandler = serverHandler;
-        if (Objects.nonNull(serverHandler) && Objects.nonNull(businessHandler)) {
-            serverHandler.initWrapper(businessHandler);
-        }
+    public void setBusinessHandler(BusinessHandler<R, V> businessHandler) {
+        this.businessHandler = businessHandler;
+        installBusinessHandler(businessHandler);
     }
 
     @Override

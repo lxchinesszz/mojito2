@@ -9,10 +9,11 @@ import com.hanframework.mojito.server.handler.ServerHandler;
 
 /**
  * ConfigurableFactory
+ *
  * @author liuxin
  * 2020-08-23 21:10
  */
-public interface ConfigurableFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> extends Processor<T,R >  {
+public interface ConfigurableFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> extends Processor<T, R> {
 
     /**
      * 服务端处理逻辑
@@ -20,6 +21,7 @@ public interface ConfigurableFactory<T extends RpcProtocolHeader, R extends RpcP
      * @param serverHandler 服务端处理逻辑
      */
     void setServerHandler(ServerHandler<T, R> serverHandler);
+
     /**
      * 客户端处理逻辑
      *

@@ -19,6 +19,10 @@ public interface ServerHandler<T extends RpcProtocolHeader, R extends RpcProtoco
      */
     void initWrapper(BusinessHandler<T, R> businessHandler);
 
+    /**
+     * 是否已经初始化
+     * @return boolean
+     */
     boolean inited();
 
     /**

@@ -119,14 +119,10 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         return this.clientPromiseHandler;
     }
 
-    public void setServerHandler(BusinessHandler<T, R> businessHandler) {
-        this.businessHandler = businessHandler;
-    }
-
     @Override
-    public void setServerHandler(ServerHandler<T, R> serverHandler) {
+    public void setBusinessHandler(BusinessHandler<T, R> businessHandler) {
         //修改协议内容的口子
-        protocol.setServerHandler(serverHandler);
+        protocol.setBusinessHandler(businessHandler);
     }
 
     public void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler) {
@@ -140,5 +136,10 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
 
     public void setResponseProcessor(ResponseProcessor<R>[] responseProcessors) {
         this.responseProcessors = responseProcessors;
+    }
+
+    @Override
+    public void setServerHandler(ServerHandler<T, R> serverHandler) {
+        //暂不实现
     }
 }

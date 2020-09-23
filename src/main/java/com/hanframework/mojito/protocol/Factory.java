@@ -4,6 +4,7 @@ import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 
@@ -48,9 +49,9 @@ public interface Factory<T extends RpcProtocolHeader, R extends RpcProtocolHeade
      * 设置服务端的处理器
      * 目的将请求信息通过处理,生成返回值
      *
-     * @param serverHandler 服务端处理器
+     * @param businessHandler 服务端处理器
      */
-    void setServerHandler(ServerHandler<T, R> serverHandler);
+    void setBusinessHandler(BusinessHandler<T, R> businessHandler);
 
     /**
      * 设置客户端通知处理器

@@ -3,6 +3,7 @@ package com.hanframework.mojito.protocol;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 import java.util.concurrent.Executor;
@@ -62,11 +63,10 @@ public interface Protocol<R extends RpcProtocolHeader, V extends RpcProtocolHead
 
     /**
      * 服务处理器，负责将请求信息转换成响应信息
-     * 注意: 非线程安全类
      *
-     * @param serverHandler 服务端处理,这里注意这里并不是开发者要直接编程的地方
+     * @param businessHandler 开发者要直接编程的地方
      */
-    void setServerHandler(ServerHandler<R, V> serverHandler);
+    void setBusinessHandler(BusinessHandler<R, V> businessHandler);
 
     /**
      * 客户端处理器
