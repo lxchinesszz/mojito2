@@ -145,7 +145,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
                 if (message instanceof FullHttpResponse) {
                     handlerTask = new RpcClientHandlerTask(protocol, channel, new HttpResponseFacade(((FullHttpResponse) message), true));
                 } else {
-                    handlerTask = new RpcClientHandlerTask(protocol, channel, message);
+                    handlerTask = new RpcClientHandlerTask(protocol, channel, (RpcProtocolHeader) message);
                 }
             }
             //3. 如果指定了线程池就交给线程池来处理

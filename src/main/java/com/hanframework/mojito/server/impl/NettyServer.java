@@ -98,7 +98,7 @@ public class NettyServer extends AbstractServer {
         initServer(port, async);
     }
 
-    public void doClose() {
+    protected void doClose() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
         bossGroup = null;

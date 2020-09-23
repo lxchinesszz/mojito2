@@ -5,13 +5,14 @@ import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.handler.KeepAlive;
 import com.hanframework.mojito.protocol.Protocol;
+import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 /**
  * @author liuxin
  * 2020-09-14 17:43
  */
-public abstract class AbstractHandlerTask<R, V> implements HandlerTask {
+public abstract class AbstractHandlerTask<R extends RpcProtocolHeader, V extends RpcProtocolHeader> implements HandlerTask {
 
     private Protocol<R, V> protocol;
 

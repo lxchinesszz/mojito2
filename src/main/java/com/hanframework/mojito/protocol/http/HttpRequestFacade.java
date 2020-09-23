@@ -4,7 +4,6 @@ import com.hanframework.mojito.config.Constant;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.util.FullHttpRequestUtils;
 import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpMessage;
 
 import java.util.Collections;
 import java.util.Map;

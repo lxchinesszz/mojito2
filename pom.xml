@@ -25,7 +25,6 @@
         <hessian.version>4.0.62</hessian.version>
         <han.version>1.0.2-RELEASE</han.version>
         <protobuffer.version>1.4.0</protobuffer.version>
-        <objenesis.version>2.1</objenesis.version>
         <junit.version>4.12</junit.version>
         <java.version>1.8</java.version>
         <gpg.executable>gpg</gpg.executable>

@@ -7,7 +7,7 @@ import com.hanframework.mojito.exception.RemotingException;
  * @author liuxin
  * 2020-09-02 18:11
  */
-public interface SubServerHandler<T, R> {
+public interface BusinessHandler<T, R> {
     /**
      * 根据请求找到签名信息根据签名处理结果
      *

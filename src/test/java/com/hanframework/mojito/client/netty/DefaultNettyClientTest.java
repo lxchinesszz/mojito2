@@ -1,12 +1,17 @@
 package com.hanframework.mojito.client.netty;
 
 import com.hanframework.kit.util.StopWatch;
+import com.hanframework.mojito.channel.EnhanceChannel;
+import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.future.MojitoFuture;
+import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.serialization.SerializeEnum;
+import com.hanframework.mojito.server.handler.BusinessHandler;
+import com.hanframework.mojito.server.impl.NettyServer;
 import com.hanframework.mojito.test.pojo.User;
 import com.hanframework.mojito.test.service.UserService;
 import org.junit.Test;
@@ -20,11 +25,22 @@ import java.util.concurrent.*;
  */
 public class DefaultNettyClientTest {
 
+    private Protocol<RpcRequest, RpcResponse> createProtocol() {
+        return new MojitoProtocol((channel, request) -> new RpcResponse());
+    }
+
+    private void createServer(Protocol protocol) {
+        NettyServer nettyServer = new NettyServer(protocol);
+        nettyServer.startAsync(8888);
+    }
+
     @Test
     public void testNettyClient() throws Exception {
-        DefaultNettyClient defaultNettyClient = new MojitoNettyClient(new MojitoProtocol());
-        defaultNettyClient.connect("127.0.0.1", 8888);
+        Protocol<RpcRequest, RpcResponse> protocol = createProtocol();
+        createServer(protocol);
 
+        DefaultNettyClient<RpcRequest, RpcResponse> defaultNettyClient = new MojitoNettyClient(protocol);
+        defaultNettyClient.connect("127.0.0.1", 8888);
         StopWatch stopWatch = new StopWatch();
         for (int i = 1; i <= 1; i++) {
             RpcRequest rpcRequest = new RpcRequest();
@@ -45,7 +61,10 @@ public class DefaultNettyClientTest {
 
     @Test
     public void testNettyClientTimeout() throws Exception {
-        MojitoNettyClient abstractNettyClient = new MojitoNettyClient(new MojitoProtocol());
+        Protocol<RpcRequest, RpcResponse> protocol = createProtocol();
+        createServer(protocol);
+
+        MojitoNettyClient abstractNettyClient = new MojitoNettyClient(protocol);
         abstractNettyClient.connect("127.0.0.1", 8888);
         StopWatch stopWatch = new StopWatch();
         for (int i = 1; i <= 1; i++) {
@@ -63,44 +82,5 @@ public class DefaultNettyClientTest {
         abstractNettyClient.close();
     }
 
-    @Test
-    public void futureNullTest() throws Exception {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<?> submit = executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Object o = submit.get();
-        System.out.println(o);
-    }
-
-    @Test
-    public void futureNotNullTest() throws Exception {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Integer> submit = executorService.submit(new Callable<Integer>() {
-            @Override
-            public Integer call() {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return 100;
-            }
-        });
-
-        Integer o = submit.get();
-        System.out.println(o);
-//        FutureTask
-        FutureTask s;
-//        ThreadPoolExecutor
-    }
 
 }

@@ -8,7 +8,7 @@ import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
-import com.hanframework.mojito.server.handler.SubServerHandler;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -64,11 +64,11 @@ public class QueueTest implements Serializable {
         }
     }
 
-    @Test
-    public void queueTest() {
+//    @Test
+    public void queueTest() throws Exception {
         Installer.server(Message.class, QueueStatus.class)
 
-                .serverHandler(new SubServerHandler<Message, QueueStatus>() {
+                .serverHandler(new BusinessHandler<Message, QueueStatus>() {
 
                     //1. 收到消息之后如果处理成功就返回给客户端。
 
@@ -133,15 +133,17 @@ public class QueueTest implements Serializable {
                             }).start();
                         }
                     }
-                }).create().start(12306);
+                }).create().startAsync(12311);
 
+        subscriberTest1();
+
+        subscriberTest2();
     }
 
 
-    @Test
     public void subscriberTest1() throws Exception {
         Client<Message, QueueStatus> client = Installer.client(Message.class, QueueStatus.class).create();
-        client.connect("127.0.0.1", 12306);
+        client.connect("127.0.0.1", 12311);
         Message message = new Message("testRouteKey", "第一条链接");
         message.setProtocolType(ProtocolEnum.MQ_REG.getType());
         MojitoFuture<QueueStatus> queueStatusMojitoFuture = client.sendAsync(message);
@@ -158,19 +160,16 @@ public class QueueTest implements Serializable {
         });
         QueueStatus queueStatus = queueStatusMojitoFuture.get();
         System.out.println(queueStatus);
-        while (true) ;
     }
 
-    @Test
     public void subscriberTest2() throws Exception {
         Client<Message, QueueStatus> client = Installer.client(Message.class, QueueStatus.class).create();
-        client.connect("127.0.0.1", 12306);
+        client.connect("127.0.0.1", 12311);
         Message message = new Message("testRouteKey", "第3条链接");
         message.setProtocolType(ProtocolEnum.MQ_SEND.getType());
         MojitoFuture<QueueStatus> queueStatusMojitoFuture = client.sendAsync(message);
         QueueStatus queueStatus = queueStatusMojitoFuture.get();
         System.out.println(queueStatus);
-        while (true) ;
     }
 
 }

@@ -10,8 +10,8 @@ import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
-import com.hanframework.mojito.server.handler.SubServerHandler;
 import com.hanframework.mojito.server.impl.NettyServer;
 
 import java.util.Objects;
@@ -27,7 +27,7 @@ import java.util.concurrent.Executor;
  */
 public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> implements Factory<T, R> {
 
-    private SubServerHandler<T, R> subServerHandler;
+    private BusinessHandler<T, R> businessHandler;
 
     private ClientPromiseHandler<T, R> clientPromiseHandler;
 
@@ -41,10 +41,10 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         this.protocol = protocol;
     }
 
-    public AbstractFactory(Protocol<T, R> protocol, SubServerHandler<T, R> subServerHandler) {
+    public AbstractFactory(Protocol<T, R> protocol, BusinessHandler<T, R> businessHandler) {
         this.protocol = protocol;
-        this.subServerHandler = subServerHandler;
-        protocol.getServerHandler().initWrapper(subServerHandler);
+        this.businessHandler = businessHandler;
+        protocol.getServerHandler().initWrapper(businessHandler);
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
     @Override
     public ServerHandler<T, R> getServerHandler() {
         ServerHandler<T, R> serverHandler = null;
-        if (Objects.isNull(this.subServerHandler)) {
+        if (Objects.isNull(this.businessHandler)) {
             serverHandler = protocol.getServerHandler();
             //报错
             //服务端的逻辑,交给用户自己去写,如果没有实现doServerHandler要去setServerHandler
@@ -119,8 +119,8 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         return this.clientPromiseHandler;
     }
 
-    public void setServerHandler(SubServerHandler<T, R> subServerHandler) {
-        this.subServerHandler = subServerHandler;
+    public void setServerHandler(BusinessHandler<T, R> businessHandler) {
+        this.businessHandler = businessHandler;
     }
 
     @Override

@@ -1,16 +1,11 @@
 package com.hanframework.mojito.config;
 
-import com.hanframework.kit.thread.HanThreadPoolExecutor;
-import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.client.Client;
-import com.hanframework.mojito.client.handler.AsyncClientPromiseHandler;
-import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.client.netty.DefaultNettyClient;
-import com.hanframework.mojito.handler.ExchangeChannelHandler;
-import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
 import com.hanframework.mojito.protocol.*;
+import com.hanframework.mojito.protocol.http.HttpProtocol;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.protocol.https.HttpsProtocol;
@@ -18,15 +13,10 @@ import com.hanframework.mojito.protocol.mojito.MojitoChannelDecoder;
 import com.hanframework.mojito.protocol.mojito.MojitoChannelEncoder;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
-import com.hanframework.mojito.server.handler.DefaultServerHandler;
-import com.hanframework.mojito.server.handler.ServerHandler;
-import com.hanframework.mojito.server.handler.SubServerHandler;
-
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLException;
 import java.io.File;
-import java.util.Objects;
-import java.util.concurrent.Executor;
 
 /**
  * 提供快速构建服务端和客户端的工具类
@@ -53,15 +43,15 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      * 1. 生成ssl私钥  openssl genrsa -out server.key 2048
      * 2. 生政自签名证书 openssl req -new -sha256 -x509 -days 365 -key server.key -out server.crt
      *
-     * @param subServerHandler 服务处理器
-     * @param certificate      证书文件
-     * @param privateKey       私钥
+     * @param businessHandler 服务处理器
+     * @param certificate     证书文件
+     * @param privateKey      私钥
      * @return Server
      * @throws SSLException ssl异常
      */
-    public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, File certificate, File privateKey) throws SSLException {
-        HttpsProtocol httpsProtocol = new HttpsProtocol(certificate, privateKey);
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, subServerHandler));
+    public static Server httpsServer(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, File certificate, File privateKey) throws SSLException {
+        HttpsProtocol httpsProtocol = new HttpsProtocol(certificate, privateKey, businessHandler);
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, businessHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -71,14 +61,14 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
     /**
      * 构建一个支持http协议的服务器
      *
-     * @param subServerHandler  服务处理器
+     * @param businessHandler   服务处理器
      * @param keyManagerFactory 秘钥管理器
      * @return Server
      * @throws SSLException ssl异常
      */
-    public static Server httpsServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler, KeyManagerFactory keyManagerFactory) throws SSLException {
-        HttpsProtocol httpsProtocol = new HttpsProtocol(keyManagerFactory);
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, subServerHandler));
+    public static Server httpsServer(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, KeyManagerFactory keyManagerFactory) throws SSLException {
+        HttpsProtocol httpsProtocol = new HttpsProtocol(businessHandler, keyManagerFactory);
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(httpsProtocol, businessHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -88,11 +78,11 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
     /**
      * 构建一个支持http协议的服务器
      *
-     * @param subServerHandler 服务处理器
+     * @param businessHandler 服务处理器
      * @return Server
      */
-    public static Server httpServer(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(subServerHandler));
+    public static Server httpServer(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) {
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(businessHandler));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getServer();
@@ -104,7 +94,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
      * @return Client
      */
     public static Client<HttpRequestFacade, HttpResponseFacade> httpClient() {
-        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory());
+        Installer<HttpRequestFacade, HttpResponseFacade> tvInstaller = new Installer<>(new HttpFactory(new HttpProtocol()));
         tvInstaller.setRequestType(HttpRequestFacade.class);
         tvInstaller.setResponseType(HttpResponseFacade.class);
         return tvInstaller.getCodecFactory().getClient();
@@ -148,7 +138,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             this.config = config;
         }
 
-        public ModuleConfig<T, V> serverHandler(SubServerHandler<T, V> serverHandler) {
+        public ModuleConfig<T, V> serverHandler(BusinessHandler<T, V> serverHandler) {
             this.config.serverHandler(serverHandler);
             return this;
         }
@@ -167,7 +157,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             this.config = config;
         }
 
-        public ServerCreator<T, V> serverHandler(SubServerHandler<T, V> serverHandler) {
+        public ServerCreator<T, V> serverHandler(BusinessHandler<T, V> serverHandler) {
             this.config.serverHandler(serverHandler);
             return new ServerCreator<>(this.config);
         }
@@ -234,30 +224,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
     }
 
     private static <T extends RpcProtocolHeader, V extends RpcProtocolHeader> Installer<T, V> module(Class<T> requestType, Class<V> responseType) {
-
-        Protocol<T, V> customerModelProtocol = new Protocol<T, V>() {
-
-            private Executor executor = new HanThreadPoolExecutor(new NamedThreadFactory("mojimo")).getExecutory();
-
-            private ServerHandler<T, V> serverHandler;
-
-            private ClientPromiseHandler<T, V> clientPromiseHandler;
-
-            @Override
-            public String name() {
-                return "CustomerModel";
-            }
-
-            @Override
-            public ExchangeChannelHandler getExchangeChannelHandler() {
-                return new SingletonExchangeChannelHandler(this);
-            }
-
-            @Override
-            public Executor getExecutor() {
-                return executor;
-            }
-
+        Protocol<T, V> customerModelProtocol = new AbstractProtocol<T, V>("mojito2") {
             @Override
             public ChannelDecoder getRequestDecoder() {
                 return new MojitoChannelDecoder("MojitoChannelDecoder");
@@ -266,27 +233,6 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
             @Override
             public ChannelEncoder getResponseEncoder() {
                 return new MojitoChannelEncoder("MojitoChannelEncoder");
-            }
-
-            @Override
-            public ServerHandler<T, V> getServerHandler() {
-                if (Objects.isNull(this.serverHandler)) {
-                    this.serverHandler = new DefaultServerHandler<>();
-                }
-                return this.serverHandler;
-            }
-
-            @Override
-            public void setServerHandler(ServerHandler<T, V> serverHandler) {
-                this.serverHandler = serverHandler;
-            }
-
-            @Override
-            public ClientPromiseHandler<T, V> getClientPromiseHandler() {
-                if (Objects.isNull(this.clientPromiseHandler)) {
-                    this.clientPromiseHandler = new AsyncClientPromiseHandler<>();
-                }
-                return this.clientPromiseHandler;
             }
         };
 
@@ -301,8 +247,6 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
                     }
                 };
             }
-
-
         };
         Installer<T, V> tvInstaller = new Installer<>(codecFactory);
         tvInstaller.setRequestType(requestType);
@@ -310,7 +254,7 @@ public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader>
         return tvInstaller;
     }
 
-    private void serverHandler(SubServerHandler<T, V> serverHandler) {
+    private void serverHandler(BusinessHandler<T, V> serverHandler) {
         codecFactory.getServerHandler().initWrapper(serverHandler);
     }
 

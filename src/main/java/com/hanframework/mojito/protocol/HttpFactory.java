@@ -1,7 +1,7 @@
 package com.hanframework.mojito.protocol;
 
 import com.hanframework.mojito.protocol.http.*;
-import com.hanframework.mojito.server.handler.SubServerHandler;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 
 /**
  * @author liuxin
@@ -9,18 +9,15 @@ import com.hanframework.mojito.server.handler.SubServerHandler;
  */
 public class HttpFactory extends AbstractFactory<HttpRequestFacade, HttpResponseFacade> {
 
-    public HttpFactory(){
-        this(new HttpProtocol());
-    }
     public HttpFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol) {
         super(protocol);
     }
 
-    public HttpFactory(SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        super(new HttpProtocol(), subServerHandler);
+    public HttpFactory(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) {
+        super(new HttpProtocol(businessHandler), businessHandler);
     }
 
-    public HttpFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol, SubServerHandler<HttpRequestFacade, HttpResponseFacade> subServerHandler) {
-        super(protocol,subServerHandler);
+    public HttpFactory(Protocol<HttpRequestFacade, HttpResponseFacade> protocol, BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) {
+        super(protocol, businessHandler);
     }
 }

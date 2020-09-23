@@ -1,6 +1,5 @@
 package com.hanframework.mojito.protocol;
 
-import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 
 
 /**
@@ -13,7 +12,7 @@ public class CustomerProtocolManager implements ProtocolManager {
 
     @Override
     public Protocol getDefaultProtocol() {
-        return new MojitoProtocol();
+        return null;
     }
 
 }

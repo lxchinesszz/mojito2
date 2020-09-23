@@ -4,6 +4,7 @@ import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.processor.Processor;
 import com.hanframework.mojito.processor.RequestProcessor;
 import com.hanframework.mojito.processor.ResponseProcessor;
+import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 /**
@@ -11,7 +12,7 @@ import com.hanframework.mojito.server.handler.ServerHandler;
  * @author liuxin
  * 2020-08-23 21:10
  */
-public interface ConfigurableFactory<T, R> extends Processor<T,R> {
+public interface ConfigurableFactory<T extends RpcProtocolHeader, R extends RpcProtocolHeader> extends Processor<T,R >  {
 
     /**
      * 服务端处理逻辑

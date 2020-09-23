@@ -1,8 +1,12 @@
 package com.hanframework.mojito.protocol.https;
 
 import com.hanframework.mojito.protocol.http.HttpProtocol;
+import com.hanframework.mojito.protocol.http.HttpRequestFacade;
+import com.hanframework.mojito.protocol.http.HttpResponseFacade;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
+
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
@@ -42,27 +46,36 @@ public class HttpsProtocol extends HttpProtocol {
 
     private final SslContext context;
 
-    public HttpsProtocol(File certificate, File privateKey) throws SSLException {
+    public HttpsProtocol(File certificate, File privateKey, BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) throws SSLException {
+        super("https", businessHandler);
         this.context = SslContextBuilder.forServer(certificate, privateKey).build();
     }
 
-    public HttpsProtocol(PrivateKey key, X509Certificate... keyCertChain) throws SSLException {
+
+    public HttpsProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, PrivateKey key, X509Certificate... keyCertChain) throws SSLException {
+        super("https", businessHandler);
         this.context = SslContextBuilder.forServer(key, keyCertChain).build();
     }
 
-    public HttpsProtocol(File keyCertChainFile, File keyFile, String keyPassword) throws SSLException {
+    public HttpsProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, File keyCertChainFile, File keyFile, String keyPassword) throws SSLException {
+        super("https", businessHandler);
+
         this.context = SslContextBuilder.forServer(keyCertChainFile, keyFile, keyPassword).build();
     }
 
-    public HttpsProtocol(InputStream keyCertChainInputStream, InputStream keyInputStream, String keyPassword) throws SSLException {
+    public HttpsProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, InputStream keyCertChainInputStream, InputStream keyInputStream, String keyPassword) throws SSLException {
+        super("https", businessHandler);
+
         this.context = SslContextBuilder.forServer(keyCertChainInputStream, keyInputStream, keyPassword).build();
     }
 
-    public HttpsProtocol(KeyManagerFactory keyManagerFactory) throws SSLException {
+    public HttpsProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, KeyManagerFactory keyManagerFactory) throws SSLException {
+        super("https", businessHandler);
         this.context = SslContextBuilder.forServer(keyManagerFactory).build();
     }
 
-    public HttpsProtocol(SslContext context) {
+    public HttpsProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler, SslContext context) {
+        super("https", businessHandler);
         this.context = context;
     }
 

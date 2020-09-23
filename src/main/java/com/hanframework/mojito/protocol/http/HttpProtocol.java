@@ -6,9 +6,11 @@ import com.hanframework.mojito.client.handler.AsyncClientPromiseHandler;
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.SingletonExchangeChannelHandler;
+import com.hanframework.mojito.protocol.AbstractProtocol;
 import com.hanframework.mojito.protocol.ChannelDecoder;
 import com.hanframework.mojito.protocol.ChannelEncoder;
 import com.hanframework.mojito.protocol.Protocol;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.handler.DefaultServerHandler;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
@@ -19,23 +21,22 @@ import java.util.concurrent.Executor;
  * @author liuxin
  * 2020-07-31 18:06
  */
-public class HttpProtocol implements Protocol<HttpRequestFacade, HttpResponseFacade> {
+public class HttpProtocol extends AbstractProtocol<HttpRequestFacade, HttpResponseFacade> {
 
     private Executor executor = new HanThreadPoolExecutor(new NamedThreadFactory("http")).getExecutory();
 
-    private ServerHandler<HttpRequestFacade, HttpResponseFacade> serverHandler;
-
-    private ClientPromiseHandler<HttpRequestFacade, HttpResponseFacade> clientPromiseHandler;
-
-    @Override
-    public String name() {
-        return "http";
+    public HttpProtocol() {
+        super("http");
     }
 
-    @Override
-    public ExchangeChannelHandler getExchangeChannelHandler() {
-        return new SingletonExchangeChannelHandler(this);
+    public HttpProtocol(BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) {
+        super("http", businessHandler);
     }
+
+    public HttpProtocol(String name, BusinessHandler<HttpRequestFacade, HttpResponseFacade> businessHandler) {
+        super(name, businessHandler);
+    }
+
 
     @Override
     public Executor getExecutor() {
@@ -52,27 +53,5 @@ public class HttpProtocol implements Protocol<HttpRequestFacade, HttpResponseFac
     public ChannelEncoder getResponseEncoder() {
         ////是一种特殊的协议,不返回直接使用netty支持的协议
         return null;
-    }
-
-    @Override
-    public ServerHandler<HttpRequestFacade, HttpResponseFacade> getServerHandler() {
-        if (Objects.isNull(this.serverHandler)) {
-            this.serverHandler = new DefaultServerHandler<HttpRequestFacade, HttpResponseFacade>() {
-            };
-        }
-        return this.serverHandler;
-    }
-
-    @Override
-    public ClientPromiseHandler<HttpRequestFacade, HttpResponseFacade> getClientPromiseHandler() {
-        if (Objects.isNull(this.clientPromiseHandler)) {
-            this.clientPromiseHandler = new AsyncClientPromiseHandler<>();
-        }
-        return this.clientPromiseHandler;
-    }
-
-    @Override
-    public void setServerHandler(ServerHandler<HttpRequestFacade, HttpResponseFacade> serverHandler) {
-        this.serverHandler = serverHandler;
     }
 }

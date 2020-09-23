@@ -2,6 +2,7 @@ package com.hanframework.mojito.protocol;
 
 import com.hanframework.mojito.client.handler.ClientPromiseHandler;
 import com.hanframework.mojito.handler.ExchangeChannelHandler;
+import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.ServerHandler;
 
 import java.util.concurrent.Executor;
@@ -13,7 +14,7 @@ import java.util.concurrent.Executor;
  * @author liuxin
  * 2020-07-25 21:39
  */
-public interface Protocol<R, V> {
+public interface Protocol<R extends RpcProtocolHeader, V extends RpcProtocolHeader> {
 
     /**
      * 协议名称

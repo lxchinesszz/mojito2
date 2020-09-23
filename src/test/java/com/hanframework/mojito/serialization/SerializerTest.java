@@ -69,7 +69,7 @@ public class SerializerTest implements Serializable {
     /**
      * ProtostuffObjectSerializer 反序列化必须要知道类型。
      */
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testProtostuffObjectSerialize() {
         ProtostuffObjectSerializer serialize = new ProtostuffObjectSerializer();
         User testSerialize = new User();
@@ -96,7 +96,7 @@ public class SerializerTest implements Serializable {
 
     private synchronized void printInfoNotAccordingToType(Serializer serializetor, Object obj) {
         byte[] serialize = serializetor.serialize(obj);
-        Object deserialize = serializetor.deserialize(serialize);
+        Object deserialize = serializetor.deserialize(serialize,obj.getClass());
         System.out.println(deserialize);
         UnixColor unixColor = new UnixColor();
         unixColor.green("长度:" + serialize.length);

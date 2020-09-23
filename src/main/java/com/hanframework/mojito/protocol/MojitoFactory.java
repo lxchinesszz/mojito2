@@ -3,7 +3,7 @@ package com.hanframework.mojito.protocol;
 import com.hanframework.mojito.protocol.mojito.MojitoProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
-import com.hanframework.mojito.server.handler.SubServerHandler;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 
 /**
  * @author liuxin
@@ -12,15 +12,12 @@ import com.hanframework.mojito.server.handler.SubServerHandler;
 public class MojitoFactory extends AbstractFactory<RpcRequest, RpcResponse> {
 
 
-    private SubServerHandler<RpcRequest, RpcResponse> subServerHandler;
-
-
-    public MojitoFactory(SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
-        this(new MojitoProtocol(), subServerHandler);
+    public MojitoFactory(BusinessHandler<RpcRequest, RpcResponse> businessHandler) {
+        this(new MojitoProtocol(businessHandler), businessHandler);
     }
 
-    public MojitoFactory(Protocol<RpcRequest, RpcResponse> protocol, SubServerHandler<RpcRequest, RpcResponse> subServerHandler) {
-        super(protocol, subServerHandler);
+    public MojitoFactory(Protocol<RpcRequest, RpcResponse> protocol, BusinessHandler<RpcRequest, RpcResponse> businessHandler) {
+        super(protocol, businessHandler);
     }
 
 }

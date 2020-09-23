@@ -2,7 +2,7 @@ package com.hanframework.mojito.server.handler;
 
 import com.hanframework.mojito.channel.EnhanceChannel;
 import com.hanframework.mojito.exception.RemotingException;
-import com.hanframework.mojito.exception.SubServerHandlerException;
+import com.hanframework.mojito.exception.BusinessServerHandlerException;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 
 import java.util.Objects;
@@ -19,16 +19,21 @@ public class DefaultServerHandler<T extends RpcProtocolHeader, R extends RpcProt
     /**
      * 业务方要定义的处理器
      */
-    private SubServerHandler<T, R> subServerHandler;
+    private BusinessHandler<T, R> businessHandler;
 
     @Override
-    public void initWrapper(SubServerHandler<T, R> subServerHandler) {
-        this.subServerHandler = subServerHandler;
+    public void initWrapper(BusinessHandler<T, R> businessHandler) {
+        this.businessHandler = businessHandler;
+    }
+
+    @Override
+    public boolean inited() {
+        return businessHandler != null;
     }
 
     private void checked() {
-        if (Objects.isNull(subServerHandler)) {
-            throw new SubServerHandlerException(SubServerHandler.class + "不能为空,请先指定业务处理器");
+        if (Objects.isNull(businessHandler)) {
+            throw new BusinessServerHandlerException(BusinessHandler.class + "不能为空,请先指定业务处理器");
         }
     }
 
@@ -40,7 +45,7 @@ public class DefaultServerHandler<T extends RpcProtocolHeader, R extends RpcProt
         checked();
         final R response;
         try {
-            response = subServerHandler.handler(channel, rpcRequest);
+            response = businessHandler.handler(channel, rpcRequest);
             response.setId(rpcRequest.getId());
             response.setProtocolType(rpcRequest.getProtocolType());
             response.setSerializationType(rpcRequest.getSerializationType());

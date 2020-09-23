@@ -33,7 +33,7 @@ public class HttpInstallerTest {
             System.out.println("请求参数:" + request.getRequestParams());
             System.out.println("请求body:" + request.getBody());
             return HttpResponseFacade.HTML("<h1>Hello</h1>");
-        }).start(8080);
+        }).startAsync(8080);
 
         testHttpClient();
 

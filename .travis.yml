@@ -1,5 +1,5 @@
 language: java
 jdk:
   - openjdk8
-script: mvn package
-install: mvn install
+script: mvn test
+install: mvn package

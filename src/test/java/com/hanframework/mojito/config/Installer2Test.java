@@ -1,14 +1,16 @@
 package com.hanframework.mojito.config;
 
+import com.hanframework.kit.util.StopWatch;
 import com.hanframework.mojito.client.Client;
 import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
-import com.hanframework.mojito.protocol.http.HttpProtocol;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
 import org.junit.Test;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 自定义通信模型演示
@@ -65,7 +67,8 @@ public class Installer2Test implements Serializable {
                 //这里接受客户端的请求,并返回一个相应
                 .serverHandler((channel, rpcRequest) -> new RpcUserResponse("服务端返回: " + rpcRequest.message))
                 .create()
-                .start(12306);
+                .startAsync(12306);
+        clientTest();
     }
 
     /**
@@ -79,7 +82,7 @@ public class Installer2Test implements Serializable {
                 //这里接受客户端的请求,并返回一个相应
                 .serverHandler((channel, rpcRequest) -> new RpcUserResponse("服务端返回: " + rpcRequest.message))
                 .create();
-        server.start(12307);
+        server.startAsync(12307);
     }
 
     /**
@@ -89,17 +92,18 @@ public class Installer2Test implements Serializable {
      *
      * @throws Exception 未知异常
      */
-    @Test
-    public void clientTest() throws Exception {
+    private synchronized void clientTest() throws Exception {
         Client<RpcUserRequest, RpcUserResponse> client = Installer.client(RpcUserRequest.class, RpcUserResponse.class)
                 .connect("127.0.0.1", 12306);
         MojitoFuture<RpcUserResponse> mojitoFuture = client.sendAsync(new RpcUserRequest("关注微信公众号:程序猿升级课"));
-//        System.out.println(mojitoFuture.get());
+        System.out.println("返回结果:" + mojitoFuture.get());
+
 
         mojitoFuture.addListener(new MojitoListener<RpcUserResponse>() {
             @Override
             public void onSuccess(RpcUserResponse result) throws Exception {
                 System.out.println("监听模式:" + result);
+                notifyAll();
             }
 
             @Override
@@ -107,20 +111,21 @@ public class Installer2Test implements Serializable {
                 System.out.println("是否异常");
             }
         });
-        while (true) ;
-//        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
-//        StopWatch stopWatch = new StopWatch("请求验证");
-//        stopWatch.start();
-//        for (int i = 0; i < 10000; i++) {
-//            MojitoFuture<RpcUserResponse> async = client.sendAsync(new RpcUserRequest("I'am RpcUser_" + i));
-//            result.add(async);
-//        }
-//        stopWatch.stop();
-//        for (MojitoFuture<RpcUserResponse> rpcUserResponseMojitoFuture : result) {
-//            System.out.println(rpcUserResponseMojitoFuture.get());
-//        }
-//        System.out.println(stopWatch.prettyPrint());
-//        client.close();
+
+
+        List<MojitoFuture<RpcUserResponse>> result = new ArrayList<>();
+        StopWatch stopWatch = new StopWatch("请求验证");
+        stopWatch.start();
+        for (int i = 0; i < 1000; i++) {
+            MojitoFuture<RpcUserResponse> async = client.sendAsync(new RpcUserRequest("I'am RpcUser_" + i));
+            result.add(async);
+        }
+        stopWatch.stop();
+        for (MojitoFuture<RpcUserResponse> rpcUserResponseMojitoFuture : result) {
+            System.out.println(rpcUserResponseMojitoFuture.get());
+        }
+        System.out.println(stopWatch.prettyPrint());
+        client.close();
 
     }
 

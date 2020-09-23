@@ -5,7 +5,7 @@ import com.hanframework.mojito.exception.RemotingException;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.server.Server;
-import com.hanframework.mojito.server.handler.SubServerHandler;
+import com.hanframework.mojito.server.handler.BusinessHandler;
 import org.junit.Test;
 
 import java.util.Map;
@@ -21,8 +21,7 @@ public class HttpCodecFactoryTest {
 
     @Test
     public void testHttpServer() {
-
-        HttpFactory httpCodecFactory = new HttpFactory(new SubServerHandler<HttpRequestFacade, HttpResponseFacade>() {
+        HttpFactory httpCodecFactory = new HttpFactory(new BusinessHandler<HttpRequestFacade, HttpResponseFacade>() {
             @Override
             public HttpResponseFacade handler(EnhanceChannel channel, HttpRequestFacade request) throws RemotingException {
                 Map<String, String> requestParams = request.getRequestParams();
@@ -31,6 +30,6 @@ public class HttpCodecFactoryTest {
             }
         });
         Server server = httpCodecFactory.getServer();
-        server.start(8080);
+        server.startAsync(8079);
     }
 }
