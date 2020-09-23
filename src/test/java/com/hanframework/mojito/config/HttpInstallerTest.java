@@ -26,12 +26,13 @@ public class HttpInstallerTest {
      */
     @Test
     public void testHttpServer() throws Exception {
+
         Installer.httpServer((channel, request) -> {
             System.out.println("请求地址:" + request.getRequestURI());
             System.out.println("请求头" + request.getHeaders());
             System.out.println("请求参数:" + request.getRequestParams());
-            System.out.println("请求body:"+request.getBody());
-            return HttpResponseFacade.ok(request.getId());
+            System.out.println("请求body:" + request.getBody());
+            return HttpResponseFacade.HTML("<h1>Hello</h1>");
         }).start(8080);
 
         testHttpClient();

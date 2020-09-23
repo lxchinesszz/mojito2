@@ -27,7 +27,7 @@ public class HttpCodecFactoryTest {
             public HttpResponseFacade handler(EnhanceChannel channel, HttpRequestFacade request) throws RemotingException {
                 Map<String, String> requestParams = request.getRequestParams();
                 System.out.println("请求参数:" + requestParams);
-                return HttpResponseFacade.ok();
+                return HttpResponseFacade.HTML("<h1>hello</h1>");
             }
         });
         Server server = httpCodecFactory.getServer();

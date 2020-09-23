@@ -38,7 +38,7 @@ public class HttpsSafeInstallerTest {
             System.out.println(request.getRequestURI());
             Map<String, String> requestParams = request.getRequestParams();
             System.out.println(requestParams);
-            return HttpResponseFacade.JSON(1);
+            return HttpResponseFacade.TEXT("Hello");
         };
     }
 

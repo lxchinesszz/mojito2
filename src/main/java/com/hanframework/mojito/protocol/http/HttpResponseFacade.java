@@ -19,7 +19,7 @@ public class HttpResponseFacade extends BaseHttpMessage {
     }
 
     public HttpResponseFacade(FullHttpResponse fullHttpResponse, boolean client) {
-        super(fullHttpResponse,client);
+        super(fullHttpResponse, client);
         this.fullHttpResponse = fullHttpResponse;
         if (client) {
             this.setId(getOriginId());
@@ -31,27 +31,27 @@ public class HttpResponseFacade extends BaseHttpMessage {
     }
 
 
-    public static HttpResponseFacade ok(String i) {
+    public static HttpResponseFacade HTML(String html) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
                 HttpResponseStatus.OK,
-                Unpooled.copiedBuffer("<html><body><h1>Hello Mojito:" + i + "</h1></body></html>", CharsetUtil.UTF_8));
+                Unpooled.copiedBuffer(html, CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
         response.headers().set(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
         return new HttpResponseFacade(response);
     }
 
-    public static HttpResponseFacade ok() {
+    public static HttpResponseFacade TEXT(String string) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
                 HttpResponseStatus.OK,
-                Unpooled.copiedBuffer("<html><body><h1>Hello Mojito</h1></body></html>", CharsetUtil.UTF_8));
+                Unpooled.copiedBuffer(string, CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
         response.headers().set(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
         return new HttpResponseFacade(response);
     }
 
-    public static HttpResponseFacade JSON(int i) {
+    public static HttpResponseFacade JSON(String json) {
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
-                HttpResponseStatus.OK, Unpooled.copiedBuffer("{'name':'lx','age':" + i + "}", CharsetUtil.UTF_8));
+                HttpResponseStatus.OK, Unpooled.copiedBuffer(json, CharsetUtil.UTF_8));
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.APPLICATION_JSON);
         response.headers().set(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
         return new HttpResponseFacade(response);

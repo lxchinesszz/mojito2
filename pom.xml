@@ -148,6 +148,7 @@
             <version>${okhttp.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <distributionManagement>
