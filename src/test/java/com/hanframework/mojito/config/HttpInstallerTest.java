@@ -32,10 +32,11 @@ public class HttpInstallerTest {
             System.out.println("请求头" + request.getHeaders());
             System.out.println("请求参数:" + request.getRequestParams());
             System.out.println("请求body:" + request.getBody());
+            System.out.println("请求方法:" + request.method());
             return HttpResponseFacade.HTML("<h1>Hello</h1>");
         }).startAsync(8080);
 
-        testHttpClient();
+//        testHttpClient();
 
         okHttpClientTest();
     }
@@ -43,7 +44,7 @@ public class HttpInstallerTest {
 
     private void okHttpClientTest() {
         OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Builder().url("http://127.0.0.1:8080").build();
+        Request request = new Builder().url("http://127.0.0.1:8080").get().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 // ... handle failed request

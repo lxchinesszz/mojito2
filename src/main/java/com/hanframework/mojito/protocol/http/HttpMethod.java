@@ -32,6 +32,6 @@ public enum HttpMethod {
         if (cache.isEmpty()) {
             init();
         }
-        return cache.get(name);
+        return cache.get(name.toLowerCase());
     }
 }

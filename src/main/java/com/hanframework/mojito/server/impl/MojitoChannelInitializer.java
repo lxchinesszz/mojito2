@@ -1,10 +1,11 @@
 package com.hanframework.mojito.server.impl;
 
+import com.hanframework.mojito.handler.ExchangeChannelHandler;
 import com.hanframework.mojito.handler.NettySharableExchangeServerInboundHandler;
+import com.hanframework.mojito.handler.NettySharableExchangeServerOutboundHandler;
 import com.hanframework.mojito.protocol.Protocol;
 import com.hanframework.mojito.protocol.http.*;
 import com.hanframework.mojito.protocol.https.HttpsProtocol;
-import com.hanframework.mojito.server.handler.HeartBeatRespHandler;
 import io.netty.channel.*;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpContentCompressor;
@@ -71,8 +72,9 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
                     cp.addLast(protocol.name() + "-encoder", protocol.getResponseEncoder());
                 }
             }
-            cp.addLast(new NettySharableExchangeServerInboundHandler(protocol.getExchangeChannelHandler().serverChannelHandler()));
-            cp.addLast(new NettySharableExchangeServerInboundHandler.ChannelOutboundWriter());
+            ExchangeChannelHandler serverChannelHandler = protocol.getExchangeChannelHandler().serverChannelHandler();
+            cp.addLast(new NettySharableExchangeServerInboundHandler(serverChannelHandler));
+            cp.addLast(new NettySharableExchangeServerOutboundHandler(serverChannelHandler));
         } else {
             if (protocol instanceof HttpsProtocol) {
                 SslContext context = ((HttpsProtocol) protocol).getContext();
@@ -99,8 +101,10 @@ public class MojitoChannelInitializer extends ChannelInitializer<SocketChannel> 
                     cp.addLast(protocol.name() + "-encoder", protocol.getResponseEncoder());
                 }
             }
-            cp.addLast(new NettySharableExchangeServerInboundHandler(protocol.getExchangeChannelHandler().clientChannelHandler()));
-            cp.addLast(new NettySharableExchangeServerInboundHandler.ChannelOutboundWriter());
+            ExchangeChannelHandler clientChannelHandler = protocol.getExchangeChannelHandler().clientChannelHandler();
+            cp.addLast(new NettySharableExchangeServerInboundHandler(clientChannelHandler));
+            cp.addLast(new NettySharableExchangeServerOutboundHandler(clientChannelHandler));
+
         }
     }
 }

@@ -9,11 +9,11 @@ import com.hanframework.mojito.exception.RemotingException;
  */
 public interface BusinessHandler<T, R> {
     /**
-     * 根据请求找到签名信息根据签名处理结果
+     * 服务端业务处理器
      *
+     * @param channel 连接通信
      * @param request 请求信息
-     * @param channel 连接
-     * @return RpcResponse
+     * @return R
      */
     R handler(EnhanceChannel channel, T request) throws RemotingException;
 }

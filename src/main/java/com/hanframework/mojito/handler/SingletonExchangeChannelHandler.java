@@ -108,6 +108,8 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      */
     public void write(EnhanceChannel channel, Object message) throws RemotingException {
         //不处理写操作
+        System.out.println("fasong");
+        channel.send(message);
     }
 
     /**

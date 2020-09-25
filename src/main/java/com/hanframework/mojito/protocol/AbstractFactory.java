@@ -49,7 +49,7 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
 
     @Override
     public String name() {
-        return null;
+        return protocol.name();
     }
 
     @Override

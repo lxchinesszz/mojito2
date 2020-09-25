@@ -2,8 +2,6 @@ package com.hanframework.mojito.server.impl;
 
 import com.hanframework.kit.platform.OSinfo;
 import com.hanframework.kit.text.Ansi;
-import com.hanframework.kit.text.Color;
-import com.hanframework.kit.text.UnixColor;
 import com.hanframework.kit.thread.NamedThreadFactory;
 import com.hanframework.mojito.banner.Banner;
 import com.hanframework.mojito.protocol.Protocol;
@@ -18,9 +16,6 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.util.NettyRuntime;
 import io.netty.util.internal.SystemPropertyUtil;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author liuxin
@@ -56,7 +51,7 @@ public class NettyServer extends AbstractServer {
         this.protocol = protocol;
     }
 
-    private void initServer(int port, boolean async) {
+    private void createServer(int port, boolean async) {
         bossGroup = new NioEventLoopGroup(1, new NamedThreadFactory("mojito-boss", true));
         workerGroup = new NioEventLoopGroup(DEFAULT_IO_THREADS, new NamedThreadFactory("mojito-work", true));
         serverBootstrap.group(bossGroup, workerGroup)
@@ -95,7 +90,7 @@ public class NettyServer extends AbstractServer {
     public void doOpen(int port, boolean async) {
         super.setPort(port);
         super.setAsync(async);
-        initServer(port, async);
+        createServer(port, async);
     }
 
     protected void doClose() {
@@ -111,7 +106,7 @@ public class NettyServer extends AbstractServer {
     public void registerProtocol(Protocol protocol) {
         this.protocol = protocol;
         doClose();
-        initServer(getPort(), isAsync());
+        createServer(getPort(), isAsync());
     }
 
     @Override
