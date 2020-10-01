@@ -23,9 +23,6 @@ public class DefaultHttpRequestParseImpl extends AbstractHttpRequestParser {
         return FullHttpRequestUtils.parseParams(fullHttpRequest);
     }
 
-    public HttpMethod getMethod(FullHttpRequest fullHttpRequest) {
-        return FullHttpRequestUtils.parseHttpMethod(fullHttpRequest);
-    }
 
     public String getBody(FullHttpRequest fullHttpRequest) {
         return FullHttpRequestUtils.fetchBody(fullHttpRequest);

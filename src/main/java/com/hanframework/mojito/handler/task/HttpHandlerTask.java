@@ -26,7 +26,7 @@ public class HttpHandlerTask extends AbstractHandlerTask<HttpRequestFacade, Http
         HttpRequestFacade httpRequestFacade = getRequest();
         httpRequestFacade.setId(httpRequestFacade.getOriginId());
         HttpResponseFacade httpResponseFacade = getServerHandler().handler(getEnhanceChannel(), httpRequestFacade);
-        if (getRequest().keepAlive()) {
+        if (getRequest().shouldKeepAlive()) {
             FullHttpResponse fullHttpResponse = httpResponseFacade.getFullHttpResponse();
             fullHttpResponse.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         }

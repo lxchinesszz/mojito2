@@ -9,7 +9,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 
 /**
  * Netty 调用 自定义的处理API,主要用于数据交换
- * 原生线程模型非常干净,我们通过重新定义Channel的方式,使其与容器处理逻辑所隔离。通过将Netty原生Channel 转换成 HanChannel
+ * 原生线程模型非常干净,我们通过重新定义Channel的方式,使其与容器处理逻辑所隔离。通过将Netty原生Channel 转换成 EnhanceChannel
  * 所有的请求,都会在这里被处理。
  * 将Netty通道API转换为自己的API
  * 1. 连接的保存

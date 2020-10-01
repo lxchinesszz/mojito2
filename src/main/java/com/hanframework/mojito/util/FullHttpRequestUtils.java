@@ -1,5 +1,6 @@
 package com.hanframework.mojito.util;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.Attribute;
 import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
@@ -40,7 +41,11 @@ public final class FullHttpRequestUtils {
     }
 
     public static String fetchBody(FullHttpRequest fullHttpRequest) {
-        return ByteBufUtils.toString(fullHttpRequest.content());
+        ByteBuf byteBuf = fullHttpRequest.content();
+        byteBuf.markReaderIndex();
+        String body = ByteBufUtils.toString(byteBuf);
+        byteBuf.resetReaderIndex();
+        return body;
     }
 
     public static Map<String, String> parseParams(FullHttpRequest fullHttpRequest) {
@@ -55,12 +60,12 @@ public final class FullHttpRequestUtils {
             // 是GET请求
             QueryStringDecoder decoder = new QueryStringDecoder(fullHttpRequest.uri());
             decoder.parameters().forEach((key, value) -> {
-                // entry.getValue()是一个List, 只取第一个元素
                 parmMap.put(key, value.get(0));
             });
         } else if (HttpMethod.POST == method) {
+            fullHttpRequest.content().markReaderIndex();
             HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(fullHttpRequest);
-            decoder.offer(fullHttpRequest);
+            fullHttpRequest.content().resetReaderIndex();
             List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();
             for (InterfaceHttpData parm : parmList) {
                 Attribute data = (Attribute) parm;

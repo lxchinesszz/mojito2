@@ -108,7 +108,6 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      */
     public void write(EnhanceChannel channel, Object message) throws RemotingException {
         //不处理写操作
-        System.out.println("fasong");
         channel.send(message);
     }
 
@@ -133,7 +132,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
                     HttpContentHolder httpContentHolder = httpRequestParser.parseHttpContent((FullHttpRequest) message);
                     HttpRequestFacade httpRequestFacade = new HttpRequestFacade(httpContentHolder);
                     //http协议，因为不确定请求是来自浏览器还是开发者，所以严格按照http协议的长连接方式来处理
-                    channel.setAttribute(KeepAlive.KEEPALIVE, httpRequestFacade.keepAlive());
+                    channel.setAttribute(KeepAlive.KEEPALIVE, httpRequestFacade.shouldKeepAlive());
                     handlerTask = new HttpHandlerTask(serverHandler, channel, httpRequestFacade);
                 } else {
                     RpcProtocolHeader rpcProtocolHeader = (RpcProtocolHeader) message;

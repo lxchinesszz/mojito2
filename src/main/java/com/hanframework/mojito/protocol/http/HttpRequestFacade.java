@@ -90,7 +90,7 @@ public final class HttpRequestFacade extends BaseHttpMessage {
      *
      * @return boolean
      */
-    public boolean keepAlive() {
+    public boolean shouldKeepAlive() {
         String head = headers.get(HttpHeaders.Names.CONNECTION);
         return HttpHeaders.Values.KEEP_ALIVE.equalsIgnoreCase(head);
     }

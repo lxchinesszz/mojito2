@@ -9,6 +9,7 @@ import com.hanframework.mojito.future.listener.MojitoListener;
 import com.hanframework.mojito.protocol.ProtocolEnum;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.handler.BusinessHandler;
+import com.hanframework.mojito.server.handler.ChannelContext;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -81,12 +82,12 @@ public class QueueTest implements Serializable {
 
 
                     @Override
-                    public QueueStatus handler(EnhanceChannel channel, Message message) {
+                    public QueueStatus handler(ChannelContext channelContext, Message message) {
                         ProtocolEnum protocolEnum = ProtocolEnum.byType(message.getProtocolType());
                         //1. 如果发现是注册协议,就将当前客户端的连接给保存到指定的topic里面
                         if (protocolEnum == ProtocolEnum.MQ_REG) {
                             List<EnhanceChannel> enhanceChannels = routeKeyChannelMap.computeIfAbsent(message.routeKey, k -> new ArrayList<>());
-                            enhanceChannels.add(channel);
+                            enhanceChannels.add(channelContext.getChannel());
                             return new QueueStatus("订阅成功");
                         } else if (protocolEnum == ProtocolEnum.MQ_SEND) {
                             //2. 如果发现是发送协议,就向指定的topic去添加一条消息

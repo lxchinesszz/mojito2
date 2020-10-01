@@ -45,7 +45,7 @@ public class DefaultServerHandler<T extends RpcProtocolHeader, R extends RpcProt
         checked();
         final R response;
         try {
-            response = businessHandler.handler(channel, rpcRequest);
+            response = businessHandler.handler(new DefaultChannelContext(channel), rpcRequest);
             response.setId(rpcRequest.getId());
             response.setProtocolType(rpcRequest.getProtocolType());
             response.setSerializationType(rpcRequest.getSerializationType());

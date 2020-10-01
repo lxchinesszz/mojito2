@@ -9,6 +9,7 @@ import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.Server;
 import com.hanframework.mojito.server.handler.BusinessHandler;
+import com.hanframework.mojito.server.handler.ChannelContext;
 import org.junit.Test;
 
 /**
@@ -34,7 +35,7 @@ public class MojitoCodecFactoryTest {
     public void testMojitoClient() throws Exception {
         MojitoFactory mojitoCodecFactory = new MojitoFactory(new BusinessHandler<RpcRequest, RpcResponse>() {
             @Override
-            public RpcResponse handler(EnhanceChannel channel, RpcRequest rpcRequest) throws RemotingException {
+            public RpcResponse handler(ChannelContext channelContext, RpcRequest rpcRequest) throws RemotingException {
                 RpcResponse response = new RpcResponse();
                 response.setMessage("hello");
                 return response;
