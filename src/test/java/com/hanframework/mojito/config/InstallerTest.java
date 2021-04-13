@@ -59,6 +59,7 @@ public class InstallerTest implements Serializable {
 
 
     @Test
+    @Ignore
     public void testRpcServer() throws Exception {
         Installer.ServerCreator<RpcRequest, RpcResponse> serverCreator = Installer.server(RpcRequest.class, RpcResponse.class)
                 .serverHandler((channel, request) -> {
