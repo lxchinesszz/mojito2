@@ -5,6 +5,7 @@ import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.protocol.Factory;
 import com.hanframework.mojito.protocol.mojito.model.RpcRequest;
 import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class InstallerTest implements Serializable {
 
-
+    @Ignore
     public void clientTest() throws Exception {
         Factory<RpcRequest, RpcResponse> codecFactory = Installer.modules(RpcRequest.class, RpcResponse.class).create();
         //构建客户端并链接
@@ -36,6 +37,7 @@ public class InstallerTest implements Serializable {
 
 
     @Test
+    @Ignore
     public void serverTest() throws Exception {
         Installer.server(RpcRequest.class, RpcResponse.class).serverHandler((channel, rpcRequest) -> {
             RpcResponse response = new RpcResponse();
@@ -47,6 +49,7 @@ public class InstallerTest implements Serializable {
 
 
     @Test
+    @Ignore
     public void mqTest() {
         //1. 服务端放一个路由键。当有人往指定的routeKey消息。
         //2. 服务端将消息推送给订阅的人,然后将这个消息的状态指定为已发送状态,等待消费端来确定是否消费成功,如果成功就将消息状态改为已处理，然后移出。

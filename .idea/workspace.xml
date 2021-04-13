@@ -112,6 +112,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="GroovyConsoleState">
     <option name="list">
       <list>
@@ -535,44 +543,6 @@
     <MESSAGE value="1. Netty升级4.1.50" />
     <MESSAGE value="1. 添加DynamicConfigServer示例" />
     <option name="LAST_COMMIT_MESSAGE" value="1. 添加DynamicConfigServer示例" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="558" y="144" key="CommitChangelistDialog2" timestamp="1605518796484">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="558" y="144" key="CommitChangelistDialog2/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1605518796484" />
-    <state x="100" y="128" width="1720" height="852" key="DiffContextDialog" timestamp="1605518798120">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="100" y="128" width="1720" height="852" key="DiffContextDialog/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1605518798120" />
-    <state width="1878" height="436" key="GridCell.Tab.0.bottom" timestamp="1606738859391">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="436" key="GridCell.Tab.0.bottom/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1606738859391" />
-    <state width="1878" height="425" key="GridCell.Tab.0.bottom/-221.1105.1440.875/0.25.1920.1055@0.25.1920.1055" timestamp="1605359148777" />
-    <state width="1398" height="351" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1605922965335" />
-    <state width="1878" height="436" key="GridCell.Tab.0.center" timestamp="1606738859390">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="436" key="GridCell.Tab.0.center/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1606738859390" />
-    <state width="1878" height="425" key="GridCell.Tab.0.center/-221.1105.1440.875/0.25.1920.1055@0.25.1920.1055" timestamp="1605359148776" />
-    <state width="1398" height="351" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1605922965334" />
-    <state width="1878" height="436" key="GridCell.Tab.0.left" timestamp="1606738859389">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="436" key="GridCell.Tab.0.left/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1606738859389" />
-    <state width="1878" height="425" key="GridCell.Tab.0.left/-221.1105.1440.875/0.25.1920.1055@0.25.1920.1055" timestamp="1605359148776" />
-    <state width="1398" height="351" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1605922965334" />
-    <state width="1878" height="436" key="GridCell.Tab.0.right" timestamp="1606738859391">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="436" key="GridCell.Tab.0.right/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1606738859391" />
-    <state width="1878" height="425" key="GridCell.Tab.0.right/-221.1105.1440.875/0.25.1920.1055@0.25.1920.1055" timestamp="1605359148777" />
-    <state width="1398" height="351" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1605922965335" />
-    <state x="625" y="262" width="670" height="676" key="search.everywhere.popup" timestamp="1606738765454">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="625" y="262" width="670" height="676" key="search.everywhere.popup/-1440.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1606738765454" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

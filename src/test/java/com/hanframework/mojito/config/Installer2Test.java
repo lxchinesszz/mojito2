@@ -6,6 +6,7 @@ import com.hanframework.mojito.future.MojitoFuture;
 import com.hanframework.mojito.future.listener.MojitoListener;
 import com.hanframework.mojito.protocol.mojito.model.RpcProtocolHeader;
 import com.hanframework.mojito.server.Server;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -62,6 +63,7 @@ public class Installer2Test implements Serializable {
      * @throws Exception 未知异常
      */
     @Test
+    @Ignore
     public void serverTest() throws Exception {
         Installer.server(RpcUserRequest.class, RpcUserResponse.class)
                 //这里接受客户端的请求,并返回一个相应
@@ -77,6 +79,7 @@ public class Installer2Test implements Serializable {
      * @throws Exception 位置异常
      */
     @Test
+    @Ignore
     public void multiServerTest() throws Exception {
         Server server = Installer.server(RpcUserRequest.class, RpcUserResponse.class)
                 //这里接受客户端的请求,并返回一个相应

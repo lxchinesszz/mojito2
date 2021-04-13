@@ -14,6 +14,7 @@ import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.impl.NettyServer;
 import com.hanframework.mojito.test.pojo.User;
 import com.hanframework.mojito.test.service.UserService;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.*;
@@ -35,6 +36,7 @@ public class DefaultNettyClientTest {
     }
 
     @Test
+    @Ignore
     public void testNettyClient() throws Exception {
         Protocol<RpcRequest, RpcResponse> protocol = createProtocol();
         createServer(protocol);
@@ -60,6 +62,7 @@ public class DefaultNettyClientTest {
     }
 
     @Test
+    @Ignore
     public void testNettyClientTimeout() throws Exception {
         Protocol<RpcRequest, RpcResponse> protocol = createProtocol();
         createServer(protocol);

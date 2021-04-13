@@ -10,6 +10,7 @@ import com.hanframework.mojito.protocol.mojito.model.RpcResponse;
 import com.hanframework.mojito.server.Server;
 import com.hanframework.mojito.server.handler.BusinessHandler;
 import com.hanframework.mojito.server.handler.ChannelContext;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,6 +20,7 @@ import org.junit.Test;
 public class MojitoCodecFactoryTest {
 
     @Test
+    @Ignore
     public void testMojitoServer() throws Exception {
         MojitoFactory mojitoCodecFactory = new MojitoFactory((channel, rpcRequest) -> {
             RpcResponse response = new RpcResponse();
