@@ -105,7 +105,7 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         return serverHandler;
     }
 
-
+    @Override
     public ClientPromiseHandler<T, R> getClientPromiseHandler() {
         if (Objects.isNull(this.clientPromiseHandler)) {
             this.clientPromiseHandler = protocol.getClientPromiseHandler();
@@ -125,6 +125,7 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         protocol.setBusinessHandler(businessHandler);
     }
 
+    @Override
     public void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler) {
         this.clientPromiseHandler = clientPromiseHandler;
     }
@@ -134,6 +135,7 @@ public abstract class AbstractFactory<T extends RpcProtocolHeader, R extends Rpc
         this.requestProcessors = requestProcessors;
     }
 
+    @Override
     public void setResponseProcessor(ResponseProcessor<R>[] responseProcessors) {
         this.responseProcessors = responseProcessors;
     }

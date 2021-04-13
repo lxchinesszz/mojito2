@@ -83,6 +83,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * @param channel channel.
      * @throws RemotingException 远程调用异常
      */
+    @Override
     public void connected(EnhanceChannel channel) throws RemotingException {
         connections.incrementAndGet();
         log.info(toAddressString(channel.getRemoteAddress()) + "已连接到服务端");
@@ -94,6 +95,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * @param channel channel.
      * @throws RemotingException 远程调用异常
      */
+    @Override
     public void disconnected(EnhanceChannel channel) throws RemotingException {
         connections.decrementAndGet();
         log.info(toAddressString(channel.getRemoteAddress()) + "-->于" + DatePatternEnum.ZN_DATE_TIME_MS_PATTERN.format() + ",已断开到服务端");
@@ -106,6 +108,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * @param message message.
      * @throws RemotingException 远程执行异常
      */
+    @Override
     public void write(EnhanceChannel channel, Object message) throws RemotingException {
         //不处理写操作
         channel.send(message);
@@ -119,6 +122,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
      * @throws RemotingException 远程调用异常
      */
     @SuppressWarnings("unchecked")
+    @Override
     public void read(EnhanceChannel channel, final Object message) throws RemotingException {
         Executor executor = protocol.getExecutor();
         ServerHandler serverHandler = protocol.getServerHandler();
@@ -162,7 +166,7 @@ public class SingletonExchangeChannelHandler implements ExchangeChannelHandler {
         }
     }
 
-
+    @Override
     public void caught(EnhanceChannel channel, Throwable exception) throws RemotingException {
         channel.exceptionCaught(new RemotingException(exception));
     }

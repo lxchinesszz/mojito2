@@ -122,8 +122,8 @@ public class DefaultNettyClient<T extends RpcProtocolHeader, R extends RpcProtoc
     }
 
     private void retryConnection() throws ConnectException {
+        connLock.lock();
         try {
-            connLock.lock();
             while (boltRetry.canRetryIncrease()) {
                 try {
                     this.connect(remoteHost, remotePort);

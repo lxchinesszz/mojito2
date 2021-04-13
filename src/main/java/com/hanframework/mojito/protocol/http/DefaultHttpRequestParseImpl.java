@@ -14,16 +14,17 @@ import java.util.Map;
  */
 public class DefaultHttpRequestParseImpl extends AbstractHttpRequestParser {
 
-
+    @Override
     public Map<String, String> getHeaders(FullHttpRequest fullHttpRequest) {
         return FullHttpRequestUtils.parseHeaders(fullHttpRequest);
     }
 
+    @Override
     public Map<String, String> getParamMap(FullHttpRequest fullHttpRequest) {
         return FullHttpRequestUtils.parseParams(fullHttpRequest);
     }
 
-
+    @Override
     public String getBody(FullHttpRequest fullHttpRequest) {
         return FullHttpRequestUtils.fetchBody(fullHttpRequest);
     }

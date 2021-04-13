@@ -25,6 +25,7 @@ public abstract class AbstractServer implements Server {
 
     private int port;
 
+    @Override
     public boolean isAsync() {
         return async;
     }
@@ -42,6 +43,7 @@ public abstract class AbstractServer implements Server {
         return port;
     }
 
+    @Override
     public void start(int port) {
         start0(port, false);
     }
@@ -81,6 +83,7 @@ public abstract class AbstractServer implements Server {
         return true;
     }
 
+    @Override
     public void close() {
         log.info("Server 关闭成功");
         doClose();

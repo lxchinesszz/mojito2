@@ -17,11 +17,11 @@ import java.util.function.Supplier;
  */
 public class WorkPool<T> {
 
-    private GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+    private final GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
 
-    private GenericObjectPool<T> pool;
+    private final GenericObjectPool<T> pool;
 
-    private Supplier<T> objSupplier;
+    private final Supplier<T> objSupplier;
 
     public WorkPool(Supplier<T> objSupplier) {
         initConfig();
@@ -32,7 +32,7 @@ public class WorkPool<T> {
     private BasePooledObjectFactory<T> buildObjectPool() {
         return new BasePooledObjectFactory<T>() {
             @Override
-            public T create() throws Exception {
+            public T create() {
                 return objSupplier.get();
             }
 

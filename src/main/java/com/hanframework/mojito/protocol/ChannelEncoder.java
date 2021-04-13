@@ -20,6 +20,7 @@ public abstract class ChannelEncoder<T extends RpcProtocolHeader> extends Messag
         this.name = name;
     }
 
+    @Override
     public void encode(ChannelHandlerContext ctx, T msg, ByteBuf out) throws Exception {
         System.out.println("发送数据已进入到" + name + "编码器中:" + msg);
         doEncode(ctx, msg, out);

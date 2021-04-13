@@ -49,6 +49,7 @@ public class DefaultEnhanceChannel extends AbstractEnhanceChannel {
         return channel.id().asLongText();
     }
 
+    @Override
     public String getChannelId() {
         return channelId;
     }

@@ -28,7 +28,7 @@ import java.io.File;
  */
 public class Installer<T extends RpcProtocolHeader, V extends RpcProtocolHeader> {
 
-    private Factory<T, V> codecFactory;
+    private final Factory<T, V> codecFactory;
 
     private Class<T> requestType;
 

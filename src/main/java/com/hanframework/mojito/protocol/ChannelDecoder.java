@@ -30,6 +30,7 @@ public abstract class ChannelDecoder extends ByteToMessageDecoder {
      * @param out in中的数据转换成对象调用out.add方法
      * @throws Exception 未知异常
      */
+    @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         log.debug("二进制数据已进入到" + name + "解码器");
         doDecode(ctx, in, out);

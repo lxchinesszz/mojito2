@@ -8,6 +8,7 @@ import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.util.HttpRequestBuilder;
 import okhttp3.*;
 import okhttp3.Request.Builder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class HttpInstallerTest {
      * 构建http服务端
      */
     @Test
+    @Ignore
     public void testHttpServer() throws Exception {
 
         Installer.httpServer((channelContext, request) -> {

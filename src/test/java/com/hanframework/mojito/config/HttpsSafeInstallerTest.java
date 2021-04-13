@@ -3,6 +3,7 @@ package com.hanframework.mojito.config;
 import com.hanframework.mojito.protocol.http.HttpRequestFacade;
 import com.hanframework.mojito.protocol.http.HttpResponseFacade;
 import com.hanframework.mojito.server.handler.BusinessHandler;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -26,7 +27,8 @@ public class HttpsSafeInstallerTest {
      *
      * @throws Exception
      */
-//    @Test
+    @Test
+    @Ignore
     public void testHttpsServer() throws Exception {
         File cert = new File("/Users/liuxin/Github/mojito/server.crt");
         File key = new File("/Users/liuxin/Github/mojito/server_pkcs8.key");

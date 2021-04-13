@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class HttpResponseDecoderWrapper extends HttpResponseDecoder {
 
+    @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf buffer, List<Object> out) throws Exception {
         super.decode(ctx, buffer, out);
     }

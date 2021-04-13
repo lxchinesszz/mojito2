@@ -32,8 +32,6 @@ public class NettyServer extends AbstractServer {
 
     private ServerBootstrap serverBootstrap = new ServerBootstrap();
 
-    private static final int DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
-
     /**
      * 每个CPU同一时间片只能处理一个线程
      * - 对于IO密集型(当任何一个线程在进行IO操作时候,线程都会处于阻塞状态,则处理器可以立即进行上下文切换让其他线程作业)
@@ -42,8 +40,7 @@ public class NettyServer extends AbstractServer {
      * - 计算密集型(当任何一个线程发生任何暂定或错误,刚好有一个额外线程能补充上,不浪费CPU使用率)
      * 对CPU要求高的,线程数量 N(CPU核心数) + 1
      */
-    private static final int DEFAULT_IO_THREADS = Math.min(Runtime.getRuntime().availableProcessors() + 1, 32);
-
+    private static final int DEFAULT_EVENT_THREADS = Math.min(Runtime.getRuntime().availableProcessors() + 1, 32);
 
     private Protocol protocol;
 
@@ -53,17 +50,17 @@ public class NettyServer extends AbstractServer {
 
     private void createServer(int port, boolean async) {
         bossGroup = new NioEventLoopGroup(1, new NamedThreadFactory("mojito-boss", true));
-        workerGroup = new NioEventLoopGroup(DEFAULT_IO_THREADS, new NamedThreadFactory("mojito-work", true));
+        workerGroup = new NioEventLoopGroup(DEFAULT_EVENT_THREADS, new NamedThreadFactory("mojito-work", true));
         serverBootstrap.group(bossGroup, workerGroup)
                 .childOption(ChannelOption.TCP_NODELAY, true)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.SO_BACKLOG, 128)
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .channel(OSinfo.isLinux() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
                 .localAddress(port).option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000)
-                .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childHandler(new MojitoChannelInitializer(protocol));
         try {
-            ChannelFuture sync = serverBootstrap.bind(port).sync();
+            ChannelFuture sync = serverBootstrap.bind().sync();
             sync.addListener((ChannelFutureListener) channelFuture -> {
                 if (channelFuture.isSuccess()) {
                     Banner.print();
@@ -87,12 +84,14 @@ public class NettyServer extends AbstractServer {
         //bind
     }
 
+    @Override
     public void doOpen(int port, boolean async) {
         super.setPort(port);
         super.setAsync(async);
         createServer(port, async);
     }
 
+    @Override
     protected void doClose() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();

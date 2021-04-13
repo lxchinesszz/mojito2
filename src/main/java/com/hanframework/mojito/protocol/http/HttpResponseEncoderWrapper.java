@@ -16,6 +16,7 @@ public class HttpResponseEncoderWrapper extends HttpResponseEncoder {
         return msg instanceof HttpResponseFacade;
     }
 
+    @Override
     public void encode(ChannelHandlerContext ctx, Object msg, List<Object> out) throws Exception {
         if (msg instanceof HttpResponseFacade) {
             msg = ((HttpResponseFacade) msg).getFullHttpResponse();

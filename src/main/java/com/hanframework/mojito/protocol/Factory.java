@@ -51,6 +51,7 @@ public interface Factory<T extends RpcProtocolHeader, R extends RpcProtocolHeade
      *
      * @param businessHandler 服务端处理器
      */
+    @Override
     void setBusinessHandler(BusinessHandler<T, R> businessHandler);
 
     /**
@@ -59,6 +60,7 @@ public interface Factory<T extends RpcProtocolHeader, R extends RpcProtocolHeade
      *
      * @param clientPromiseHandler 客户处理器
      */
+    @Override
     void setClientPromiseHandler(ClientPromiseHandler<T, R> clientPromiseHandler);
 
 }
